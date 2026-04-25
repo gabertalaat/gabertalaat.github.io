@@ -18,8 +18,6 @@
             color: #fff;
             overflow-x: hidden;
         }
-
-        /* شاشة البرومو */
         .intro-overlay {
             position: fixed;
             top: 0;
@@ -81,8 +79,6 @@
             cursor: pointer;
             transition: 0.3s;
         }
-
-        /* الهيدر */
         .header {
             display: flex;
             justify-content: space-between;
@@ -107,8 +103,6 @@
             object-fit: cover;
             box-shadow: 0 0 20px rgba(0,255,136,0.4);
         }
-
-        /* من أنا */
         .about-section {
             padding: 60px 5%;
             background: #111;
@@ -127,7 +121,6 @@
             color: #ccc;
             font-size: 16px;
         }
-
         .section-title {
             text-align: center;
             margin: 60px 0 40px;
@@ -135,8 +128,6 @@
             font-weight: 900;
             color: #00ff88;
         }
-
-        /* تصميم الانفوجرافيك */
         .infographic-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -215,8 +206,6 @@
         .sub-item a:hover i {
             color: #000;
         }
-
-        /* خدماتي */
         .services-section {
             padding: 60px 5%;
             background: #0f0f0f;
@@ -245,8 +234,6 @@
             font-size: 20px;
             margin-bottom: 10px;
         }
-
-        /* تواصل */
         .contact-section {
             padding: 60px 5%;
             background: #111;
@@ -257,6 +244,7 @@
             justify-content: center;
             gap: 25px;
             margin-top: 30px;
+            flex-wrap: wrap;
         }
         .social-icons a {
             width: 60px;
@@ -278,7 +266,6 @@
             transform: scale(1.15) rotate(10deg);
             box-shadow: 0 0 20px rgba(0,255,136,0.6);
         }
-
         @media (max-width: 768px) {
             .main-category { flex-direction: column; }
             .sub-items { margin-right: 0; margin-top: 30px; width: 100%; }
@@ -324,7 +311,6 @@
 
     <div class="infographic-container">
 
-        <!-- القسم 1: كورسات المونتاج -->
         <div class="main-category">
             <div class="category-circle">
                 <h3>كورسات المونتاج</h3>
@@ -351,7 +337,6 @@
             </div>
         </div>
 
-        <!-- القسم 2: كورسات برمجة وبرامج -->
         <div class="main-category">
             <div class="category-circle">
                 <h3>برمجة وبرامج</h3>
@@ -378,7 +363,6 @@
             </div>
         </div>
 
-        <!-- القسم 3: ملفات تصميم -->
         <div class="main-category">
             <div class="category-circle">
                 <h3>ملفات تصميم</h3>
@@ -405,7 +389,6 @@
             </div>
         </div>
 
-        <!-- القسم 4: كتب وملخصات -->
         <div class="main-category">
             <div class="category-circle">
                 <h3>كتب وملخصات</h3>
@@ -447,14 +430,17 @@
     <div class="contact-section">
         <h2 class="section-title">خلينا نتواصل 📱</h2>
         <div class="social-icons">
-            <a href="https://wa.me/20123456789" target="_blank" title="واتساب">
-                <i class="fab fa-whatsapp"></i>
+            <a href="https://www.instagram.com/g.t.m_27?igsh=MWFmam52aGRsdTcydQ==" target="_blank" title="انستجرام">
+                <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://t.me/username" target="_blank" title="تليجرام">
+            <a href="https://www.facebook.com/share/18abG5c7zP/" target="_blank" title="فيسبوك">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://www.snapchat.com/add/gtmm_27?share_id=4oVL3tMID5o&locale=ar-AA" target="_blank" title="سناب شات">
+                <i class="fab fa-snapchat"></i>
+            </a>
+            <a href="https://t.me/GTM_MEDIA2" target="_blank" title="تليجرام">
                 <i class="fab fa-telegram"></i>
-            </a>
-            <a href="mailto:gaber@email.com" target="_blank" title="ايميل">
-                <i class="fas fa-envelope"></i>
             </a>
         </div>
     </div>
