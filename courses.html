@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتبة الكورسات - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+        }
+        .header {
+            padding: 20px 5%;
+            background: #1a1a1a;
+            border-bottom: 3px solid #00ff88;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            color: #00ff88;
+            font-weight: 900;
+            font-size: 26px;
+        }
+        .back-btn {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: 700;
+            border: 2px solid #00ff88;
+            padding: 8px 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            background: #00ff88;
+            color: #000;
+        }
+        .page-title {
+            text-align: center;
+            margin: 40px 0 20px;
+            font-size: 32px;
+            font-weight: 900;
+            color: #00ff88;
+        }
+        
+        /* الأقسام الرئيسية */
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto 60px;
+            padding: 0 5%;
+        }
+        .section-header {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-right: 5px solid #00ff88;
+        }
+        .section-header h2 {
+            font-size: 26px;
+            font-weight: 900;
+            color: #00ff88;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .section-header i {
+            font-size: 30px;
+        }
+
+        /* شبكة الكورسات */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .course-card {
+            background: #151515;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #222;
+            transition: 0.4s;
+        }
+        .course-card:hover {
+            border-color: #00ff88;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,255,136,0.2);
+        }
+        .course-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .course-info {
+            padding: 20px;
+        }
+        .course-info h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+            min-height: 50px;
+        }
+        .download-link {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #00ff88, #00cc6a);
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 900;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .download-link:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>مكتبة الكورسات 💻</h1>
+        <a href="index.html" class="back-btn">الرجوع للرئيسية ←</a>
+    </div>
+
+    <h2 class="page-title">أهم الكورسات والملفات مجاناً 🎓</h2>
+
+    <!-- قسم 1: كورسات المونتاج -->
+    <div class="section-container">
+        <div class="section-header">
+            <h2><i class="fas fa-video"></i> كورسات المونتاج</h2>
+        </div>
+        <div class="courses-grid">
+            <div class="course-card">
+                <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400" alt="كورس مونتاج">
+                <div class="course-info">
+                    <h3>كورس بريمير برو كامل من الصفر</h3>
+                    <a href="#" class="download-link">رابط التحميل هيبقا هنا</a>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="https://images.unsplash.com/photo-1626544827763-d516dce335e2?w=400" alt="كورس مونتاج">
+                <div class="course-info">
+                    <h3>كورس أفتر إفكت للموشن جرافيك</h3>
+                    <a href="#" class="download-link">رابط التحميل هيبقا هنا</a>
+                </div>
+            <div class="course-card">
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400" alt="كورس مونتاج">
+                <div class="course-info">
+                    <h3>كورس دافنشي ريزولف للمبتدئين</h3>
+                    <a href="#" class="download-link">رابط التحميل هيبقا هنا</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم 2: كورسات برمجة وبرامج -->
+    <div class="section-container">
+        <div class="section-header">
+            <h2><i class="fas fa-code"></i> كورسات برمجة وبرامج</h2>
+        </div>
+        <div class="courses-grid">
+            <div class="course-card">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400" alt="كورس برمجة">
+                <div class="course-info">
+                    <h3>HTML + CSS كامل من الصفر للاحتراف</h3>
+                    <a href="#" class="download-link">رابط التحميل هيبقا هنا</a>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400" alt="كورس برمجة">
+                <div class="course-info">
+                    <h3>JavaScript الحديث ES6+</h3>
+                    <a href="#" class="download-link">رابط التحميل هيبقا هنا</a>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400" alt="كورس برمجة">
+                <div class="course-info">
+                    <h3>Python من مبتدئ لمحترف</h3>
+                    <a href="#" class="download-link">رابط التحميل هيبقا هنا</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم 3: ملفات تصميم -->
+    <div class="section-container">
+        <div class="section-header">
+            <h2><i class="fas fa-paint-brush"></i> ملفات تصميم</h2>
+        </div>
+        <div class="courses-grid">
+            <div class="course-card">
+                <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400" alt="ملفات تصميم">
+                <div class="course-info">
+                    <h3>حزمة 50 موكاب PSD احترافي</h3>
+                    <a href="#" class="download-link">رابط التحميل هيبقا هنا</a>
+                </div>
+            <div class="course-card">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400" alt="ملفات تصميم">
+                <div class="course-info">
+                    <h3>1000 أيقونة SVG للمواقع</h3>
+                    <a href="#" class="download-link">رابط التحميل هيبقا هنا</a>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400" alt="ملفات تصميم">
+                <div class="course-info">
+                    <h3>خلفيات 4K للتصميم</h3>
+                    <a href="#" class="download-link">رابط التحميل هيبقا هنا</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم 4: كتب وملخصات -->
+    <div class="section-container">
+        <div class="section-header">
+            <h2><i class="fas fa-book"></i> كتب وملخصات</h2>
+        </div>
+        <div class="courses-grid">
+            <div class="course-card">
+                <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400" alt="كتاب">
+                <div class="course-info">
+                    <h3>كتاب الأب الغني والأب الفقير PDF</h3>
+                    <a href="#" class="download-link">رابط التحميل هيبقا هنا</a>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400" alt="كتاب">
+                <div class="course-info">
+                    <h3>ملخص كتاب العادات الذرية</h3>
+                    <a href="#" class="download-link">رابط التحميل هيبقا هنا</a>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400" alt="كتاب">
+                <div class="course-info">
+                    <h3>كتاب فن اللامبالاة PDF</h3>
+                    <a href="#" class="download-link">رابط التحميل هيبقا هنا</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
