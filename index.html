@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- أيقونات Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -325,27 +327,37 @@
             margin-bottom: 10px;
         }
 
-        /* قسم تواصل */
+        /* قسم تواصل - أيقونات */
         .contact-section {
             padding: 60px 5%;
             background: #111;
             text-align: center;
         }
-        .contact-links a {
-            display: inline-block;
-            margin: 10px;
-            padding: 12px 25px;
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .social-icons a {
+            width: 60px;
+            height: 60px;
             background: #1f1f1f;
             color: #00ff88;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            border: 2px solid #00ff88;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 28px;
+            border: 3px solid #00ff88;
             transition: 0.3s;
+            text-decoration: none;
         }
-        .contact-links a:hover {
+        .social-icons a:hover {
             background: #00ff88;
             color: #000;
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 0 20px rgba(0,255,136,0.6);
         }
 
         @media (max-width: 768px) {
@@ -361,7 +373,6 @@
 
     <!-- شاشة البرومو -->
     <div class="intro-overlay" id="introOverlay">
-        <!-- فيديو خلفية برمجة -->
         <video class="intro-video" autoplay muted loop>
             <source src="https://cdn.pixabay.com/video/2020/08/12/47211-449626640_large.mp4" type="video/mp4">
         </video>
@@ -372,9 +383,9 @@
             <button class="skip-intro" onclick="skipIntro()">ادخل العالم الآن 🚀</button>
         </div>
 
-        <!-- صوت الهاكر -->
-        <audio id="welcomeSound" autoplay>
-            <source src="https://cdn.freesound.org/previews/316/316847_4939433-lq.mp3" type="audio/mpeg">
+        <!-- حط لينك الصوت بتاعك هنا -->
+        <audio id="welcomeSound">
+            <source src="#" type="audio/mpeg">
         </audio>
     </div>
 
@@ -514,13 +525,22 @@
         </div>
     </div>
 
-    <!-- خلينا نتواصل -->
+    <!-- خلينا نتواصل - أيقونات -->
     <div class="contact-section">
         <h2 class="section-title">خلينا نتواصل 📱</h2>
-        <div class="contact-links">
-            <a href="https://wa.me/20123456789" target="_blank">واتساب</a>
-            <a href="https://t.me/username" target="_blank">تليجرام</a>
-            <a href="mailto:gaber@email.com" target="_blank">ايميل</a>
+        <div class="social-icons">
+            <!-- حط رقمك الصح هنا -->
+            <a href="https://wa.me/20123456789" target="_blank" title="واتساب">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <!-- حط يوزر التليجرام الصح هنا -->
+            <a href="https://t.me/username" target="_blank" title="تليجرام">
+                <i class="fab fa-telegram"></i>
+            </a>
+            <!-- حط ايميلك الصح هنا -->
+            <a href="mailto:gaber@email.com" target="_blank" title="ايميل">
+                <i class="fas fa-envelope"></i>
+            </a>
         </div>
     </div>
 
@@ -531,12 +551,14 @@
             document.getElementById('welcomeSound').pause();
         }
         
-        // صوت الهاكر يشتغل
-        window.addEventListener('load', () => {
+        // الصوت يشتغل لما يدوس المستخدم
+        document.addEventListener('click', () => {
             const audio = document.getElementById('welcomeSound');
-            audio.volume = 0.5;
-            audio.play().catch(e => console.log('Autoplay prevented'));
-        });
+            if(audio.src && audio.src !== window.location.href + '#') {
+                audio.volume = 0.7;
+                audio.play().catch(e => console.log('Audio play prevented'));
+            }
+        }, { once: true });
 
         // يختفي البرومو تلقائي بعد 6 ثواني
         setTimeout(() => {
