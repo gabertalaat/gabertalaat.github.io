@@ -18,6 +18,8 @@
             color: #fff;
             overflow-x: hidden;
         }
+
+        /* شاشة البرومو */
         .intro-overlay {
             position: fixed;
             top: 0;
@@ -79,10 +81,8 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .skip-intro:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(0,255,136,0.6);
-        }
+
+        /* الهيدر */
         .header {
             display: flex;
             justify-content: space-between;
@@ -92,7 +92,6 @@
             border-bottom: 3px solid #00ff88;
         }
         .header-info h1 {
-            font-family: 'Cairo', sans-serif;
             font-weight: 900;
             color: #00ff88;
             font-size: 32px;
@@ -108,6 +107,8 @@
             object-fit: cover;
             box-shadow: 0 0 20px rgba(0,255,136,0.4);
         }
+
+        /* من أنا */
         .about-section {
             padding: 60px 5%;
             background: #111;
@@ -126,123 +127,96 @@
             color: #ccc;
             font-size: 16px;
         }
+
         .section-title {
             text-align: center;
-            margin: 50px 0 30px;
-            font-size: 28px;
+            margin: 60px 0 40px;
+            font-size: 32px;
             font-weight: 900;
             color: #00ff88;
         }
-        .books-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            padding: 20px 5% 60px;
-            perspective: 2500px;
+
+        /* تصميم الانفوجرافيك */
+        .infographic-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 5% 80px;
         }
-        .book {
-            width: 220px;
-            height: 300px;
+        .main-category {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
             position: relative;
-            transform-style: preserve-3d;
-            cursor: pointer;
-            transition: transform 0.6s;
         }
-        .book:hover { transform: rotateY(-15deg) scale(1.08); }
-        .book.opened {
-            transform: rotateY(-180deg);
-            z-index: 10;
-            width: 450px;
-        }
-        .book-cover {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 8px 20px 20px 8px;
-            box-shadow: -8px 8px 25px rgba(0,0,0,0.7);
-            background-size: cover;
-            background-position: center;
+        .category-circle {
+            width: 220px;
+            height: 220px;
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            border-radius: 50%;
             display: flex;
-            align-items: flex-end;
-            padding: 20px;
-        }
-        .book-cover h3 {
-            background: rgba(0,0,0,0.85);
-            padding: 12px 15px;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 900;
-            width: 100%;
-            text-align: center;
-            border: 2px solid #00ff88;
-        }
-        .book[data-book="montage"] .book-cover {
-            background-image: url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600');
-        }
-        .book[data-book="code"] .book-cover {
-            background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600');
-        }
-        .book[data-book="design"] .book-cover {
-            background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600');
-        }
-        .book[data-book="pdf"] .book-cover {
-            background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600');
-        }
-        .book-content {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #151515;
-            transform: rotateY(180deg);
-            backface-visibility: hidden;
-            border-radius: 20px 8px 8px 20px;
-            padding: 20px;
-            overflow-y: auto;
-            border: 3px solid #00ff88;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+            text-align: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 40px rgba(0,255,136,0.4);
+            z-index: 2;
         }
-        .book-content h4 {
-            color: #00ff88;
-            margin-bottom: 20px;
-            font-size: 22px;
+        .category-circle h3 {
+            font-size: 24px;
             font-weight: 900;
-            border-bottom: 2px solid #333;
-            padding-bottom: 12px;
-        }
-        .enter-page-btn {
-            padding: 15px 30px;
-            background: linear-gradient(90deg, #00ff88, #00cc6a);
             color: #000;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 900;
-            font-size: 16px;
-            transition: 0.3s;
+            padding: 20px;
         }
-        .enter-page-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(0,255,136,0.6);
+        .sub-items {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-right: 40px;
         }
-        .close-book {
+        .sub-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .sub-item::before {
+            content: '';
             position: absolute;
-            top: 15px;
-            left: 15px;
-            background: #ff3333;
-            color: #fff;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 900;
-            z-index: 20;
+            right: -40px;
+            width: 40px;
+            height: 2px;
+            background: #00ff88;
         }
+        .sub-item a {
+            background: #1a1a1a;
+            color: #fff;
+            text-decoration: none;
+            padding: 18px 30px;
+            border-radius: 0 50px 50px 0;
+            font-weight: 700;
+            font-size: 17px;
+            border: 2px solid #2a2a2a;
+            transition: 0.3s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .sub-item a:hover {
+            background: #00ff88;
+            color: #000;
+            transform: translateX(-10px);
+            border-color: #00ff88;
+        }
+        .sub-item a i {
+            font-size: 22px;
+            color: #00ff88;
+        }
+        .sub-item a:hover i {
+            color: #000;
+        }
+
+        /* خدماتي */
         .services-section {
             padding: 60px 5%;
             background: #0f0f0f;
@@ -271,6 +245,8 @@
             font-size: 20px;
             margin-bottom: 10px;
         }
+
+        /* تواصل */
         .contact-section {
             padding: 60px 5%;
             background: #111;
@@ -302,12 +278,13 @@
             transform: scale(1.15) rotate(10deg);
             box-shadow: 0 0 20px rgba(0,255,136,0.6);
         }
+
         @media (max-width: 768px) {
-            .book { width: 180px; height: 250px; }
-            .book.opened { width: 90vw; }
-            .header { flex-direction: column; gap: 20px; }
-            .intro-content h1 { font-size: 32px; }
-            .intro-content p { font-size: 18px; }
+            .main-category { flex-direction: column; }
+            .sub-items { margin-right: 0; margin-top: 30px; width: 100%; }
+            .sub-item::before { display: none; }
+            .category-circle { width: 180px; height: 180px; }
+            .category-circle h3 { font-size: 20px; }
         }
     </style>
 </head>
@@ -322,7 +299,6 @@
             <p>مكتبتك الاحترافية للتحميلات المجانية</p>
             <button class="skip-intro" onclick="skipIntro()">ادخل العالم الآن 🚀</button>
         </div>
-        <!-- حط لينك صوتك الهاكر هنا لما تسجله -->
         <audio id="welcomeSound">
             <source src="#" type="audio/mpeg">
         </audio>
@@ -344,48 +320,111 @@
         </p>
     </div>
 
-    <h2 class="section-title">اختر قسمك وابدأ التحميل 👇</h2>
+    <h2 class="section-title">خريطة التحميلات 👇</h2>
 
-    <div class="books-container">
-        
-        <div class="book" data-book="montage">
-            <div class="book-cover"><h3>أدوات المونتاج 🎬</h3></div>
-            <div class="book-content">
-                <button class="close-book">×</button>
-                <h4>أدوات المونتاج</h4>
-                <p style="margin-bottom: 20px; color: #aaa;">قريباً...</p>
+    <div class="infographic-container">
+
+        <!-- القسم 1: كورسات المونتاج -->
+        <div class="main-category">
+            <div class="category-circle">
+                <h3>كورسات المونتاج</h3>
+            </div>
+            <div class="sub-items">
+                <div class="sub-item">
+                    <a href="courses.html#montage">
+                        <i class="fas fa-video"></i>
+                        بريمير برو كامل
+                    </a>
+                </div>
+                <div class="sub-item">
+                    <a href="courses.html#montage">
+                        <i class="fas fa-film"></i>
+                        أفتر إفكت للموشن
+                    </a>
+                </div>
+                <div class="sub-item">
+                    <a href="courses.html#montage">
+                        <i class="fas fa-palette"></i>
+                        دافنشي ريزولف
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="book" data-book="code">
-            <div class="book-cover"><h3>كورسات وبرامج 💻</h3></div>
-            <div class="book-content">
-                <button class="close-book">×</button>
-                <h4>أهم الكورسات في العالم</h4>
-                <p style="margin-bottom: 20px; color: #ccc; text-align: center;">أكتر من 50 كورس احترافي مجاناً</p>
-                <a href="courses.html" class="enter-page-btn">ادخل مكتبة الكورسات 🚀</a>
+        <!-- القسم 2: كورسات برمجة وبرامج -->
+        <div class="main-category">
+            <div class="category-circle">
+                <h3>برمجة وبرامج</h3>
+            </div>
+            <div class="sub-items">
+                <div class="sub-item">
+                    <a href="courses.html#code">
+                        <i class="fab fa-html5"></i>
+                        HTML + CSS
+                    </a>
+                </div>
+                <div class="sub-item">
+                    <a href="courses.html#code">
+                        <i class="fab fa-js"></i>
+                        JavaScript الحديث
+                    </a>
+                </div>
+                <div class="sub-item">
+                    <a href="courses.html#code">
+                        <i class="fab fa-python"></i>
+                        Python للاحتراف
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="book" data-book="design">
-            <div class="book-cover"><h3>ملفات التصميم 🎨</h3></div>
-            <div class="book-content">
-                <button class="close-book">×</button>
-                <h4>ملفات التصميم</h4>
-                <p style="margin-bottom: 20px; color: #aaa;">قريباً...</p>
+        <!-- القسم 3: ملفات تصميم -->
+        <div class="main-category">
+            <div class="category-circle">
+                <h3>ملفات تصميم</h3>
+            </div>
+            <div class="sub-items">
+                <div class="sub-item">
+                    <a href="courses.html#design">
+                        <i class="fas fa-layer-group"></i>
+                        موكاب PSD
+                    </a>
+                </div>
+                <div class="sub-item">
+                    <a href="courses.html#design">
+                        <i class="fas fa-icons"></i>
+                        أيقونات SVG
+                    </a>
+                </div>
+                <div class="sub-item">
+                    <a href="courses.html#design">
+                        <i class="fas fa-image"></i>
+                        خلفيات 4K
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="book" data-book="pdf">
-            <div class="book-cover"><h3>كتب وملخصات 📚</h3></div>
-            <div class="book-content">
-                <button class="close-book">×</button>
-                <h4>كتب وملخصات</h4>
-                <p style="margin-bottom: 20px; color: #aaa;">قريباً...</p>
+        <!-- القسم 4: كتب وملخصات -->
+        <div class="main-category">
+            <div class="category-circle">
+                <h3>كتب وملخصات</h3>
+            </div>
+            <div class="sub-items">
+                <div class="sub-item">
+                    <a href="courses.html#books">
+                        <i class="fas fa-book"></i>
+                        كتب تطوير ذات
+                    </a>
+                </div>
+                <div class="sub-item">
+                    <a href="courses.html#books">
+                        <i class="fas fa-file-pdf"></i>
+                        ملخصات PDF
+                    </a>
+                </div>
             </div>
         </div>
-
-    </div>
 
     <div class="services-section">
         <h2 class="section-title">خدماتي 💼</h2>
@@ -408,15 +447,12 @@
     <div class="contact-section">
         <h2 class="section-title">خلينا نتواصل 📱</h2>
         <div class="social-icons">
-            <!-- ابعتلي رقمك الصح أحطه هنا -->
             <a href="https://wa.me/20123456789" target="_blank" title="واتساب">
                 <i class="fab fa-whatsapp"></i>
             </a>
-            <!-- ابعتلي يوزر التليجرام الصح هنا -->
             <a href="https://t.me/username" target="_blank" title="تليجرام">
                 <i class="fab fa-telegram"></i>
             </a>
-            <!-- ابعتلي ايميلك الصح هنا -->
             <a href="mailto:gaber@email.com" target="_blank" title="ايميل">
                 <i class="fas fa-envelope"></i>
             </a>
@@ -443,20 +479,6 @@
         } else {
             localStorage.setItem('introSeen', 'true');
         }
-        document.querySelectorAll('.book').forEach(book => {
-            book.addEventListener('click', function(e) {
-                if (!e.target.classList.contains('close-book') && !e.target.classList.contains('enter-page-btn')) {
-                    document.querySelectorAll('.book.opened').forEach(b => b.classList.remove('opened'));
-                    this.classList.add('opened');
-                }
-            });
-        });
-        document.querySelectorAll('.close-book').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                this.closest('.book').classList.remove('opened');
-            });
-        });
     </script>
 
 </body>
