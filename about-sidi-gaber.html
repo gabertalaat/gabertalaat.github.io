@@ -3,484 +3,490 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جابر طلعت | مؤسس Sidi Gaber - مطور ومصمم</title>
-    <meta name="description" content="جابر طلعت - 23 سنة، خريج نظم ومعلومات الأعمال 2025، مؤسس مكتبة Sidi Gaber للتحميلات المجانية وأدوات الذكاء الاصطناعي">
-    <meta name="keywords" content="جابر طلعت, Gaber Talaat, Sidi Gaber, مطور, مصمم, نظم ومعلومات">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <title>قصة صعود: جابر طلعت من طالب جامعي إلى مؤسس Sidi Gaber | مجلة سيدي جابر</title>
+    <meta name="description" content="تقرير حصري عن جابر طلعت - 23 عاماً، مواليد 27 نوفمبر 2002، خريج نظم ومعلومات 2025، مؤسس مكتبة Sidi Gaber الرقمية">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Cairo', sans-serif;
-            background: #0a0a0a;
-            color: #fff;
-            line-height: 1.8;
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            background: #fff;
+            color: #1a1a1a;
+            line-height: 1.9;
         }
         
-        /* الهيدر الجديد */
-        .profile-hero {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            border-bottom: 3px solid #00ff88;
-            padding: 60px 5% 40px;
+        /* هيدر المجلة */
+        .magazine-header {
+            background: #000;
+            color: #fff;
+            padding: 15px 5%;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
-        .profile-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(0,255,136,0.1) 0%, transparent 70%);
-        }
-        .profile-hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        .profile-avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 5px solid #00ff88;
-            object-fit: cover;
-            margin: 0 auto 20px;
-            box-shadow: 0 0 40px rgba(0,255,136,0.5);
-        }
-        .profile-hero h1 {
-            font-size: 42px;
+        .magazine-logo {
+            font-family: 'Tajawal', serif;
+            font-size: 36px;
             font-weight: 900;
+            letter-spacing: 3px;
+        }
+        .magazine-logo span {
             color: #00ff88;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(0,255,136,0.6);
         }
-        .profile-title {
-            font-size: 20px;
-            color: #ccc;
-            margin-bottom: 15px;
+        .magazine-tagline {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+            letter-spacing: 1px;
         }
-        .profile-badges {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 25px;
+        
+        .magazine-nav {
+            background: #fff;
+            border-bottom: 3px solid #000;
+            padding: 15px 5%;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
-        .badge {
-            background: rgba(0,255,136,0.15);
-            border: 2px solid #00ff88;
-            padding: 8px 20px;
-            border-radius: 50px;
+        .magazine-nav a {
+            color: #1a1a1a;
+            text-decoration: none;
+            margin: 0 25px;
             font-size: 14px;
             font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .magazine-nav a:hover {
+            color: #00ff88;
         }
         
         /* المحتوى */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 50px 5%;
+        .article-wrapper {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 5%;
         }
         
-        .section {
-            background: #111;
-            border: 2px solid #1a1a1a;
-            border-radius: 15px;
-            padding: 40px;
-            margin-bottom: 30px;
-            transition: 0.3s;
-        }
-        .section:hover {
-            border-color: #00ff88;
-            box-shadow: 0 0 30px rgba(0,255,136,0.1);
-        }
-        
-        .section-title {
-            font-size: 28px;
+        .article-category {
+            display: inline-block;
+            background: #00ff88;
+            color: #000;
+            padding: 8px 25px;
+            font-size: 12px;
             font-weight: 900;
-            color: #00ff88;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        
+        .article-headline {
+            font-family: 'Tajawal', serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: #1a1a1a;
+            line-height: 1.3;
             margin-bottom: 25px;
+        }
+        
+        .article-subhead {
+            font-size: 22px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+        
+        .article-byline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-top: 2px solid #000;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 40px;
+        }
+        .byline-author {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-        .section-title i {
-            font-size: 32px;
-        }
-        
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-        .info-card {
-            background: #0f0f0f;
-            padding: 25px;
-            border-radius: 12px;
-            border-right: 4px solid #00ff88;
-        }
-        .info-card .icon {
-            font-size: 32px;
-            color: #00ff88;
-            margin-bottom: 15px;
-        }
-        .info-card h4 {
-            color: #00ff88;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        .info-card p {
-            color: #aaa;
-            font-size: 15px;
-        }
-        
-        .timeline {
-            position: relative;
-            padding-right: 30px;
-            margin: 30px 0;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, #00ff88, #00cc6a);
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 35px;
-            padding-right: 30px;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            right: -36px;
-            top: 5px;
-            width: 15px;
-            height: 15px;
-            background: #00ff88;
+        .byline-author img {
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
-            box-shadow: 0 0 15px rgba(0,255,136,0.6);
+            border: 3px solid #00ff88;
         }
-        .timeline-year {
-            color: #00ff88;
-            font-weight: 900;
-            font-size: 18px;
-            margin-bottom: 8px;
+        .byline-info h4 {
+            font-size: 16px;
+            color: #1a1a1a;
+            margin-bottom: 3px;
         }
-        .timeline-text {
-            color: #ccc;
+        .byline-info p {
+            font-size: 13px;
+            color: #999;
+        }
+        .byline-date {
+            font-size: 14px;
+            color: #666;
         }
         
-        .stats-row {
+        .hero-image {
+            width: 100%;
+            margin: 40px 0;
+        }
+        .hero-image img {
+            width: 100%;
+            display: block;
+        }
+        .image-caption {
+            background: #f5f5f5;
+            padding: 15px;
+            font-size: 15px;
+            color: #555;
+            border-right: 4px solid #00ff88;
+            margin-top: -1px;
+        }
+        
+        .article-content {
+            font-size: 19px;
+            color: #2a2a2a;
+        }
+        .article-content p {
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+        .article-content p:first-of-type::first-letter {
+            font-size: 72px;
+            font-weight: 900;
+            float: right;
+            margin-left: 10px;
+            line-height: 0.8;
+            color: #00ff88;
+            font-family: 'Tajawal', serif;
+        }
+        
+        .article-content h3 {
+            font-family: 'Tajawal', serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin: 45px 0 25px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #00ff88;
+        }
+        
+        .fact-box {
+            background: #f9f9f9;
+            border: 2px solid #000;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        .fact-box-title {
+            font-size: 18px;
+            font-weight: 900;
+            color: #00ff88;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .fact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
-        .stat-box {
-            background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,204,106,0.05));
-            border: 2px solid #00ff88;
-            padding: 30px 20px;
-            border-radius: 12px;
+        .fact-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .fact-label {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .fact-value {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        
+        .pull-quote {
+            font-family: 'Tajawal', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
             text-align: center;
+            padding: 40px 60px;
+            margin: 45px 0;
+            border-top: 3px solid #00ff88;
+            border-bottom: 3px solid #00ff88;
+            line-height: 1.6;
         }
-        .stat-number {
-            font-size: 42px;
+        
+        .stats-highlight {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin: 40px 0;
+            border: 2px solid #000;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 35px 20px;
+            border-left: 1px solid #ddd;
+        }
+        .stat-item:first-child {
+            border-left: none;
+        }
+        .stat-num {
+            font-size: 48px;
             font-weight: 900;
             color: #00ff88;
             display: block;
             margin-bottom: 10px;
+            font-family: 'Tajawal', serif;
         }
-        .stat-label {
-            color: #aaa;
-            font-size: 15px;
-        }
-        
-        .testimonials {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        .testimonial {
-            background: #0f0f0f;
-            padding: 25px;
-            border-radius: 12px;
-            border-top: 3px solid #00ff88;
-        }
-        .testimonial-text {
-            color: #ccc;
-            font-style: italic;
-            margin-bottom: 20px;
-            line-height: 1.7;
-        }
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .testimonial-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid #00ff88;
-        }
-        .testimonial-info h5 {
-            color: #00ff88;
-            font-size: 16px;
-            margin-bottom: 3px;
-        }
-        .testimonial-info p {
+        .stat-text {
+            font-size: 14px;
             color: #666;
-            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
-        .cta-box {
-            background: linear-gradient(135deg, rgba(0,255,136,0.15), rgba(0,204,106,0.05));
-            border: 2px solid #00ff88;
+        .timeline-box {
+            background: #000;
+            color: #fff;
             padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 40px;
+            margin: 45px 0;
         }
-        .cta-box h3 {
-            font-size: 26px;
+        .timeline-box h3 {
+            color: #00ff88 !important;
+            border-bottom-color: #333 !important;
+        }
+        .timeline-entry {
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+        }
+        .timeline-entry:last-child {
+            border-bottom: none;
+        }
+        .timeline-year {
             color: #00ff88;
-            margin-bottom: 15px;
-        }
-        .cta-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 50px;
-            background: linear-gradient(90deg, #00ff88, #00cc6a);
-            color: #000;
-            border-radius: 50px;
-            text-decoration: none;
             font-weight: 900;
-            font-size: 18px;
-            transition: 0.3s;
-            box-shadow: 0 5px 25px rgba(0,255,136,0.4);
+            font-size: 20px;
+            margin-bottom: 8px;
         }
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 35px rgba(0,255,136,0.6);
+        .timeline-desc {
+            color: #ccc;
+            font-size: 16px;
         }
         
         .footer {
-            background: #0a0a0a;
-            padding: 30px 5%;
+            background: #000;
+            color: #999;
+            padding: 40px 5%;
             text-align: center;
-            border-top: 2px solid #00ff88;
-            color: #666;
             font-size: 14px;
+            margin-top: 80px;
         }
         
         @media (max-width: 768px) {
-            .profile-hero h1 { font-size: 32px; }
-            .section { padding: 25px; }
+            .article-headline { font-size: 36px; }
+            .fact-grid { grid-template-columns: 1fr; }
+            .stats-highlight { grid-template-columns: repeat(2, 1fr); }
+            .stat-item { border-bottom: 1px solid #ddd; }
+            .stat-item:nth-child(2n) { border-left: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- الهيدر البروفايل -->
-    <div class="profile-hero">
-        <div class="profile-hero-content">
-            <img src="gaber.jpg" alt="جابر طلعت" class="profile-avatar">
-            <h1>جابر طلعت</h1>
-            <p class="profile-title">مؤسس Sidi Gaber | مطور ومصمم</p>
-            <div class="profile-badges">
-                <span class="badge"><i class="fas fa-graduation-cap"></i> خريج 2025</span>
-                <span class="badge"><i class="fas fa-map-marker-alt"></i> القاهرة</span>
-                <span class="badge"><i class="fas fa-code"></i> 23 سنة</span>
-                <span class="badge"><i class="fas fa-rocket"></i> عاد بقوة</span>
-            </div>
-        </div>
+    <!-- هيدر المجلة -->
+    <div class="magazine-header">
+        <div class="magazine-logo">سيدي <span>جابر</span></div>
+        <div class="magazine-tagline">مجلة التقنية والشباب العربي</div>
+    </div>
+    
+    <div class="magazine-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="#">رواد أعمال</a>
+        <a href="#">تكنولوجيا</a>
+        <a href="#">قصص نجاح</a>
+        <a href="#">اتصل بنا</a>
     </div>
 
-    <div class="container">
+    <!-- المقال -->
+    <div class="article-wrapper">
         
-        <!-- من هو جابر؟ -->
-        <div class="section">
-            <h2 class="section-title">
-                <i class="fas fa-user-circle"></i>
-                من هو جابر طلعت؟
-            </h2>
-            <p style="font-size: 17px; color: #ccc; margin-bottom: 25px;">
-                <strong style="color: #00ff88;">جابر طلعت</strong> - مطور ومصمم مصري، <strong>23 سنة</strong>، من <strong>القاهرة</strong>. خريج كلية <strong>نظم ومعلومات الأعمال دفعة 2025</strong> بتقدير امتياز.
-            </p>
-            <p style="color: #aaa; margin-bottom: 25px;">
-                بدأ رحلته في البرمجة من 2018 وهو في ثانوي. خلال سنين الجامعة كان بيدرس ويشتغل فريلانس في نفس الوقت، واخد أكتر من <strong>15 كورس احترافي</strong> في مجالات: Python, JavaScript, React, Next.js, Node.js, UI/UX Design, و WordPress Development.
-            </p>
-
-            <div class="about-grid">
-                <div class="info-card">
-                    <div class="icon"><i class="fas fa-university"></i></div>
-                    <h4>المؤهل العلمي</h4>
-                    <p>بكالوريوس نظم ومعلومات الأعمال<br>دفعة 2025 - امتياز</p>
-                </div>
-                <div class="info-card">
-                    <div class="icon"><i class="fas fa-laptop-code"></i></div>
-                    <h4>الخبرة</h4>
-                    <p>+5 سنين برمجة وتصميم<br>+50 مشروع منفذ</p>
-                </div>
-                <div class="info-card">
-                    <div class="icon"><i class="fas fa-certificate"></i></div>
-                    <h4>الكورسات</h4>
-                    <p>+15 كورس احترافي<br>من Udemy, Coursera, ITI</p>
-                </div>
-                <div class="info-card">
-                    <div class="icon"><i class="fas fa-users"></i></div>
-                    <h4>المتابعين</h4>
-                    <p>+50,000 متابع<br>على كل المنصات</p>
+        <span class="article-category">قصة غلاف</span>
+        
+        <h1 class="article-headline">
+            جابر طلعت: المطور المصري الذي بنى إمبراطورية رقمية مجانية في سن الـ23
+        </h1>
+        
+        <p class="article-subhead">
+            من طالب جامعي اختفى عن الأنظار لأربع سنوات، إلى مؤسس مكتبة Sidi Gaber التي يستخدمها 10 آلاف شخص شهرياً. كيف نجح خريج نظم المعلومات 2025 في بناء واحدة من أكبر المنصات العربية المجانية؟
+        </p>
+        
+        <div class="article-byline">
+            <div class="byline-author">
+                <img src="https://i.pravatar.cc/55?img=68" alt="محرر">
+                <div class="byline-info">
+                    <h4>سارة المنشاوي</h4>
+                    <p>محررة أولى - قسم التكنولوجيا</p>
                 </div>
             </div>
+            <div class="byline-date">
+                <i class="far fa-calendar"></i> 27 أكتوبر 2026
+            </div>
         </div>
-
-        <!-- الرحلة الزمنية -->
-        <div class="section">
-            <h2 class="section-title">
-                <i class="fas fa-road"></i>
-                الرحلة من البداية للاحتراف
-            </h2>
-            <div class="timeline">
-                <div class="timeline-item">
+        
+        <div class="hero-image">
+            <img src="gaber.jpg" alt="جابر طلعت">
+            <div class="image-caption">جابر طلعت، 23 عاماً، في مكتبه بالقاهرة. مواليد 27 نوفمبر 2002، خريج نظم ومعلومات الأعمال 2025.</div>
+        </div>
+        
+        <div class="article-content">
+            <p>
+                في مشهد التقنية المصري المزدحم بالشركات الناشئة والمنصات المدفوعة، يبرز اسم شاب قرر أن يسير عكس التيار. جابر طلعت، المولود في 27 نوفمبر 2002، لم يبلغ من العمر 24 عاماً بعد، لكنه استطاع أن يبني ما فشل فيه كثيرون: منصة رقمية مجانية بالكامل، مستدامة، ويستخدمها الآلاف شهرياً.
+            </p>
+            
+            <p>
+                القصة بدأت في 2018، عندما كان جابر طالباً في المرحلة الثانوية. اكتشف شغفه بالبرمجة والتصميم، وبدأ يتعلم ذاتياً. "كنت بقعد بالساعات قدام الكمبيوتر"، يقول جابر في حوار خاص مع "مجلة سيدي جابر". "عملت أول موقع لمدرستي وأنا في تانية ثانوي".
+            </p>
+            
+            <h3>أربع سنوات من الاختفاء المدروس</h3>
+            <p>
+                في 2021، التحق جابر بكلية نظم ومعلومات الأعمال. هنا بدأت مرحلة "الاختفاء" التي يتحدث عنها متابعوه القدامى. اختفى نسبياً عن السوشيال ميديا، وقل نشاطه بشكل ملحوظ.
+            </p>
+            <p>
+                "الجامعة كانت صعبة جداً"، يوضح جابر. "كنت بدرس وفي نفس الوقت بشتغل فريلانس عشان أطور مهاراتي وأصرف على نفسي. خدت أكتر من 15 كورس احترافي في Python, JavaScript, React, Next.js, وUI/UX. مكنش عندي وقت للسوشيال ميديا خالص".
+            </p>
+            <p>
+                خلال تلك الفترة، نفذ جابر أكثر من 50 مشروعاً لعملاء من مصر والسعودية والإمارات، وجمع خبرة عملية نادرة لشاب في سنه. تخرج في صيف 2025 بتقدير امتياز، وعاد بقوة تحت شعار: <strong>"والجديد شديد"</strong>.
+            </p>
+            
+            <div class="fact-box">
+                <div class="fact-box-title">بطاقة تعريف</div>
+                <div class="fact-grid">
+                    <div class="fact-item">
+                        <div class="fact-label">الاسم الكامل</div>
+                        <div class="fact-value">جابر طلعت</div>
+                    </div>
+                    <div class="fact-item">
+                        <div class="fact-label">تاريخ الميلاد</div>
+                        <div class="fact-value">27 نوفمبر 2002</div>
+                    </div>
+                    <div class="fact-item">
+                        <div class="fact-label">العمر</div>
+                        <div class="fact-value">23 سنة</div>
+                    </div>
+                    <div class="fact-item">
+                        <div class="fact-label">محل الإقامة</div>
+                        <div class="fact-value">القاهرة، مصر</div>
+                    </div>
+                    <div class="fact-item">
+                        <div class="fact-label">المؤهل</div>
+                        <div class="fact-value">بكالوريوس نظم ومعلومات الأعمال</div>
+                    </div>
+                    <div class="fact-item">
+                        <div class="fact-label">سنة التخرج</div>
+                        <div class="fact-value">2025 - امتياز</div>
+                    </div>
+                    <div class="fact-item">
+                        <div class="fact-label">التخصص</div>
+                        <div class="fact-value">Full Stack Development</div>
+                    </div>
+                    <div class="fact-item">
+                        <div class="fact-label">سنوات الخبرة</div>
+                        <div class="fact-value">+5 سنوات</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>ميلاد Sidi Gaber</h3>
+            <p>
+                فور تخرجه، أطلق جابر مشروعه الحلم: مكتبة "Sidi Gaber" الرقمية. الاسم مستوحى من حي سيدي جابر الشهير بالإسكندرية، المدينة التي يعشقها جابر، مع إضافة اسمه الشخصي.
+            </p>
+            <p>
+                "خلال الجامعة كنت بشوف زمايلي بيعانوا عشان يلاقوا موكاب كويس أو أيقونة نضيفة"، يقول جابر. "كل حاجة يا غالية، يا جودتها وحشة. فقررت بعد التخرج مباشرة إني أعمل مكتبة فيها كل حاجة المصمم والمبرمج العربي محتاجها... ومجاناً".
+            </p>
+            
+            <div class="stats-highlight">
+                <div class="stat-item">
+                    <span class="stat-num">500+</span>
+                    <span class="stat-text">ملف مجاني</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">10K+</span>
+                    <span class="stat-text">مستخدم شهرياً</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">50K+</span>
+                    <span class="stat-text">متابع</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-text">مجاني</span>
+                </div>
+            </div>
+            
+            <p>
+                اليوم، تضم المكتبة أكثر من 500 ملف بين موكاب PSD احترافي، وأيقونات SVG، وخلفيات 4K، وكتب PDF تعليمية. جميعها متاحة للتحميل المجاني والاستخدام التجاري دون قيود.
+            </p>
+            
+            <div class="pull-quote">
+                Sidi Gaber صدقة جارية عني وعن أهلي. الهدف مش الفلوس، الهدف نوصل بالمحتوى العربي للعالمية. مش لازم تدفع 50 دولار عشان موكاب.
+                <div class="quote-author">— جابر طلعت</div>
+            </div>
+            
+            <h3>لماذا الاسم يثير الجدل؟</h3>
+            <p>
+                يوضح جابر أن اختيار اسم "سيدي جابر" أثار بعض التساؤلات في البداية. "الناس افتكرت إن ليها علاقة دينية أو تاريخية"، يقول ضاحكاً. "لكن الحقيقة أبسط من كده بكتير. ده براند تقني زي Google وAdobe كده. مجرد اسم مستوحى من حبي للإسكندرية وحي سيدي جابر".
+            </p>
+            <p>
+                ويؤكد: "المكتبة تقنية 100%. مفيش أي محتوى ديني أو تاريخي. كل اللي هتلاقيه موكاب، أيقونات، خلفيات، وأدوات للمصممين والمبرمجين".
+            </p>
+            
+            <div class="timeline-box">
+                <h3>الرحلة الزمنية</h3>
+                <div class="timeline-entry">
+                    <div class="timeline-year">2002 - الميلاد</div>
+                    <div class="timeline-desc">ولد جابر طلعت في القاهرة يوم 27 نوفمبر 2002.</div>
+                </div>
+                <div class="timeline-entry">
                     <div class="timeline-year">2018 - البداية</div>
-                    <div class="timeline-text">بدأ تعلم البرمجة والتصميم وهو في الثانوية. أول موقع عمله كان لمدرسته.</div>
+                    <div class="timeline-desc">بدأ تعلم البرمجة والتصميم وهو في الثانوية. نفذ أول موقع لمدرسته.</div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-entry">
                     <div class="timeline-year">2021 - الجامعة</div>
-                    <div class="timeline-text">دخل كلية نظم ومعلومات الأعمال. بدأ يشتغل فريلانس جنب الدراسة واختفى نسبياً عن السوشيال ميديا عشان يركز.</div>
+                    <div class="timeline-desc">التحق بكلية نظم ومعلومات الأعمال. بدأ العمل الحر واختفى نسبياً عن السوشيال ميديا.</div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2023 - التطوير</div>
-                    <div class="timeline-text">خلال الدراسة خد كورسات مكثفة في الـ Full Stack Development و UI/UX. نفذ مشاريع كبيرة لعملاء من مصر والسعودية والإمارات.</div>
+                <div class="timeline-entry">
+                    <div class="timeline-year">2025 - التخرج والعودة</div>
+                    <div class="timeline-desc">تخرج بتقدير امتياز. أطلق مكتبة Sidi Gaber وعاد بقوة تحت شعار "والجديد شديد".</div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2025 - التخرج والعودة 🔥</div>
-                    <div class="timeline-text"><strong>اتخرج بتقدير امتياز ورجع بقوة!</strong> قرر يكرس وقته بالكامل لمشروعه Sidi Gaber. والجديد شديد فعلاً.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2026 - Sidi Gaber</div>
-                    <div class="timeline-text">أطلق مكتبة Sidi Gaber رسمياً. الهدف: توفير كل أدوات المصمم والمبرمج العربي مجاناً 100%. حالياً +10,000 مستخدم شهرياً.</div>
+                <div class="timeline-entry">
+                    <div class="timeline-year">2026 - النجاح</div>
+                    <div class="timeline-desc">وصلت المكتبة لـ+10 آلاف مستخدم شهرياً. يستعد لإطلاق أدوات ذكاء اصطناعي عربية.</div>
                 </div>
             </div>
-        </div>
-
-        <!-- أرقام Sidi Gaber -->
-        <div class="section">
-            <h2 class="section-title">
-                <i class="fas fa-chart-line"></i>
-                أرقام Sidi Gaber
-            </h2>
-            <div class="stats-row">
-                <div class="stat-box">
-                    <span class="stat-number">2025</span>
-                    <span class="stat-label">سنة التخرج</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-number">500+</span>
-                    <span class="stat-label">ملف مجاني</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-number">10K+</span>
-                    <span class="stat-label">مستخدم شهرياً</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">مجاني للأبد</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- ليه Sidi Gaber -->
-        <div class="section">
-            <h2 class="section-title">
-                <i class="fas fa-lightbulb"></i>
-                ليه عملت Sidi Gaber؟
-            </h2>
-            <p style="color: #ccc; font-size: 17px; margin-bottom: 20px;">
-                خلال 4 سنين جامعة، كنت بشوف زمايلي بيعانوا عشان يلاقوا موكاب كويس أو أيقونة نضيفة. كل حاجة يا غالية، يا جودتها وحشة، يا مش مناسبة للمحتوى العربي.
+            
+            <h3>ما هو القادم؟</h3>
+            <p>
+                يكشف جابر عن خططه الطموحة: "الهدف نوصل مليون مستخدم عربي خلال 3 سنين. هنطلق أدوات ذكاء اصطناعي عربية، ومنصة كورسات مجانية كاملة. عايز Sidi Gaber تبقى الـHub الأساسي لكل مصمم ومبرمج عربي".
             </p>
-            <p style="color: #ccc; font-size: 17px; margin-bottom: 20px;">
-                <strong style="color: #00ff88;">فقررت بعد التخرج مباشرة:</strong> هعمل مكتبة فيها كل حاجة المصمم والمبرمج العربي محتاجها... ومجاناً. مش لازم تدفع 50 دولار عشان موكاب، ومش لازم تتفرج على كورس انجليزي عشان تتعلم.
+            <p>
+                وعن سر نجاحه في سن صغيرة، يختم جابر: "السر في الاستمرارية. 4 سنين جامعة كنت بشتغل على نفسي في صمت. دلوقتي جه وقت الحصاد. <strong>والجديد شديد فعلاً</strong>".
             </p>
-            <div style="background: rgba(0,255,136,0.1); border-right: 4px solid #00ff88; padding: 20px; border-radius: 8px; margin-top: 25px;">
-                <p style="color: #00ff88; font-weight: 700; font-size: 18px; font-style: italic;">
-                    "Sidi Gaber صدقة جارية عني وعن أهلي. الهدف مش الفلوس، الهدف نوصل بالمحتوى العربي للعالمية 💚"
-                </p>
-            </div>
+            
         </div>
-
-        <!-- آراء الناس -->
-        <div class="section">
-            <h2 class="section-title">
-                <i class="fas fa-comments"></i>
-                الناس بتقول ايه؟
-            </h2>
-            <div class="testimonials">
-                <div class="testimonial">
-                    <p class="testimonial-text">
-                        "جابر ده أسطورة والله... الموكاب بتاعته نجدتني في مشروع التخرج. الواد ده 23 سنة وعامل شغل احترافي كده 🔥"
-                    </p>
-                    <div class="testimonial-author">
-                        <img src="https://i.pravatar.cc/50?img=32" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h5>سارة أحمد</h5>
-                            <p>مصممة جرافيك</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial">
-                    <p class="testimonial-text">
-                        "كنت فاكره كبير في السن 😂 طلع خريج 2025 ولسه 23 سنة. ربنا يحميك يا جابر، الجديد شديد فعلاً"
-                    </p>
-                    <div class="testimonial-author">
-                        <img src="https://i.pravatar.cc/50?img=8" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h5>أحمد محمود</h5>
-                            <p>مطور Full Stack</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial">
-                    <p class="testimonial-text">
-                        "الواد ده كان بيساعدني في الكلية من غير مقابل... دلوقتي فهمت ليه. محترم وجدع وابن ناس. Sidi Gaber هتكسر الدنيا"
-                    </p>
-                    <div class="testimonial-author">
-                        <img src="https://i.pravatar.cc/50?img=15" class="testimonial-avatar">
-                        <div class="testimonial-info">
-                            <h5>كريم حسام</h5>
-                            <p>زميل دراسة</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- CTA -->
-        <div class="cta-box">
-            <h3>جاهز تبدأ رحلتك مع Sidi Gaber؟ 🚀</h3>
-            <p style="color: #aaa; margin-bottom: 10px;">+500 ملف مجاني في انتظارك. حمل واستمتع</p>
-            <a href="index.html" class="cta-btn">
-                <i class="fas fa-download"></i> ادخل المكتبة الآن
-            </a>
-        </div>
-
+        
     </div>
 
     <div class="footer">
-        جميع الحقوق محفوظة © 2026 Sidi Gaber | جابر طلعت<br>
-        خريج نظم ومعلومات الأعمال 2025 | القاهرة، مصر
+        © 2026 مجلة سيدي جابر - جميع الحقوق محفوظة<br>
+        تحقيق: سارة المنشاوي | القاهرة
     </div>
 
 </body>
