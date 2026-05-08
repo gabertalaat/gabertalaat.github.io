@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 1: مقدمة في HTML - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+       .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #00ff88; backdrop-filter: blur(5px); }
+       .header h1 { font-weight: 900; color: #00ff88; font-size: 28px; text-shadow: 0 0 15px rgba(0,255,136,0.5); }
+       .header a { color: #aaa; text-decoration: none; font-weight: 600; }
+       .header a:hover { color: #00ff88; }
+       .container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #00FF88; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #FFD700; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #00FF88; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #00FF88; font-family: monospace; }
+       .note { background: rgba(0,255,136,0.1); border-right: 3px solid #00FF88; padding: 15px; margin: 20px 0; border-radius: 8px; }
+       .btn-gold { display: inline-block; padding: 15px 30px; background: #FFD700; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="html-css.html"><i class="fas fa-arrow-right"></i> رجوع للكورس</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 1: مقدمة في HTML وبناء الهيكل</h2>
+        <p style="color:#A9A9A9">المدة: 15 دقيقة | المستوى: مبتدئ جداً</p>
+
+        <h3>1. يعني إيه HTML؟</h3>
+        <p>
+            <strong>HTML = HyperText Markup Language</strong><br>
+            دي لغة "الهيكل" بتاع أي موقع. زي الطوب في البيت بالظبط.<br>
+            من غيرها مفيش موقع... فيسبوك ويوتيوب كله HTML في الأساس.
+        </p>
+        <div class="note">
+            <strong>مهم:</strong> HTML مش لغة برمجة. دي لغة وصف بتقول للمتصفح "ده عنوان" و"ده نص" و"ده صورة".
+        </div>
+
+        <h3>2. أهم 5 تاجات هتستخدمهم كل يوم</h3>
+        <pre><code>&lt;h1&gt;عنوان كبير جداً&lt;/h1&gt; ← للعنوان الرئيسي
+&lt;h2&gt;عنوان أصغر&lt;/h2&gt; ← للعناوين الفرعية
+&lt;p&gt;دي فقرة نص عادي&lt;/p&gt; ← لأي كلام
+&lt;img src="صورة.jpg" alt="وصف"&gt; ← عشان تحط صورة
+&lt;a href="google.com"&gt;دوس هنا&lt;/a&gt; ← عشان تعمل لينك</code></pre>
+
+        <h3>3. هيكل أي صفحة HTML</h3>
+        <p>احفظ الشكل ده. أي صفحة في الكون لازم تبقى كده:</p>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;عنوان الصفحة&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;أهلاً بالعالم!&lt;/h1&gt;
+    &lt;p&gt;دي أول صفحة ويب أعملها&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <div class="note">
+            <strong>&lt;head&gt;</strong> = دماغ الصفحة. حاجات مش بتظهر زي العنوان<br>
+            <strong>&lt;body&gt;</strong> = جسم الصفحة. كل اللي بتشوفه بعينك
+        </div>
+
+        <h3>4. جرب بنفسك دلوقتي ⚡</h3>
+        <p>
+            1. افتح Notepad<br>
+            2. انسخ الكود اللي فوق<br>
+            3. احفظه باسم <code>index.html</code><br>
+            4. افتحه بالمتصفح... مبروك عملت أول موقع 🎉
+        </p>
+
+        <a href="https://exe.io/HTML-Lesson1" class="btn-gold" target="_blank">
+            تحميل ملف الكود جاهز 📥
+        </a>
+
+        <h3 style="margin-top:60px">الدرس الجاي 👇</h3>
+        <p>هنلون الصفحة دي بـ CSS ونخليها شكلها فاجر</p>
+        <a href="lesson2-css.html" style="color:#00FF88">روح للدرس 2: أساسيات CSS →</a>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'GABER TALAAT HTML CSS DIV <>{}[] 01 ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff88';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    </script>
+</body>
+</html>
