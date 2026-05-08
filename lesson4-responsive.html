@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 4: التصميم المتجاوب - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,0.9); border-bottom: 3px solid #00ff88; backdrop-filter: blur(5px); }
+    .header h1 { font-weight: 900; color: #00ff88; font-size: 28px; text-shadow: 0 0 15px rgba(0,255,136,0.5); }
+    .header a { color: #aaa; text-decoration: none; font-weight: 600; }
+    .header a:hover { color: #00ff88; }
+    .container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #00FF88; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #FFD700; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #00FF88; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #00FF88; font-family: monospace; }
+    .note { background: rgba(0,255,136,0.1); border-right: 3px solid #00FF88; padding: 15px; margin: 20px 0; border-radius: 8px; }
+    .btn-gold { display: inline-block; padding: 15px 30px; background: #FFD700; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+    .demo-box { background: #1a1a1a; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #333; }
+    .bad { border-right: 3px solid #ff4444; }
+    .good { border-right: 3px solid #00FF88; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="html-css.html"><i class="fas fa-arrow-right"></i> رجوع للكورس</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 4: التصميم المتجاوب Responsive</h2>
+        <p style="color:#A9A9A9">المدة: 20 دقيقة | المستوى: مهم جداً</p>
+
+        <h3>1. يعني إيه Responsive؟</h3>
+        <p>
+            يعني موقعك يشتغل ويبقى شكله حلو على <strong>الكمبيوتر + التابلت + الموبايل</strong><br>
+            من غير ما المستخدم يعمل Zoom أو يتحرك يمين وشمال.<br><br>
+            <strong>إحصائية:</strong> 70% من الناس بتفتح من الموبايل. لو موقعك مش Responsive هتخسرهم كلهم.
+        </p>
+
+        <h3>2. القاعدة الذهبية: Meta Viewport</h3>
+        <p>أول سطر لازم تحطه في أي صفحة HTML عشان الموبايل يفهمها:</p>
+        <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+        <div class="note">
+            <strong>من غير السطر ده</strong> الموبايل هيفتح موقعك كأنه شاشة كمبيوتر ويصغره جامد.
+        </div>
+
+        <h3>3. Media Query = السحر كله</h3>
+        <p>كود بيقول للمتصفح: "لو الشاشة أصغر من 768px اعمل كذا"</p>
+        <pre><code>/* للكمبيوتر - الشاشات الكبيرة */
+.container { width: 1200px; }
+h1 { font-size: 48px; }
+
+/* للموبايل - الشاشات أقل من 768px */
+@media (max-width: 768px) {
+ .container { width: 100%; padding: 0 15px; }
+  h1 { font-size: 28px; } /* صغر الخط */
+ .lessons-grid { grid-template-columns: 1fr; } /* خلي الكروت تحت بعض */
+}</code></pre>
+
+        <h3>4. أهم 4 قواعد للموبايل</h3>
+
+        <div class="demo-box bad">
+            <p><strong style="color:#ff4444">❌ غلط:</strong> تستخدم px ثابت</p>
+            <pre><code>.box { width: 400px; }</code></pre>
+            <p>المشكلة: على موبايل شاشته 360px البوكس هيطلع بره</p>
+        </div>
+
+        <div class="demo-box good">
+            <p><strong style="color:#00FF88">✅ صح:</strong> تستخدم % أو max-width</p>
+            <pre><code>.box { width: 90%; max-width: 400px; }</code></pre>
+            <p>الحل: هياخد 90% من الشاشة مهما كان حجمها</p>
+        </div>
+
+        <p><strong>القواعد الأربعة:</strong></p>
+        <p style="line-height:2">
+            1. <strong>الصور:</strong> <code>img { max-width: 100%; height: auto; }</code><br>
+            2. <strong>النصوص:</strong> استخدم <code>rem</code> أو <code>em</code> بدل <code>px</code><br>
+            3. <strong>Grid/Flex:</strong> <code>grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));</code><br>
+            4. <strong>اخفي العناصر التقيلة:</strong> <code>@media (max-width:768px) {.sidebar { display:none; } }</code>
+        </p>
+
+        <h3>5. Breakpoints المشهورة</h3>
+        <p>دي المقاسات اللي كل الناس بتستخدمها:</p>
+        <pre><code>/* موبايل */
+@media (max-width: 480px) {... }
+
+/* تابلت */
+@media (max-width: 768px) {... }
+
+/* لابتوب صغير */
+@media (max-width: 1024px) {... }
+
+/* كمبيوتر */
+@media (min-width: 1025px) {... }</code></pre>
+
+        <h3>6. مثال: كروت الكورسات بتاعتك</h3>
+        <p>شوف الكود ده في <code>html-css.html</code>:</p>
+        <pre><code>.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+ .course-title { flex-direction: column; text-align: center; }
+ .course-title h2 { font-size: 24px; }
+}</code></pre>
+        <p>الكود ده بيخلي الكروت جنب بعض على الكمبيوتر، ولو فتحت موبايل ينزلوا تحت بعض + العنوان يصغر</p>
+
+        <h3>7. ازاي تجرب موقعك على الموبايل؟</h3>
+        <p style="line-height:2">
+            1. افتح الموقع على Chrome<br>
+            2. دوس <code>F12</code> أو كليك يمين → Inspect<br>
+            3. دوس على أيقونة الموبايل 📱 فوق<br>
+            4. اختار iPhone أو Android وجرب
+        </p>
+
+        <h3>8. تحميل قالب Responsive جاهز</h3>
+        <p>عملتلك صفحة HTML كاملة Responsive تاخدها كوبي بيست وتعدل عليها</p>
+        <a href="https://exe.io/Responsive-Template" class="btn-gold" target="_blank">
+            تحميل القالب 📥
+        </a>
+
+        <h3 style="margin-top:60px">الدرس الجاي والأخير 👇</h3>
+        <p>هنبني Landing Page كاملة من الصفر ونطبق كل اللي اتعلمناه</p>
+        <a href="lesson5-project.html" style="color:#00FF88">روح للدرس 5: مشروع Landing Page →</a>
+
+        <div style="margin-top:30px">
+            <a href="lesson3-flexbox.html" style="color:#aaa">← الدرس السابق: Flexbox & Grid</a>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'RESPONSIVE MOBILE @media 768px 01 ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff88';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    </script>
+</body>
+</html>
