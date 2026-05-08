@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 2: أساسيات CSS - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+      .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #00ff88; backdrop-filter: blur(5px); }
+      .header h1 { font-weight: 900; color: #00ff88; font-size: 28px; text-shadow: 0 0 15px rgba(0,255,136,0.5); }
+      .header a { color: #aaa; text-decoration: none; font-weight: 600; }
+      .header a:hover { color: #00ff88; }
+      .container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #00FF88; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #FFD700; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #00FF88; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #00FF88; font-family: monospace; }
+      .note { background: rgba(0,255,136,0.1); border-right: 3px solid #00FF88; padding: 15px; margin: 20px 0; border-radius: 8px; }
+      .btn-gold { display: inline-block; padding: 15px 30px; background: #FFD700; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+      .demo-box { background: #1a1a1a; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #333; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="html-css.html"><i class="fas fa-arrow-right"></i> رجوع للكورس</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 2: أساسيات CSS والتنسيق</h2>
+        <p style="color:#A9A9A9">المدة: 20 دقيقة | المستوى: مبتدئ</p>
+
+        <h3>1. يعني إيه CSS؟</h3>
+        <p>
+            <strong>CSS = Cascading Style Sheets</strong><br>
+            دي لغة "الديكور والألوان". لو HTML هو الطوب، CSS هو الدهان والعفش والإضاءة.<br>
+            بتتحكم في: الألوان، الخطوط، الأحجام، المسافات، الحركات.
+        </p>
+        <div class="note">
+            <strong>القاعدة:</strong> HTML = الهيكل، CSS = الشكل الفاجر
+        </div>
+
+        <h3>2. 3 طرق تربط CSS بـ HTML</h3>
+        <pre><code>1. مباشر جوه التاج:
+&lt;h1 style="color:red"&gt;عنوان أحمر&lt;/h1&gt;
+
+2. في نفس الصفحة:
+&lt;style&gt;
+  h1 { color: red; }
+&lt;/style&gt;
+
+3. ملف خارجي - الأفضل:
+&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+
+        <h3>3. أهم 6 خصائص CSS هتستخدمهم كل يوم</h3>
+        <pre><code>color: #00FF88; /* لون النص - أخضر ماتريكس */
+background: #000000; /* لون الخلفية - أسود */
+font-size: 24px; /* حجم الخط */
+font-weight: bold; /* تخن الخط */
+text-align: center; /* وسّط النص */
+margin: 20px; /* مسافة بره العنصر */</code></pre>
+
+        <h3>4. مثال عملي: نلون صفحة الدرس الأول</h3>
+        <p>فاكر كود HTML من الدرس الأول؟ يلا نلونه:</p>
+        <pre><code>&lt;style&gt;
+  body {
+    background: #0a0a0a; /* خلفية سودة */
+    color: #fff; /* النص أبيض */
+  }
+  h1 {
+    color: #00FF88; /* العنوان أخضر */
+    font-size: 48px; /* خط كبير */
+    text-align: center; /* في النص */
+  }
+  p {
+    color: #ddd; /* النص رمادي فاتح */
+    line-height: 1.8; /* مسافة بين السطور */
+  }
+&lt;/style&gt;</code></pre>
+
+        <div class="demo-box">
+            <h1 style="color:#00FF88; font-size:32px; text-align:center; margin:0">النتيجة هتبقى كده</h1>
+            <p style="color:#ddd; text-align:center; margin:10px 0 0">نص لونه رمادي وشكله نضيف</p>
+        </div>
+
+        <h3>5. الـ Class والـ ID</h3>
+        <p>عشان تستهدف عنصر معين وتديله ستايل لوحده:</p>
+        <pre><code>&lt;!-- في HTML --&gt;
+&lt;p class="text-gold"&gt;نص دهبي&lt;/p&gt;
+&lt;p id="special"&gt;نص مميز&lt;/p&gt;
+
+&lt;!-- في CSS --&gt;
+.text-gold { color: #FFD700; }
+#special { color: red; font-size: 30px; }</code></pre>
+        <div class="note">
+            <strong>Class =.</strong> بتستخدمه مع كذا عنصر<br>
+            <strong>ID = #</strong> بتستخدمه مع عنصر واحد بس
+        </div>
+
+        <h3>6. تحميل ملف style.css جاهز</h3>
+        <p>عملتلك ملف CSS فيه كل الألوان والستايل بتاع الماتريكس. حمله واربطه بأي صفحة HTML</p>
+        <a href="https://exe.io/CSS-Lesson2-File" class="btn-gold" target="_blank">
+            تحميل style.css 📥
+        </a>
+
+        <h3 style="margin-top:60px">الدرس الجاي 👇</h3>
+        <p>هنتعلم Flexbox & Grid ونرتب العناصر جنب بعض زي المحترفين</p>
+        <a href="lesson3-flexbox.html" style="color:#00FF88">روح للدرس 3: Flexbox & Grid →</a>
+
+        <div style="margin-top:30px">
+            <a href="lesson1-html.html" style="color:#aaa">← الدرس السابق: مقدمة HTML</a>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'GABER TALAAT CSS STYLE COLOR {} 01 ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff88';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    </script>
+</body>
+</html>
