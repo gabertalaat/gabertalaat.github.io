@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 5: مشروع Landing Page - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+  .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #00ff88; backdrop-filter: blur(5px); }
+  .header h1 { font-weight: 900; color: #00ff88; font-size: 28px; text-shadow: 0 0 15px rgba(0,255,136,0.5); }
+  .header a { color: #aaa; text-decoration: none; font-weight: 600; }
+  .header a:hover { color: #00ff88; }
+  .container { max-width: 900px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #00FF88; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #FFD700; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #00FF88; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #00FF88; font-family: monospace; }
+  .note { background: rgba(0,255,136,0.1); border-right: 3px solid #00FF88; padding: 15px; margin: 20px 0; border-radius: 8px; }
+  .btn-gold { display: inline-block; padding: 15px 30px; background: #FFD700; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+  .checklist { background: #1a1a1a; padding: 25px; border-radius: 8px; margin: 20px 0; border: 1px solid #333; }
+  .checklist li { color: #ddd; margin: 10px 0; list-style: none; }
+  .checklist li:before { content: "✅ "; color: #00FF88; margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="html-css.html"><i class="fas fa-arrow-right"></i> رجوع للكورس</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 5: مشروع Landing Page كاملة</h2>
+        <p style="color:#A9A9A9">المدة: 45 دقيقة | المستوى: تطبيقي</p>
+
+        <h3>1. هنبني إيه بالظبط؟</h3>
+        <p>
+            صفحة هبوط لمنتج وهمي "سماعات Matrix Pro" فيها:<br>
+            1. <strong>Navbar</strong> فوق فيه اللوجو واللينكات<br>
+            2. <strong>Hero Section</strong> بصورة المنتج وزرار "اشتري دلوقتي"<br>
+            3. <strong>3 مميزات</strong> بكروت أيقونات<br>
+            4. <strong>آراء العملاء</strong> 2 شهادة<br>
+            5. <strong>Footer</strong> فيه لينكات التواصل<br><br>
+            <strong>النتيجة:</strong> صفحة شكلها بروفيشنال تحطها في الـ Portfolio
+        </p>
+
+        <h3>2. هيكل HTML الكامل</h3>
+        <p>انسخ الكود ده في ملف <code>landing.html</code> جديد:</p>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ar" dir="rtl"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Matrix Pro - سماعات احترافية&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;!-- Navbar --&gt;
+  &lt;nav class="navbar"&gt;
+    &lt;div class="logo"&gt;Matrix Pro&lt;/div&gt;
+    &lt;ul class="nav-links"&gt;
+      &lt;li&gt;&lt;a href="#features"&gt;المميزات&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#reviews"&gt;الآراء&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#buy" class="btn-nav"&gt;اشتري&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+
+  &lt;!-- Hero --&gt;
+  &lt;section class="hero"&gt;
+    &lt;h1&gt;اسمع الموسيقى زي المحترفين&lt;/h1&gt;
+    &lt;p&gt;سماعات Matrix Pro بتقنية Noise Canceling&lt;/p&gt;
+    &lt;a href="#buy" class="btn-main"&gt;اطلبها دلوقتي بـ 999 جنيه&lt;/a&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Features --&gt;
+  &lt;section id="features" class="features"&gt;
+    &lt;div class="feature-card"&gt;
+      &lt;i class="fas fa-volume-up"&gt;&lt;/i&gt;
+      &lt;h3&gt;صوت نقي&lt;/h3&gt;
+      &lt;p&gt;تقنية Hi-Res Audio&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="feature-card"&gt;
+      &lt;i class="fas fa-battery-full"&gt;&lt;/i&gt;
+      &lt;h3&gt;بطارية 40 ساعة&lt;/h3&gt;
+      &lt;p&gt;اشحنها مرة في الأسبوع&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="feature-card"&gt;
+      &lt;i class="fas fa-wifi"&gt;&lt;/i&gt;
+      &lt;h3&gt;بلوتوث 5.3&lt;/h3&gt;
+      &lt;p&gt;اتصال سريع وثابت&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Reviews --&gt;
+  &lt;section id="reviews" class="reviews"&gt;
+    &lt;h2&gt;قالوا عننا&lt;/h2&gt;
+    &lt;div class="review-card"&gt;
+      &lt;p&gt;"أفضل سماعات جربتها في حياتي" &lt;/p&gt;
+      &lt;span&gt;- أحمد محمد&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- Footer --&gt;
+  &lt;footer&gt;
+    &lt;p&gt;© 2026 Matrix Pro. كل الحقوق محفوظة&lt;/p&gt;
+  &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <h3>3. ملف CSS الكامل</h3>
+        <p>اعمل ملف <code>style.css</code> جنب ملف HTML وحط فيه:</p>
+        <pre><code>* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; }
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  background: #1a1a1a;
+  position: sticky;
+  top: 0;
+}
+.logo { color: #00FF88; font-size: 24px; font-weight: 900; }
+.nav-links { display: flex; gap: 30px; list-style: none; }
+.nav-links a { color: #fff; text-decoration: none; }
+.btn-nav { background: #00FF88; color: #000; padding: 10px 20px; border-radius: 8px; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 100px 5%;
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+}
+.hero h1 { font-size: 48px; color: #00FF88; margin-bottom: 20px; }
+.hero p { font-size: 20px; color: #aaa; margin-bottom: 30px; }
+.btn-main {
+  display: inline-block;
+  background: #FFD700;
+  color: #000;
+  padding: 18px 40px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Features */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 80px 5%;
+}
+.feature-card {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid #222;
+}
+.feature-card i { font-size: 40px; color: #00FF88; margin-bottom: 15px; }
+.feature-card h3 { color: #FFD700; margin-bottom: 10px; }
+
+/* Reviews */
+.reviews { padding: 80px 5%; text-align: center; }
+.reviews h2 { color: #00FF88; font-size: 36px; margin-bottom: 40px; }
+.review-card {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  border-right: 3px solid #00FF88;
+}
+
+/* Footer */
+footer { background: #1a1a1a; padding: 30px; text-align: center; color: #666; }
+
+/* Responsive */
+@media (max-width: 768px) {
+.hero h1 { font-size: 32px; }
+.nav-links { display: none; }
+}</code></pre>
+
+        <h3>4. Checklist قبل ما ترفع المشروع</h3>
+        <ul class="checklist">
+            <li>حطيت Meta Viewport في head</li>
+            <li>كل الصور عندها alt</li>
+            <li>جربت الموقع على الموبايل F12</li>
+            <li>الألوان واضحة والخط مقروء</li>
+            <li>الزرار شغال بيودي للقسم الصح</li>
+            <li>رفعت الملفات على GitHub Pages</li>
+        </ul>
+
+        <h3>5. تحميل المشروع كامل</h3>
+        <p>حملتلك المشروع كامل بـ HTML + CSS + صور جاهزة عشان ترفعه على طول</p>
+        <a href="https://exe.io/Landing-Page-Project" class="btn-gold" target="_blank">
+            تحميل المشروع كامل ZIP 📥
+        </a>
+
+        <div class="note" style="margin-top:40px">
+            <strong>مبروك 🎉</strong><br>
+            خلصت كورس HTML + CSS كامل. دلوقتي عندك:<br>
+            1. فهمت الهيكل HTML<br>
+            2. عرفت تلون بـ CSS<br>
+            3. بترتب بـ Flexbox & Grid<br>
+            4. بتخلي الموقع Responsive<br>
+            5. بنيت مشروع كامل<br><br>
+            <strong>الخطوة الجاية:</strong> كورس JavaScript عشان تخلي الموقع يتفاعل
+        </div>
+
+        <div style="margin-top:30px">
+            <a href="lesson4-responsive.html" style="color:#aaa">← الدرس السابق: التصميم المتجاوب</a>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'PROJECT LANDING PAGE HTML CSS 01 ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff88';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    </script>
+</body>
+</html>
