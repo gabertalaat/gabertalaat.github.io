@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 3: Flexbox & Grid - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+     .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #00ff88; backdrop-filter: blur(5px); }
+     .header h1 { font-weight: 900; color: #00ff88; font-size: 28px; text-shadow: 0 0 15px rgba(0,255,136,0.5); }
+     .header a { color: #aaa; text-decoration: none; font-weight: 600; }
+     .header a:hover { color: #00ff88; }
+     .container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #00FF88; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #FFD700; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #00FF88; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #00FF88; font-family: monospace; }
+     .note { background: rgba(0,255,136,0.1); border-right: 3px solid #00FF88; padding: 15px; margin: 20px 0; border-radius: 8px; }
+     .btn-gold { display: inline-block; padding: 15px 30px; background: #FFD700; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+     .demo-flex { display: flex; gap: 15px; background: #1a1a1a; padding: 20px; border-radius: 8px; margin: 20px 0; }
+     .demo-flex div { background: #00FF88; color: #000; padding: 20px; border-radius: 8px; font-weight: bold; flex: 1; text-align: center; }
+     .demo-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; background: #1a1a1a; padding: 20px; border-radius: 8px; margin: 20px 0; }
+     .demo-grid div { background: #FFD700; color: #000; padding: 20px; border-radius: 8px; font-weight: bold; text-align: center; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="html-css.html"><i class="fas fa-arrow-right"></i> رجوع للكورس</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 3: Flexbox & Grid</h2>
+        <p style="color:#A9A9A9">المدة: 25 دقيقة | المستوى: متوسط</p>
+
+        <h3>1. المشكلة اللي بيحلوها</h3>
+        <p>
+            زمان كنا بنرتب العناصر بـ <code>float</code> و <code>position</code> وكان كابوس 😂<br>
+            <strong>Flexbox & Grid</strong> جم خلونا نرتب أي حاجة في 3 سطور كود بس.
+        </p>
+
+        <h3>2. Flexbox = صف أو عمود مرن</h3>
+        <p>استخدمه لما عايز ترتب عناصر <strong>جنب بعض أو فوق بعض</strong></p>
+
+        <pre><code>.container {
+  display: flex; /* شغل الفليكس */
+  justify-content: space-between; /* وزع العناصر بالتساوي */
+  align-items: center; /* وسطنهم في النص عمودي */
+  gap: 20px; /* مسافة 20px بين كل عنصر */
+}</code></pre>
+
+        <p><strong>النتيجة هتبقى كده:</strong></p>
+        <div class="demo-flex">
+            <div>عنصر 1</div>
+            <div>عنصر 2</div>
+            <div>عنصر 3</div>
+        </div>
+
+        <div class="note">
+            <strong>أهم 3 خصائص في Flexbox:</strong><br>
+            1. <code>justify-content</code> = ترتيب أفقي: start, center, end, space-between<br>
+            2. <code>align-items</code> = ترتيب عمودي: start, center, end<br>
+            3. <code>flex-direction</code> = الاتجاه: row أو column
+        </div>
+
+        <h3>3. Grid = جدول احترافي</h3>
+        <p>استخدمه لما عايز تقسم الصفحة <strong>أعمدة وصفوف</strong> زي المجلة</p>
+
+        <pre><code>.container {
+  display: grid; /* شغل الجريد */
+  grid-template-columns: 1fr 1fr 1fr; /* 3 أعمدة متساوية */
+  gap: 15px; /* مسافة 15px بين الكروت */
+}</code></pre>
+
+        <p><strong>النتيجة هتبقى كده:</strong></p>
+        <div class="demo-grid">
+            <div>كارت 1</div>
+            <div>كارت 2</div>
+            <div>كارت 3</div>
+            <div>كارت 4</div>
+            <div>كارت 5</div>
+            <div>كارت 6</div>
+        </div>
+
+        <div class="note">
+            <strong>1fr</strong> = جزء واحد من المساحة المتاحة. لو كتبت <code>1fr 2fr</code> يبقى العمود التاني ضعف الأول
+        </div>
+
+        <h3>4. إمتى تستخدم Flexbox وإمتى Grid؟</h3>
+        <p style="line-height:2">
+            <strong style="color:#00FF88">Flexbox:</strong> للـ Navbar، الكروت اللي جنب بعض، توسيط عنصر<br>
+            <strong style="color:#FFD700">Grid:</strong> لتقسيم الصفحة كلها، معرض الصور، Dashboard كامل<br><br>
+            <strong>قاعدة سهلة:</strong> لو بعد واحد = Flexbox، لو بعدين = Grid
+        </p>
+
+        <h3>5. مثال: كروت الكورسات بتاعتك</h3>
+        <p>الكروت اللي في <code>html-css.html</code> معمولة بـ Grid كده:</p>
+        <pre><code>.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}</code></pre>
+        <p>الكود ده بيخلي الكروت تترص جنب بعض، ولو الشاشة صغرت ينزلوا تحت بعض أوتوماتيك ✨</p>
+
+        <h3>6. تحميل 10 أمثلة جاهزة</h3>
+        <p>عملتلك ملف فيه 10 تصميمات بـ Flexbox و Grid تاخدهم كوبي بيست</p>
+        <a href="https://exe.io/Flexbox-Grid-Examples" class="btn-gold" target="_blank">
+            تحميل الأمثلة 📥
+        </a>
+
+        <h3 style="margin-top:60px">الدرس الجاي 👇</h3>
+        <p>هنتعلم Responsive Design ونخلي الموقع يشتغل على الموبايل صح</p>
+        <a href="lesson4-responsive.html" style="color:#00FF88">روح للدرس 4: التصميم المتجاوب →</a>
+
+        <div style="margin-top:30px">
+            <a href="lesson2-css.html" style="color:#aaa">← الدرس السابق: أساسيات CSS</a>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'FLEX GRID ROW COLUMN GAP 1FR 01 ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff88';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    </script>
+</body>
+</html>
