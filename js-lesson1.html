@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 1: أساسيات JS - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+ .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #F7DF1E; backdrop-filter: blur(5px); }
+ .header h1 { font-weight: 900; color: #F7DF1E; font-size: 28px; text-shadow: 0 0 15px rgba(247,223,30,0.5); }
+ .header a { color: #aaa; text-decoration: none; font-weight: 600; }
+ .header a:hover { color: #F7DF1E; }
+ .container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #F7DF1E; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #00FF88; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #F7DF1E; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #F7DF1E; font-family: monospace; }
+ .note { background: rgba(247,223,30,0.1); border-right: 3px solid #F7DF1E; padding: 15px; margin: 20px 0; border-radius: 8px; }
+ .btn-gold { display: inline-block; padding: 15px 30px; background: #F7DF1E; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+ .demo-box { background: #1a1a1a; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #333; }
+ .btn-test { background: #00FF88; color: #000; padding: 10px 20px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="javascript.html"><i class="fas fa-arrow-right"></i> رجوع لكورس JS</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 1: أساسيات JS - المتغيرات والدوال</h2>
+        <p style="color:#A9A9A9">المدة: 20 دقيقة | المستوى: مبتدئ</p>
+
+        <h3>1. يعني إيه JavaScript؟</h3>
+        <p>
+            <strong>JS = JavaScript</strong><br>
+            دي لغة "المخ" بتاع الموقع. بتخليه يتفاعل معاك.<br>
+            HTML = الهيكل، CSS = الشكل، <strong>JS = الحركة والعقل</strong><br><br>
+            مثال: لما تدوس على زرار ويطلعلك رسالة... ده JS
+        </p>
+
+        <h3>2. أول كود JS في حياتك</h3>
+        <p>حط الكود ده في أي صفحة HTML قبل قفلة <code>&lt;/body&gt;</code>:</p>
+        <pre><code>&lt;script&gt;
+  alert("أهلاً بيك في عالم JS يا جابر 😂");
+&lt;/script&gt;</code></pre>
+
+        <div class="demo-box">
+            <p>جرب دوس على الزرار ده:</p>
+            <button class="btn-test" onclick="alert('شوفت؟ ده JS شغال 😂🔥')">دوس هنا</button>
+        </div>
+
+        <h3>3. المتغيرات: var vs let vs const</h3>
+        <p>المتغير = علبة بتخزن فيها قيمة</p>
+        <pre><code>var name = "جابر"; // قديم، متستخدموش
+let age = 25; // حديث، تقدر تغير القيمة
+const country = "مصر"; // ثابت، مينفعش تغيره</code></pre>
+
+        <div class="note">
+            <strong>القاعدة:</strong> استخدم <code>const</code> دايماً، ولو هتغير القيمة استخدم <code>let</code>. انسا <code>var</code> خالص
+        </div>
+
+        <h3>4. أنواع البيانات الأساسية</h3>
+        <pre><code>let name = "جابر"; // String نص
+let age = 25; // Number رقم
+let isPro = true; // Boolean صح أو غلط
+let skills = ["HTML", "CSS", "JS"]; // Array مصفوفة</code></pre>
+
+        <h3>5. أول Function ليك</h3>
+        <p>الـ Function = مجموعة أوامر بتناديها وقت ما تحب</p>
+        <pre><code>function sayHello(userName) {
+  alert("أهلاً يا " + userName + " 🔥");
+}
+
+// تشغيل الدالة
+sayHello("جابر");</code></pre>
+
+        <div class="demo-box">
+            <p>جرب الدالة دي:</p>
+            <button class="btn-test" onclick="testFunction()">شغل sayHello</button>
+        </div>
+
+        <h3>6. Console.log = صاحبك الصدوق</h3>
+        <p>عشان تشوف المتغيرات والقيم من غير alert:</p>
+        <pre><code>let x = 5;
+let y = 10;
+console.log(x + y); // هيطبع 15 في Console</code></pre>
+        <div class="note">
+            <strong>ازاي تفتح Console:</strong> دوس F12 في المتصفح → اختار Console
+        </div>
+
+        <h3>7. تحميل ملخص الكود</h3>
+        <p>عملتلك ملف فيه كل الأساسيات + 10 أمثلة جاهزة</p>
+        <a href="https://exe.io/JS-Lesson1-Files" class="btn-gold" target="_blank">
+            تحميل ملفات الدرس 📥
+        </a>
+
+        <h3 style="margin-top:60px">الدرس الجاي 👇</h3>
+        <p>هنتعلم DOM وازاي نتحكم في عناصر HTML بالـ JS</p>
+        <a href="js-lesson2.html" style="color:#F7DF1E">روح للدرس 2: التعامل مع DOM →</a>
+    </div>
+
+    <script>
+        // Matrix Background
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'JS LET CONST FUNCTION => {} [] 01 ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#F7DF1E';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+
+        // Test Function للدرس
+        function testFunction() {
+            alert("أهلاً يا جابر 🔥 دي أول Function ليك");
+        }
+    </script>
+</body>
+</html>
