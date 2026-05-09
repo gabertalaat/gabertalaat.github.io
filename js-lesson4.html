@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 4: API & Fetch - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #F7DF1E; backdrop-filter: blur(5px); }
+.header h1 { font-weight: 900; color: #F7DF1E; font-size: 28px; text-shadow: 0 0 15px rgba(247,223,30,0.5); }
+.header a { color: #aaa; text-decoration: none; font-weight: 600; }
+.header a:hover { color: #F7DF1E; }
+.container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #F7DF1E; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #00FF88; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #F7DF1E; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #F7DF1E; font-family: monospace; }
+.note { background: rgba(247,223,30,0.1); border-right: 3px solid #F7DF1E; padding: 15px; margin: 20px 0; border-radius: 8px; }
+.btn-gold { display: inline-block; padding: 15px 30px; background: #F7DF1E; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+.demo-box { background: #1a1a1a; padding: 25px; border-radius: 8px; margin: 20px 0; border: 1px solid #333; }
+.btn-test { background: #00FF88; color: #000; padding: 12px 25px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin: 8px; font-family: 'Cairo'; }
+.btn-test:hover { background: #00cc6a; }
+#weatherBox, #jokeBox { background: #0D1117; padding: 20px; border-radius: 8px; margin-top: 15px; border: 1px solid #F7DF1E; display: none; }
+.loading { color: #F7DF1E; text-align: center; padding: 20px; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="javascript.html"><i class="fas fa-arrow-right"></i> رجوع لكورس JS</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 4: API & Fetch</h2>
+        <p style="color:#A9A9A9">المدة: 30 دقيقة | المستوى: متوسط</p>
+
+        <h3>1. يعني إيه API؟</h3>
+        <p>
+            <strong>API = Application Programming Interface</strong><br>
+            تخيل مطعم: انت العميل، المطبخ هو السيرفر، والجرسون هو الـ API.<br>
+            انت بتطلب من الجرسون "عايز بيتزا"، هو بيروح المطبخ ويجيبهالك.<br><br>
+            <strong>بالمصري:</strong> API = وسيط بيجيبلك بيانات من سيرفر تاني وانت في موقعك 😂
+        </p>
+
+        <h3>2. Fetch = الطريقة الحديثة تجيب بيانات</h3>
+        <p>قبل 2015 كنا بنستخدم AJAX معقد. دلوقتي <code>fetch()</code> سهل جداً:</p>
+        <pre><code>// الهيكل الأساسي
+fetch('رابط الـ API')
+ .then(response => response.json()) // حول الرد لـ JSON
+ .then(data => {
+    console.log(data); // البيانات وصلت خلاص
+ })
+ .catch(error => {
+    console.log('حصل خطأ:', error);
+ });</code></pre>
+
+        <div class="note">
+            <strong>async/await</strong> = طريقة أسهل وأوضح. هنستخدمها في الأمثلة الجاية
+        </div>
+
+        <h3>3. مثال 1: هات نكتة عشوائية 🔥</h3>
+        <p>هنستخدم API مجاني بيجيب نكت برمجة:</p>
+        <pre><code>const getJoke = async () => {
+  const response = await fetch('https://api.chucknorris.io/jokes/random');
+  const data = await response.json();
+  console.log(data.value); // النكتة هنا
+}</code></pre>
+
+        <div class="demo-box">
+            <p>دوس جرب بنفسك:</p>
+            <button class="btn-test" onclick="getJoke()">هات نكتة 😂</button>
+            <div id="jokeBox"></div>
+        </div>
+
+        <h3>4. مثال 2: طقس القاهرة مباشر</h3>
+        <p>هنستخدم API الطقس. الكود ده هيجيب درجة حرارة القاهرة دلوقتي:</p>
+        <pre><code>const getWeather = async () => {
+  const url = 'https://api.open-meteo.com/v1/forecast?latitude=30.05&longitude=31.25&current=temperature_2m';
+  const response = await fetch(url);
+  const data = await response.json();
+  const temp = data.current.temperature_2m;
+  console.log(`الحرارة في القاهرة: ${temp}°C`);
+}</code></pre>
+
+        <div class="demo-box">
+            <p>شوف طقس القاهرة دلوقتي:</p>
+            <button class="btn-test" onclick="getWeather()">هات الطقس</button>
+            <div id="weatherBox"></div>
+        </div>
+
+        <h3>5. إرسال بيانات POST</h3>
+        <p>لما تحب تبعت بيانات للسيرفر زي تسجيل دخول:</p>
+        <pre><code>const sendData = async () => {
+  const response = await fetch('https://api.example.com/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      username: "gaber",
+      password: "12345"
+    })
+  });
+  const data = await response.json();
+}</code></pre>
+
+        <h3>6. التعامل مع الأخطاء try/catch</h3>
+        <p>لازم تحمي كودك لو النت فصل أو الـ API وقع:</p>
+        <pre><code>const getData = async () => {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    if (!response.ok) throw new Error('السيرفر مش شغال');
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log('حصل خطأ:', error.message);
+    alert('النت فصل أو الـ API واقع 😢');
+  }
+}</code></pre>
+
+        <h3>7. 5 APIs مجانية تتمرن عليها</h3>
+        <div class="note" style="line-height:2">
+            1. <strong>نكت:</strong> <code>api.chucknorris.io/jokes/random</code><br>
+            2. <strong>طقس:</strong> <code>api.open-meteo.com</code><br>
+            3. <strong>صور قطط:</strong> <code>api.thecatapi.com/v1/images/search</code><br>
+            4. <strong>أخبار:</strong> <code>newsapi.org</code><br>
+            5. <strong>عملات:</strong> <code>api.exchangerate-api.com</code>
+        </div>
+
+        <h3>8. تحميل مشروع: صفحة طقس كاملة</h3>
+        <p>عملتلك صفحة HTML كاملة بتجيب طقس أي مدينة تكتبها</p>
+        <a href="https://exe.io/Weather-App-Project" class="btn-gold" target="_blank">
+            تحميل مشروع الطقس 📥
+        </a>
+
+        <h3 style="margin-top:60px">الدرس الجاي والأخير 👇</h3>
+        <p>هنبني لعبة بسيطة "خمن الرقم" ونطبق كل حاجة اتعلمناها</p>
+        <a href="js-lesson5.html" style="color:#F7DF1E">روح للدرس 5: مشروع لعبة →</a>
+
+        <div style="margin-top:30px">
+            <a href="js-lesson3.html" style="color:#aaa">← الدرس السابق: ES6+ الميزات الحديثة</a>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Background
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'fetch() async await API JSON 01 ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#F7DF1E';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+
+        // Demo Functions
+        const getJoke = async () => {
+            const jokeBox = document.getElementById('jokeBox');
+            jokeBox.style.display = 'block';
+            jokeBox.innerHTML = '<div class="loading">بجيب النكتة... 😂</div>';
+            try {
+                const response = await fetch('https://api.chucknorris.io/jokes/random');
+                const data = await response.json();
+                jokeBox.innerHTML = `<p style="color:#00FF88">"${data.value}"</p>`;
+            } catch (error) {
+                jokeBox.innerHTML = '<p style="color:#ff4444">النت فصل يا معلم 😢</p>';
+            }
+        }
+
+        const getWeather = async () => {
+            const weatherBox = document.getElementById('weatherBox');
+            weatherBox.style.display = 'block';
+            weatherBox.innerHTML = '<div class="loading">بجيب الطقس... ☀️</div>';
+            try {
+                const url = 'https://api.open-meteo.com/v1/forecast?latitude=30.05&longitude=31.25&current=temperature_2m,weather_code';
+                const response = await fetch(url);
+                const data = await response.json();
+                const temp = data.current.temperature_2m;
+                weatherBox.innerHTML = `<p style="color:#00FF88; font-size:24px">الحرارة في القاهرة: ${temp}°C 🔥</p>`;
+            } catch (error) {
+                weatherBox.innerHTML = '<p style="color:#ff4444">مش عارف أجيب الطقس 😢</p>';
+            }
+        }
+    </script>
+</body>
+</html>
