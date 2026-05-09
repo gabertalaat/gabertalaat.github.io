@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 2: البيانات والـ Loops - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+     .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #3776AB; backdrop-filter: blur(5px); }
+     .header h1 { font-weight: 900; color: #3776AB; font-size: 28px; text-shadow: 0 0 15px rgba(55,118,171,0.5); }
+     .header a { color: #aaa; text-decoration: none; font-weight: 600; }
+     .header a:hover { color: #3776AB; }
+     .container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #3776AB; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #FFD43B; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #3776AB; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #FFD43B; font-family: monospace; }
+     .note { background: rgba(55,118,171,0.1); border-right: 3px solid #3776AB; padding: 15px; margin: 20px 0; border-radius: 8px; }
+     .btn-gold { display: inline-block; padding: 15px 30px; background: #3776AB; color: #fff; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+     .btn-gold:hover { background: #2a5a87; }
+     .output { background: #1a1a1a; padding: 15px; border-radius: 8px; margin: 10px 0; border-right: 3px solid #00FF88; }
+     .output code { color: #00FF88; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="python.html"><i class="fas fa-arrow-right"></i> رجوع لكورس Python</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 2: البيانات والـ Loops والـ Conditions</h2>
+        <p style="color:#A9A9A9">المدة: 35 دقيقة | المستوى: مبتدئ</p>
+
+        <h3>1. أنواع البيانات الأساسية</h3>
+        <p>بايثون فيها 4 أنواع هتستخدمهم كل يوم:</p>
+        <pre><code># 1. String - نص
+name = "جابر"
+message = 'بحب بايثون 🔥'
+
+# 2. Integer - رقم صحيح
+age = 20
+users = 1000
+
+# 3. Float - رقم عشري
+price = 99.99
+pi = 3.14
+
+# 4. Boolean - صح ولا غلط
+is_online = True
+is_admin = False</code></pre>
+
+        <h3>2. Lists = مصفوفات يا معلم 📋</h3>
+        <p>دي زي صندوق بتحط فيه كذا حاجة مع بعض</p>
+        <pre><code>skills = ["HTML", "CSS", "JS", "Python"]
+numbers = [10, 20, 30, 40]
+
+# نطبع أول عنصر
+print(skills[0]) # HTML
+
+# نضيف عنصر جديد
+skills.append("React")
+print(skills) # ['HTML', 'CSS', 'JS', 'Python', 'React']
+
+# عدد العناصر
+print(len(skills)) # 5</code></pre>
+
+        <h3>3. Dictionaries = قواميس 🗂️</h3>
+        <p>دي بقى بتخزن البيانات على شكل Key: Value</p>
+        <pre><code>user = {
+    "name": "جابر",
+    "age": 20,
+    "city": "Cairo",
+    "skills": ["Python", "JS"]
+}
+
+print(user["name"]) # جابر
+print(user["skills"][0]) # Python
+
+# نضيف حاجة جديدة
+user["email"] = "gaber@example.com"</code></pre>
+
+        <h3>4. الـ Conditions = لو حصل كذا اعمل كذا</h3>
+        <pre><code>age = 18
+
+if age >= 18:
+    print("انت بالغ يا معلم")
+elif age >= 13:
+    print("انت مراهق")
+else:
+    print("انت لسه صغير")
+
+# النتيجة: انت بالغ يا معلم</code></pre>
+
+        <div class="note">
+            <strong>ملاحظة مهمة:</strong> بايثون بتعتمد على المسافات ⚠️<br>
+            لازم الكود اللي جوا الـ if يبقى مزاح 4 مسافات لجوا
+        </div>
+
+        <h3>5. الـ Loops = التكرار 🔄</h3>
+
+        <p><strong>For Loop - تلف على List:</strong></p>
+        <pre><code>skills = ["HTML", "CSS", "JS", "Python"]
+
+for skill in skills:
+    print(f"أنا بعرف {skill}")</code></pre>
+        <div class="output">
+            <code>
+            أنا بعرف HTML<br>
+            أنا بعرف CSS<br>
+            أنا بعرف JS<br>
+            أنا بعرف Python
+            </code>
+        </div>
+
+        <p><strong>While Loop - طول ما الشرط متحقق:</strong></p>
+        <pre><code>count = 1
+
+while count <= 5:
+    print(f"العد: {count}")
+    count = count + 1</code></pre>
+        <div class="output">
+            <code>
+            العد: 1<br>
+            العد: 2<br>
+            العد: 3<br>
+            العد: 4<br>
+            العد: 5
+            </code>
+        </div>
+
+        <h3>6. تمرين تطبيقي: برنامج إدارة مهام</h3>
+        <pre><code>tasks = []
+
+# نضيف مهام
+tasks.append("اذاكر Python")
+tasks.append("اعمل مشروع")
+tasks.append("ارفع على GitHub")
+
+# نطبع كل المهام
+print("مهامك النهاردة:")
+for i, task in enumerate(tasks, 1):
+    print(f"{i}. {task}")</code></pre>
+
+        <div class="note">
+            <strong>الـ f-string</strong> = طريقة فاجرة تطبع بيها متغيرات جوا النص<br>
+            <code>f"اسمك {name} وعمرك {age}"</code>
+        </div>
+
+        <h3>7. تحميل المشروع</h3>
+        <p>عملتلك برنامج To-Do List كامل بـ Python</p>
+        <a href="https://exe.io/Python-Todo" class="btn-gold" target="_blank">
+            تحميل To-Do List 📥
+        </a>
+
+        <div style="margin-top:30px">
+            <a href="python-lesson1.html" style="color:#aaa">← الدرس السابق: مقدمة في بايثون</a> |
+            <a href="python-lesson3.html" style="color:#3776AB">الدرس التالي: Functions & OOP →</a>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Background
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'for while if else in [] {} True False list dict ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#3776AB';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    </script>
+</body>
+</html>
