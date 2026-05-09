@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملخص العادات الذرية - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+ .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #00FF88; backdrop-filter: blur(5px); }
+ .header h1 { font-weight: 900; color: #00FF88; font-size: 28px; text-shadow: 0 0 15px rgba(0,255,136,0.5); }
+ .header a { color: #aaa; text-decoration: none; font-weight: 600; }
+ .header a:hover { color: #00FF88; }
+ .container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #00FF88; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #FFD43B; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        ul { list-style: none; padding-right: 20px; }
+        ul li { color: #ddd; line-height: 2; margin-bottom: 12px; position: relative; }
+        ul li::before { content: '✓'; color: #00FF88; font-weight: bold; position: absolute; right: -20px; }
+ .note { background: rgba(0,255,136,0.1); border-right: 3px solid #00FF88; padding: 20px; margin: 25px 0; border-radius: 8px; }
+ .quote { background: rgba(26,26,26,0.9); border-right: 3px solid #FFD43B; padding: 20px; margin: 25px 0; border-radius: 8px; font-style: italic; }
+ .quote::before { content: '"'; font-size: 40px; color: #FFD43B; line-height: 0; }
+ .btn-gold { display: inline-block; padding: 15px 40px; background: #00FF88; color: #000; text-decoration: none; border-radius: 8px; font-weight: 900; margin-top: 30px; font-size: 18px; }
+ .btn-gold:hover { background: #00cc6a; transform: scale(1.05); }
+ .author { color: #A9A9A9; font-size: 16px; margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="summaries.html"><i class="fas fa-arrow-right"></i> رجوع لملخصات PDF</a>
+    </div>
+
+    <div class="container">
+        <h2>⚛️ ملخص العادات الذرية</h2>
+        <p class="author">تأليف: جيمس كلير | الملخص: 5 صفحات | وقت القراءة: 10 دقائق</p>
+
+        <h3>📖 نبذة عن الكتاب</h3>
+        <p>
+            الكتاب ده بيقولك إن النجاح مش محتاج تغييرات ضخمة... محتاج تحسينات صغيرة جداً بنسبة 1% كل يوم.
+            العادات الذرية = عادات صغيرة بس مفعولها تراكمي ومرعب مع الوقت.
+        </p>
+
+        <h3>🔥 أهم 10 أفكار من الكتاب</h3>
+        <ul>
+            <li><strong>قاعدة الـ 1%:</strong> لو اتحسنت 1% كل يوم لمدة سنة هتبقى أفضل 37 مرة</li>
+            <li><strong>ركز على الهوية:</strong> متقولش "عايز أقرأ" قول "أنا قارئ"... الهوية بتولد العادة</li>
+            <li><strong>القوانين الأربعة:</strong> اجعلها واضحة + جذابة + سهلة + مرضية</li>
+            <li><strong>بيئتك أهم من إرادتك:</strong> لو عايز تبطل موبايل حطه في أوضة تانية</li>
+            <li><strong>قاعدة الدقيقتين:</strong> أي عادة جديدة ابدأها بدقيقتين بس عشان متكسلش</li>
+            <li><strong>تكديس العادات:</strong> اربط العادة الجديدة بعادة قديمة "بعد ما أغسل سناني هقرأ صفحة"</li>
+            <li><strong>التتبع البصري:</strong> علم صح كل يوم في التقويم... متحرقش السلسلة</li>
+            <li><strong>قانون جولديلوكس:</strong> خلي العادة صعبة سيكا بس مش مستحيلة عشان متملش</li>
+            <li><strong>المكافأة الفورية:</strong> كافئ نفسك بعد العادة عشان مخك يحبها</li>
+            <li><strong>انت مش بتفشل:</strong> لو وقعت يوم كمل تاني يوم... متقعش مرتين ورا بعض</li>
+        </ul>
+
+        <h3>💬 اقتباسات هتغير دماغك</h3>
+        <div class="quote">
+            أنت لا ترتقي لمستوى أهدافك، بل تهبط لمستوى أنظمتك. عاداتك هي اللي بتحدد مصيرك.
+        </div>
+        <div class="quote">
+            النجاح هو نتاج العادات اليومية، مش التحولات اللي بتحصل مرة في العمر.
+        </div>
+
+        <div class="note">
+            <strong>الخلاصة في سطر:</strong><br>
+            بطل تركز على الأهداف وركز على بناء نظام... العادة الصغيرة اللي بتكررها كل يوم هي اللي هتوصلك.
+        </div>
+
+        <h3>📥 تحميل الملخص PDF</h3>
+        <p>لخصتلك الكتاب كامل في 5 صفحات بأمثلة عملية تقدر تطبقها من النهاردة</p>
+        <a href="https://exe.io/Atomic-Habits-PDF" class="btn-gold" target="_blank">
+            <i class="fas fa-download"></i> تحميل مجاني
+        </a>
+
+        <div style="margin-top:50px">
+            <a href="summaries.html" style="color:#00FF88">← رجوع لكل الملخصات</a>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Background - PDF Theme
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'PDF Book Summary Ideas Read Learn Grow 01 ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00FF88';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    </script>
+</body>
+</html>
