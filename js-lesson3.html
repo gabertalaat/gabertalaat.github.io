@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 3: ES6+ الميزات الحديثة - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #F7DF1E; backdrop-filter: blur(5px); }
+.header h1 { font-weight: 900; color: #F7DF1E; font-size: 28px; text-shadow: 0 0 15px rgba(247,223,30,0.5); }
+.header a { color: #aaa; text-decoration: none; font-weight: 600; }
+.header a:hover { color: #F7DF1E; }
+.container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #F7DF1E; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #00FF88; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #F7DF1E; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #F7DF1E; font-family: monospace; }
+.note { background: rgba(247,223,30,0.1); border-right: 3px solid #F7DF1E; padding: 15px; margin: 20px 0; border-radius: 8px; }
+.btn-gold { display: inline-block; padding: 15px 30px; background: #F7DF1E; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+.demo-box { background: #1a1a1a; padding: 25px; border-radius: 8px; margin: 20px 0; border: 1px solid #333; }
+.btn-test { background: #00FF88; color: #000; padding: 12px 25px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin: 8px; font-family: 'Cairo'; }
+.bad { background: rgba(255,68,68,0.1); border-right: 3px solid #ff4444; padding: 15px; margin: 15px 0; border-radius: 8px; }
+.good { background: rgba(0,255,136,0.1); border-right: 3px solid #00FF88; padding: 15px; margin: 15px 0; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="javascript.html"><i class="fas fa-arrow-right"></i> رجوع لكورس JS</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 3: ES6+ الميزات الحديثة</h2>
+        <p style="color:#A9A9A9">المدة: 30 دقيقة | المستوى: مهم جداً</p>
+
+        <h3>1. يعني إيه ES6؟</h3>
+        <p>
+            <strong>ES6 = ECMAScript 2015</strong><br>
+            ده تحديث ضخم نزل للـ JS سنة 2015 غير اللغة 180 درجة.<br>
+            <strong>بالمصري:</strong> قبل ES6 كنت بتكتب كود كتير ومتعب، بعده بقى الكود قصير ونضيف 😂
+        </p>
+
+        <h3>2. Arrow Functions => السهم السحري</h3>
+        <p>بدل ما تكتب function طويلة، اكتبها في سطر:</p>
+
+        <div class="bad">
+            <strong style="color:#ff4444">❌ الطريقة القديمة:</strong>
+            <pre><code>function sum(a, b) {
+  return a + b;
+}</code></pre>
+        </div>
+
+        <div class="good">
+            <strong style="color:#00FF88">✅ الطريقة الجديدة ES6:</strong>
+            <pre><code>const sum = (a, b) => a + b;</code></pre>
+        </div>
+
+        <div class="demo-box">
+            <p>جرب دوس وشوف النتيجة:</p>
+            <button class="btn-test" onclick="testArrow()">3 + 5 =?</button>
+            <p id="arrowResult" style="color:#F7DF1E; margin-top:10px;"></p>
+        </div>
+
+        <div class="note">
+            <strong>القاعدة:</strong> لو الدالة سطر واحد، شيل <code>{}</code> و <code>return</code> واكتبها علطول
+        </div>
+
+        <h3>3. Template Literals = الكتابة الحديثة</h3>
+        <p>انسا <code>+</code> عشان تلزق نصوص. استخدم <code>` `</code>:</p>
+        <pre><code>const name = "جابر";
+const age = 25;
+
+// قديم
+let msg = "أهلاً يا " + name + " عمرك " + age;
+
+// جديد ES6
+let msg = `أهلاً يا ${name} عمرك ${age} 🔥`;</code></pre>
+
+        <h3>4. Destructuring = فك العلبة بسرعة</h3>
+        <p>بدل ما تكتب <code>user.name</code> و <code>user.age</code> كل مرة:</p>
+        <pre><code>const user = { name: "جابر", age: 25, city: "القاهرة" };
+
+// قديم
+let name = user.name;
+let age = user.age;
+
+// جديد ES6 - فكها في سطر
+const { name, age, city } = user;
+console.log(name); // جابر</code></pre>
+
+        <p>نفس الكلام مع Arrays:</p>
+        <pre><code>const colors = ["أحمر", "أخضر", "أصفر"];
+const [first, second] = colors;
+console.log(first); // أحمر</code></pre>
+
+        <h3>5. Spread Operator... = انسخ ووزع</h3>
+        <p>الـ <code>...</code> دي بتعمل سحر:</p>
+        <pre><code>// 1. انسخ Array
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5]; // [1,2,3,4,5]
+
+// 2. ادمج Objects
+const user = { name: "جابر" };
+const userWithAge = {...user, age: 25 };
+// { name: "جابر", age: 25 }
+
+// 3. ابعت كل عناصر Array كـ parameters
+const nums = [5, 10, 15];
+console.log(Math.max(...nums)); // 15</code></pre>
+
+        <h3>6. Default Parameters = قيم افتراضية</h3>
+        <pre><code>// لو المستخدم مبعتش قيمة، خد الافتراضي
+const greet = (name = "يا غريب") => {
+  return `أهلاً ${name}`;
+}
+
+greet("جابر"); // أهلاً جابر
+greet(); // أهلاً يا غريب</code></pre>
+
+        <h3>7. let و const بدل var</h3>
+        <div class="note">
+            <strong>الخلاصة:</strong><br>
+            1. <code>const</code> = ثابت، استخدمه 90% من الوقت<br>
+            2. <code>let</code> = متغير، لو هتغير القيمة<br>
+            3. <code>var</code> = انساه خالص، ده بتاع 2010 😂
+        </div>
+
+        <h3>8. اختبار سريع: قديم vs جديد</h3>
+        <div class="demo-box">
+            <p id="oldNewDemo">دوس شوف الفرق:</p>
+            <button class="btn-test" onclick="showOld()">الكود القديم</button>
+            <button class="btn-test" onclick="showNew()">الكود الجديد ES6</button>
+            <pre id="codeDemo" style="margin-top:15px; display:none;"></pre>
+        </div>
+
+        <h3>9. تحميل Cheat Sheet ES6</h3>
+        <p>عملتلك ملف PDF فيه كل ميزات ES6+ مع أمثلة</p>
+        <a href="https://exe.io/ES6-CheatSheet" class="btn-gold" target="_blank">
+            تحميل Cheat Sheet 📥
+        </a>
+
+        <h3 style="margin-top:60px">الدرس الجاي 👇</h3>
+        <p>هنتعلم API & Fetch وازاي نجيب بيانات من الإنترنت</p>
+        <a href="js-lesson4.html" style="color:#F7DF1E">روح للدرس 4: API & Fetch →</a>
+
+        <div style="margin-top:30px">
+            <a href="js-lesson2.html" style="color:#aaa">← الدرس السابق: التعامل مع DOM</a>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Background
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = '=> const let... ${} ES6 01 ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#F7DF1E';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+
+        // Demo Functions ES6
+        const testArrow = () => {
+            const sum = (a, b) => a + b;
+            document.getElementById('arrowResult').textContent = `النتيجة: ${sum(3, 5)} 🔥`;
+        }
+
+        const showOld = () => {
+            document.getElementById('codeDemo').style.display = 'block';
+            document.getElementById('codeDemo').textContent = `function sum(a, b) {\n return a + b;\n}\n\nvar name = "جابر";\nvar msg = "أهلاً " + name;`;
+        }
+
+        const showNew = () => {
+            document.getElementById('codeDemo').style.display = 'block';
+            document.getElementById('codeDemo').textContent = `const sum = (a, b) => a + b;\n\nconst name = "جابر";\nconst msg = \`أهلاً \${name}\`;`;
+        }
+    </script>
+</body>
+</html>
