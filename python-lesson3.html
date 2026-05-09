@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 3: Functions & OOP - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #3776AB; backdrop-filter: blur(5px); }
+    .header h1 { font-weight: 900; color: #3776AB; font-size: 28px; text-shadow: 0 0 15px rgba(55,118,171,0.5); }
+    .header a { color: #aaa; text-decoration: none; font-weight: 600; }
+    .header a:hover { color: #3776AB; }
+    .container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #3776AB; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #FFD43B; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #3776AB; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #FFD43B; font-family: monospace; }
+    .note { background: rgba(55,118,171,0.1); border-right: 3px solid #3776AB; padding: 15px; margin: 20px 0; border-radius: 8px; }
+    .btn-gold { display: inline-block; padding: 15px 30px; background: #3776AB; color: #fff; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+    .btn-gold:hover { background: #2a5a87; }
+    .output { background: #1a1a1a; padding: 15px; border-radius: 8px; margin: 10px 0; border-right: 3px solid #00FF88; }
+    .output code { color: #00FF88; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="python.html"><i class="fas fa-arrow-right"></i> رجوع لكورس Python</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 3: Functions & OOP</h2>
+        <p style="color:#A9A9A9">المدة: 40 دقيقة | المستوى: متوسط</p>
+
+        <h3>الجزء الأول: Functions ⚙️</h3>
+        <p>الـ Function = كود بتعمله مرة وتستخدمه مليون مرة 😂</p>
+
+        <h3>1. أبسط Function</h3>
+        <pre><code>def say_hello():
+    print("أهلاً يا جابر 🔥")
+
+# نستدعيها
+say_hello()
+say_hello()</code></pre>
+        <div class="output">
+            <code>
+            أهلاً يا جابر 🔥<br>
+            أهلاً يا جابر 🔥
+            </code>
+        </div>
+
+        <h3>2. Function بـ Parameters</h3>
+        <pre><code>def greet(name, age):
+    print(f"اسمك {name} وعمرك {age} سنة")
+
+greet("جابر", 20)
+greet("أحمد", 25)</code></pre>
+        <div class="output">
+            <code>
+            اسمك جابر وعمرك 20 سنة<br>
+            اسمك أحمد وعمرك 25 سنة
+            </code>
+        </div>
+
+        <h3>3. Function بترجع قيمة - return</h3>
+        <pre><code>def add(x, y):
+    result = x + y
+    return result
+
+sum = add(5, 3)
+print(sum) # 8
+
+# ممكن تستخدمها علطول
+print(add(10, 20)) # 30</code></pre>
+
+        <h3>4. Default Parameters</h3>
+        <pre><code>def power(base, exp=2):
+    return base ** exp
+
+print(power(5)) # 25 ← exp افتراضياً 2
+print(power(5, 3)) # 125 ← 5^3</code></pre>
+
+        <div class="note">
+            <strong>** يعني أس:</strong> <code>5 ** 2 = 25</code><br>
+            <strong>* يعني ضرب:</strong> <code>5 * 2 = 10</code>
+        </div>
+
+        <h3 style="margin-top:50px">الجزء الثاني: OOP - البرمجة الكائنية 🏗️</h3>
+        <p>OOP = بدل ما تكتب كود سايح، بتعمل "قوالب" Classes وتصنع منها Objects</p>
+
+        <h3>1. أول Class ليك</h3>
+        <pre><code>class User:
+    def __init__(self, name, age):
+        self.name = name # خاصية
+        self.age = age # خاصية
+
+    def say_hello(self): # method
+        print(f"أنا {self.name} وعندي {self.age} سنة")
+
+# نصنع objects من الـ Class
+user1 = User("جابر", 20)
+user2 = User("سارة", 22)
+
+user1.say_hello() # أنا جابر وعندي 20 سنة
+user2.say_hello() # أنا سارة وعندي 22 سنة</code></pre>
+
+        <div class="note">
+            <strong>__init__</strong> = الكونستركتور، بيتنادى أول ما تصنع object جديد<br>
+            <strong>self</strong> = بيشاور على الـ object نفسه
+        </div>
+
+        <h3>2. مثال عملي: Class للمنتجات</h3>
+        <pre><code>class Product:
+    def __init__(self, name, price, quantity):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+
+    def get_total(self):
+        return self.price * self.quantity
+
+    def apply_discount(self, percent):
+        discount = self.price * (percent / 100)
+        self.price = self.price - discount
+        return self.price
+
+# نجرب
+laptop = Product("Laptop", 20000, 2)
+print(laptop.get_total()) # 40000
+
+laptop.apply_discount(10) # خصم 10%
+print(laptop.price) # 18000.0
+print(laptop.get_total()) # 36000.0</code></pre>
+
+        <h3>3. الـ Inheritance = الوراثة</h3>
+        <p>يعني Class يورث من Class تاني</p>
+        <pre><code>class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print("صوت حيوان")
+
+class Dog(Animal): # Dog بيورث من Animal
+    def speak(self):
+        print(f"{self.name} بيقول هو هو 🐕")
+
+class Cat(Animal): # Cat بيورث من Animal
+    def speak(self):
+        print(f"{self.name} بيقول مياو 🐈")
+
+dog = Dog("ريكس")
+cat = Cat("مشميش")
+
+dog.speak() # ريكس بيقول هو هو 🐕
+cat.speak() # مشميش بيقول مياو 🐈</code></pre>
+
+        <h3>4. تمرين تطبيقي: نظام بنك</h3>
+        <pre><code>class BankAccount:
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"تم إيداع {amount} جنيه")
+
+    def withdraw(self, amount):
+        if amount <= self.balance:
+            self.balance -= amount
+            print(f"تم سحب {amount} جنيه")
+        else:
+            print("رصيدك غير كافي 😢")
+
+    def show_balance(self):
+        print(f"رصيد {self.owner}: {self.balance} جنيه")
+
+# نجرب
+account = BankAccount("جابر", 1000)
+account.show_balance() # رصيد جابر: 1000 جنيه
+account.deposit(500) # تم إيداع 500 جنيه
+account.withdraw(200) # تم سحب 200 جنيه
+account.show_balance() # رصيد جابر: 1300 جنيه</code></pre>
+
+        <h3>5. تحميل المشروع</h3>
+        <p>عملتلك نظام إدارة طلاب كامل بـ OOP</p>
+        <a href="https://exe.io/Python-StudentSystem" class="btn-gold" target="_blank">
+            تحميل نظام الطلاب 📥
+        </a>
+
+        <div style="margin-top:30px">
+            <a href="python-lesson2.html" style="color:#aaa">← الدرس السابق: البيانات والـ Loops</a> |
+            <a href="python-lesson4.html" style="color:#3776AB">الدرس التالي: الملفات والمكتبات →</a>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Background
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'def class self __init__ return import for while ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#3776AB';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    </script>
+</body>
+</html>
