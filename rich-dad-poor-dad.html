@@ -34,7 +34,7 @@
 .compare-box h4 { font-size: 20px; margin-bottom: 15px; }
 .compare-box.rich h4 { color: #00FF88; }
 .compare-box.poor h4 { color: #ff4444; }
-        @media (max-width: 768px) { .compare { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {.compare { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -51,8 +51,8 @@
 
         <h3>📖 نبذة عن الكتاب</h3>
         <p>
-            الكتاب ده بيحكي قصة طفلين: واحد أبوه غني والتاني أبوه فقير. 
-            بس الفرق مش في الفلوس... الفرق في طريقة التفكير. 
+            الكتاب ده بيحكي قصة طفلين: واحد أبوه غني والتاني أبوه فقير.
+            بس الفرق مش في الفلوس... الفرق في طريقة التفكير.
             الكتاب هيعلمك ازاي تفكر زي الأغنيا وتهرب من سباق الفئران.
         </p>
 
@@ -70,4 +70,84 @@
                 <h4>الأب الغني</h4>
                 <p>• تعلم عن المال<br>
                    • اشتري أصول<br>
-                   • اجعل الم
+                   • اجعل المال يعمل لك<br>
+                   • استثمر<br>
+                   • الفلوس قوة</p>
+            </div>
+        </div>
+
+        <h3>🔥 أهم 8 دروس مالية</h3>
+        <ul>
+            <li><strong>الأغنيا مش بيشتغلوا عشان الفلوس:</strong> هما بيخلوا الفلوس تشتغل عشانهم عن طريق الأصول</li>
+            <li><strong>اعرف الفرق بين الأصل والالتزام:</strong> الأصل بيدخلك فلوس، الالتزام بياخد منك فلوس</li>
+            <li><strong>بيتك مش أصل:</strong> بيتك بياخد فلوس كل شهر... ده التزام مش أصل</li>
+            <li><strong>اهتم بشغلك الخاص:</strong> الوظيفة تصرف على مصاريفك، البيزنس يبني ثروتك</li>
+            <li><strong>الضرايب والتضخم بيسرقوك:</strong> الأغنيا بيعرفوا يلعبوا اللعبة قانونياً</li>
+            <li><strong>عقلك أهم أصل:</strong> استثمر في تعليمك المالي قبل أي حاجة</li>
+            <li><strong>الخوف بيخليك فقير:</strong> الخوف من الخسارة بيمنعك تستثمر وتكسب</li>
+            <li><strong>اعمل عشان تتعلم مش عشان تكسب:</strong> خد وظايف تعلمك مهارات جديدة</li>
+        </ul>
+
+        <h3>💬 اقتباسات هتصحيك</h3>
+        <div class="quote">
+            الفقراء والطبقة الوسطى يعملون من أجل المال. الأغنياء يجعلون المال يعمل من أجلهم.
+        </div>
+        <div class="quote">
+            الأصل هو الشيء الذي يضع المال في جيبك. الالتزام هو الشيء الذي يخرج المال من جيبك.
+        </div>
+
+        <h3>🎯 أمثلة عملية للأصول</h3>
+        <p>
+            <strong>1. العقارات اللي بتتأجر:</strong> بتجيبلك إيجار كل شهر<br>
+            <strong>2. الأسهم اللي بتوزع أرباح:</strong> بتاخد كاش كل 3 شهور<br>
+            <strong>3. مشروع أونلاين:</strong> موقع أو قناة بتدخل إعلانات<br>
+            <strong>4. كتاب أو كورس:</strong> تبيعه مرة ويفضل يكسبك<br>
+            <strong>5. الملكية الفكرية:</strong> براءة اختراع أو حقوق نشر
+        </p>
+
+        <div class="note">
+            <strong>الخلاصة في سطرين:</strong><br>
+            بطل تجري ورا المرتب. ابدأ اشتري أصول حتى لو صغيرة.
+            هدفك إن دخلك من الأصول يغطي مصاريفك... ساعتها تبقى حر مالياً.
+        </div>
+
+        <h3>📥 تحميل الملخص PDF</h3>
+        <p>لخصتلك الـ 6 فصول بتوع الكتاب في 8 صفحات مع أمثلة مصرية عملية</p>
+        <a href="https://exe.io/Rich-Dad-Poor-Dad-PDF" class="btn-gold" target="_blank">
+            <i class="fas fa-download"></i> تحميل مجاني
+        </a>
+
+        <div style="margin-top:50px">
+            <a href="atomic-habits.html" style="color:#aaa">← الملخص السابق: العادات الذرية</a> |
+            <a href="summaries.html" style="color:#00FF88">رجوع لكل الملخصات</a>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Background
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'Money Asset Cash Flow Rich Poor Invest $ 01 ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00FF88';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    </script>
+</body>
+</html>
