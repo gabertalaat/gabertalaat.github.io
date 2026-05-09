@@ -10,23 +10,34 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
         #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
- .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #00FF88; backdrop-filter: blur(5px); }
- .header h1 { font-weight: 900; color: #00FF88; font-size: 28px; text-shadow: 0 0 15px rgba(0,255,136,0.5); }
- .header a { color: #aaa; text-decoration: none; font-weight: 600; }
- .header a:hover { color: #00FF88; }
- .container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
-        h2 { color: #00FF88; font-size: 32px; margin-bottom: 20px; }
-        h3 { color: #FFD43B; font-size: 22px; margin: 30px 0 15px; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.95); border-bottom: 3px solid #00FF88; backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 10; }
+.header h1 { font-weight: 900; color: #00FF88; font-size: 28px; text-shadow: 0 0 15px rgba(0,255,136,0.5); }
+.header a { color: #aaa; text-decoration: none; font-weight: 600; }
+.header a:hover { color: #00FF88; }
+.container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 40px 5%;
+    position: relative;
+    z-index: 1;
+    background: rgba(10, 10, 10, 0.92);
+    border-radius: 16px;
+    border: 2px solid rgba(0,255,136,0.3);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 40px rgba(0,255,136,0.15);
+}
+        h2 { color: #00FF88; font-size: 32px; margin-bottom: 20px; text-shadow: 0 0 10px rgba(0,255,136,0.3); font-style: normal; }
+        h3 { color: #FFD43B; font-size: 22px; margin: 30px 0 15px; font-style: normal; }
         p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
         ul { list-style: none; padding-right: 20px; }
         ul li { color: #ddd; line-height: 2; margin-bottom: 12px; position: relative; }
         ul li::before { content: '✓'; color: #00FF88; font-weight: bold; position: absolute; right: -20px; }
- .note { background: rgba(0,255,136,0.1); border-right: 3px solid #00FF88; padding: 20px; margin: 25px 0; border-radius: 8px; }
- .quote { background: rgba(26,26,26,0.9); border-right: 3px solid #FFD43B; padding: 20px; margin: 25px 0; border-radius: 8px; font-style: italic; }
- .quote::before { content: '"'; font-size: 40px; color: #FFD43B; line-height: 0; }
- .btn-gold { display: inline-block; padding: 15px 40px; background: #00FF88; color: #000; text-decoration: none; border-radius: 8px; font-weight: 900; margin-top: 30px; font-size: 18px; }
- .btn-gold:hover { background: #00cc6a; transform: scale(1.05); }
- .author { color: #A9A9A9; font-size: 16px; margin-bottom: 30px; }
+.note { background: rgba(0,255,136,0.15); border-right: 3px solid #00FF88; padding: 20px; margin: 25px 0; border-radius: 8px; backdrop-filter: blur(5px); }
+.quote { background: rgba(26,26,26,0.95); border-right: 3px solid #FFD43B; padding: 20px; margin: 25px 0; border-radius: 8px; font-style: normal; }
+.quote::before { content: '"'; font-size: 40px; color: #FFD43B; line-height: 0; }
+.btn-gold { display: inline-block; padding: 15px 40px; background: #00FF88; color: #000; text-decoration: none; border-radius: 8px; font-weight: 900; margin-top: 30px; font-size: 18px; transition: all 0.3s; cursor: pointer; }
+.btn-gold:hover { background: #00cc6a; transform: scale(1.05); box-shadow: 0 0 20px rgba(0,255,136,0.5); }
+.author { color: #A9A9A9; font-size: 16px; margin-bottom: 30px; }
     </style>
 </head>
 <body>
@@ -76,7 +87,7 @@
 
         <h3>📥 تحميل الملخص PDF</h3>
         <p>لخصتلك الكتاب كامل في 5 صفحات بأمثلة عملية تقدر تطبقها من النهاردة</p>
-        <a href="https://exe.io/Atomic-Habits-PDF" class="btn-gold" target="_blank">
+        <a href="#" class="btn-gold">
             <i class="fas fa-download"></i> تحميل مجاني
         </a>
 
@@ -86,7 +97,7 @@
     </div>
 
     <script>
-        // Matrix Background - PDF Theme
+        // Matrix Background
         const canvas = document.getElementById('matrix-bg');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -97,9 +108,9 @@
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
         function draw() {
-            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.1)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00FF88';
+            ctx.fillStyle = 'rgba(0,255,136,0.4)';
             ctx.font = fontSize + 'px monospace';
             for(let i = 0; i < drops.length; i++) {
                 const text = chars[Math.floor(Math.random() * chars.length)];
