@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 5: مشروع لعبة - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #F7DF1E; backdrop-filter: blur(5px); }
+.header h1 { font-weight: 900; color: #F7DF1E; font-size: 28px; text-shadow: 0 0 15px rgba(247,223,30,0.5); }
+.header a { color: #aaa; text-decoration: none; font-weight: 600; }
+.header a:hover { color: #F7DF1E; }
+.container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #F7DF1E; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #00FF88; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #F7DF1E; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #F7DF1E; font-family: monospace; }
+.note { background: rgba(247,223,30,0.1); border-right: 3px solid #F7DF1E; padding: 15px; margin: 20px 0; border-radius: 8px; }
+.btn-gold { display: inline-block; padding: 15px 30px; background: #F7DF1E; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+.game-box { background: #1a1a1a; padding: 40px; border-radius: 15px; margin: 30px 0; border: 2px solid #F7DF1E; text-align: center; }
+.game-box input { padding: 15px; border-radius: 8px; border: 2px solid #F7DF1E; background: #0a0a0a; color: #fff; font-size: 18px; width: 200px; text-align: center; margin: 15px 0; }
+.game-box button { background: #00FF88; color: #000; padding: 15px 30px; border: none; border-radius: 8px; font-weight: 900; cursor: pointer; font-size: 16px; margin: 10px; }
+.game-box button:hover { background: #00cc6a; }
+#message { font-size: 20px; margin: 20px 0; min-height: 30px; }
+#attempts { color: #FFD700; font-size: 18px; }
+#highScore { color: #00FF88; font-size: 16px; }
+.checklist { background: #1a1a1a; padding: 25px; border-radius: 8px; margin: 20px 0; border: 1px solid #333; }
+.checklist li { color: #ddd; margin: 10px 0; list-style: none; }
+.checklist li:before { content: "✅ "; color: #00FF88; margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="javascript.html"><i class="fas fa-arrow-right"></i> رجوع لكورس JS</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 5: مشروع لعبة "خمن الرقم"</h2>
+        <p style="color:#A9A9A9">المدة: 45 دقيقة | المستوى: مشروع تطبيقي</p>
+
+        <h3>1. فكرة اللعبة</h3>
+        <p>
+            الكمبيوتر هيختار رقم عشوائي من 1 لـ 100<br>
+            وانت تحاول تخمنه. كل مرة هيقولك "أعلى" أو "أقل"<br>
+            لحد ما تجيبه صح. هنسجل أقل عدد محاولات جبتها 💚
+        </p>
+
+        <h3>2. اللعبة شغالة قدامك أهي 👇</h3>
+        <div class="game-box">
+            <h3 style="color:#F7DF1E; margin-top:0">خمن رقم من 1 لـ 100</h3>
+            <input type="number" id="guessInput" placeholder="اكتب رقم" min="1" max="100">
+            <br>
+            <button onclick="checkGuess()">خمن</button>
+            <button onclick="resetGame()">لعبة جديدة</button>
+            <p id="message"></p>
+            <p id="attempts">المحاولات: 0</p>
+            <p id="highScore">أفضل نتيجة: -</p>
+        </div>
+
+        <h3>3. شرح الكود: إزاي اتعملت؟</h3>
+
+        <p><strong>1. المتغيرات الأساسية:</strong></p>
+        <pre><code>let secretNumber = Math.floor(Math.random() * 100) + 1;
+let attempts = 0;
+let highScore = localStorage.getItem('highScore') || 0;</code></pre>
+
+        <p><strong>2. دالة التخمين:</strong></p>
+        <pre><code>const checkGuess = () => {
+  const guess = Number(document.getElementById('guessInput').value);
+  attempts++;
+
+  if (guess === secretNumber) {
+    document.getElementById('message').textContent =
+      `صح! الرقم كان ${secretNumber} 🎉`;
+    document.getElementById('message').style.color = '#00FF88';
+
+    if (attempts < highScore || highScore === 0) {
+      highScore = attempts;
+      localStorage.setItem('highScore', highScore);
+    }
+  } else if (guess > secretNumber) {
+    document.getElementById('message').textContent = 'أقل شوية 👇';
+    document.getElementById('message').style.color = '#ff4444';
+  } else {
+    document.getElementById('message').textContent = 'أعلى شوية 👆';
+    document.getElementById('message').style.color = '#ff4444';
+  }
+
+  document.getElementById('attempts').textContent = `المحاولات: ${attempts}`;
+}</code></pre>
+
+        <p><strong>3. دالة إعادة التشغيل:</strong></p>
+        <pre><code>const resetGame = () => {
+  secretNumber = Math.floor(Math.random() * 100) + 1;
+  attempts = 0;
+  document.getElementById('message').textContent = '';
+  document.getElementById('attempts').textContent = 'المحاولات: 0';
+  document.getElementById('guessInput').value = '';
+}</code></pre>
+
+        <div class="note">
+            <strong>استخدمنا إيه من الدروس اللي فاتت؟</strong><br>
+            1. <code>let, const</code> من درس 1<br>
+            2. <code>querySelector, textContent</code> من درس 2 DOM<br>
+            3. <code>Arrow Functions =></code> من درس 3 ES6<br>
+            4. <code>localStorage</code> عشان نحفظ أفضل نتيجة
+        </div>
+
+        <h3>4. طور اللعبة بنفسك</h3>
+        <ul class="checklist">
+            <li>ضيف مستويات صعوبة: سهل 1-50، صعب 1-500</li>
+            <li>ضيف مؤقت: لازم تجيب الرقم في 30 ثانية</li>
+            <li>ضيف ألوان: لو قربت اللون يبقى أخضر، لو بعيد أحمر</li>
+            <li>اعمل Leaderboard يحفظ أسماء اللاعبين</li>
+        </ul>
+
+        <h3>5. تحميل الكود كامل</h3>
+        <p>حملتلك ملف HTML كامل فيه اللعبة + الكود مع شرح كل سطر</p>
+        <a href="https://exe.io/Guess-Number-Game" class="btn-gold" target="_blank">
+            تحميل لعبة خمن الرقم 📥
+        </a>
+
+        <div class="note" style="margin-top:40px">
+            <strong>مبروك يا وحش 🎉🎉🎉</strong><br>
+            خلصت كورس JavaScript كامل. دلوقتي تقدر:<br>
+            1. تكتب JS من الصفر<br>
+            2. تتحكم في أي صفحة HTML<br>
+            3. تستخدم ميزات ES6 الحديثة<br>
+            4. تجيب بيانات من APIs<br>
+            5. تبني ألعاب وتطبيقات بسيطة<br><br>
+            <strong style="color:#00FF88">انت كده Front-End Developer مبتدئ رسمي</strong><br><br>
+            <strong>الخطوة الجاية:</strong> React.js عشان تبني مواقع ضخمة زي فيسبوك
+        </div>
+
+        <div style="margin-top:30px">
+            <a href="js-lesson4.html" style="color:#aaa">← الدرس السابق: API & Fetch</a>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Background
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'GAME Math.random() localStorage JS 01 ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#F7DF1E';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+
+        // Game Logic
+        let secretNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+        let highScore = localStorage.getItem('highScore') || 0;
+
+        document.getElementById('highScore').textContent = `أفضل نتيجة: ${highScore == 0? '-' : highScore + ' محاولات'}`;
+
+        const checkGuess = () => {
+            const guess = Number(document.getElementById('guessInput').value);
+
+            if (!guess || guess < 1 || guess > 100) {
+                document.getElementById('message').textContent = 'اكتب رقم من 1 لـ 100 يا معلم 😂';
+                document.getElementById('message').style.color = '#ff4444';
+                return;
+            }
+
+            attempts++;
+
+            if (guess === secretNumber) {
+                document.getElementById('message').textContent = `صح! الرقم كان ${secretNumber} 🎉🔥`;
+                document.getElementById('message').style.color = '#00FF88';
+
+                if (attempts < highScore || highScore == 0) {
+                    highScore = attempts;
+                    localStorage.setItem('highScore', highScore);
+                    document.getElementById('highScore').textContent = `أفضل نتيجة: ${highScore} محاولات - رقم قياسي جديد!`;
+                }
+            } else if (guess > secretNumber) {
+                document.getElementById('message').textContent = 'أقل شوية 👇';
+                document.getElementById('message').style.color = '#ff4444';
+            } else {
+                document.getElementById('message').textContent = 'أعلى شوية 👆';
+                document.getElementById('message').style.color = '#ff4444';
+            }
+
+            document.getElementById('attempts').textContent = `المحاولات: ${attempts}`;
+            document.getElementById('guessInput').value = '';
+            document.getElementById('guessInput').focus();
+        }
+
+        const resetGame = () => {
+            secretNumber = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            document.getElementById('message').textContent = 'لعبة جديدة بدأت! يلا خمن 🚀';
+            document.getElementById('message').style.color = '#F7DF1E';
+            document.getElementById('attempts').textContent = 'المحاولات: 0';
+            document.getElementById('guessInput').value = '';
+            document.getElementById('guessInput').focus();
+        }
+
+        // Enter key support
+        document.getElementById('guessInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkGuess();
+        });
+    </script>
+</body>
+</html>
