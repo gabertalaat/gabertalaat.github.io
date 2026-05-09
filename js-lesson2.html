@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 2: التعامل مع DOM - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #F7DF1E; backdrop-filter: blur(5px); }
+.header h1 { font-weight: 900; color: #F7DF1E; font-size: 28px; text-shadow: 0 0 15px rgba(247,223,30,0.5); }
+.header a { color: #aaa; text-decoration: none; font-weight: 600; }
+.header a:hover { color: #F7DF1E; }
+.container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #F7DF1E; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #00FF88; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #F7DF1E; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #F7DF1E; font-family: monospace; }
+.note { background: rgba(247,223,30,0.1); border-right: 3px solid #F7DF1E; padding: 15px; margin: 20px 0; border-radius: 8px; }
+.btn-gold { display: inline-block; padding: 15px 30px; background: #F7DF1E; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+.demo-box { background: #1a1a1a; padding: 25px; border-radius: 8px; margin: 20px 0; border: 1px solid #333; }
+.btn-test { background: #00FF88; color: #000; padding: 12px 25px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin: 8px; font-family: 'Cairo'; }
+.btn-test:hover { background: #00cc6a; }
+ #demoText { font-size: 20px; color: #F7DF1E; margin: 15px 0; transition: 0.3s; }
+ #demoBox { width: 100%; height: 100px; background: #333; border-radius: 8px; margin: 15px 0; transition: 0.3s; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="javascript.html"><i class="fas fa-arrow-right"></i> رجوع لكورس JS</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 2: التعامل مع DOM</h2>
+        <p style="color:#A9A9A9">المدة: 25 دقيقة | المستوى: مهم جداً</p>
+
+        <h3>1. يعني إيه DOM؟</h3>
+        <p>
+            <strong>DOM = Document Object Model</strong><br>
+            ده تمثيل لصفحة HTML بتاعتك على شكل "شجرة".<br>
+            JS بيقدر يمسك أي عنصر في الشجرة دي ويغيره وانت فاتح الموقع.<br><br>
+            <strong>بالمصري:</strong> HTML ثابت ميت، DOM بيخليه حي وبيتحرك 😂
+        </p>
+
+        <h3>2. ازاي تمسك عنصر من الصفحة؟</h3>
+        <p>فيه 3 طرق أساسية. احفظهم زي اسمك:</p>
+        <pre><code>// 1. بالـ ID - الأسرع والأشهر
+document.getElementById("myTitle")
+
+// 2. بالـ Class
+document.querySelector(".my-class")
+
+// 3. بالتاج نفسه
+document.querySelector("h1")</code></pre>
+
+        <div class="note">
+            <strong>querySelector</strong> = الأسهل. بيجيب أول عنصر يلاقيه<br>
+            <strong>querySelectorAll</strong> = بيجيب كل العناصر اللي بنفس الاسم
+        </div>
+
+        <h3>3. غير النص بتاع عنصر</h3>
+        <pre><code>let title = document.getElementById("myTitle");
+title.textContent = "النص الجديد"; // غير النص
+title.innerHTML = "&lt;span&gt;نص + HTML&lt;/span&gt;"; // غير بـ HTML</code></pre>
+
+        <div class="demo-box">
+            <p id="demoText">النص ده هيتغير لما تدوس</p>
+            <button class="btn-test" onclick="changeText()">غير النص</button>
+            <button class="btn-test" onclick="resetText()">رجعه</button>
+        </div>
+
+        <h3>4. غير الستايل CSS بالـ JS</h3>
+        <p>تقدر تغير لون، حجم، أي حاجة:</p>
+        <pre><code>let box = document.getElementById("myBox");
+box.style.background = "#00FF88"; // غير اللون
+box.style.color = "#000"; // لون النص
+box.style.fontSize = "30px"; // حجم الخط</code></pre>
+
+        <div class="demo-box">
+            <div id="demoBox">البوكس ده لونه هيتغير</div>
+            <button class="btn-test" onclick="changeColor('#00FF88')">أخضر</button>
+            <button class="btn-test" onclick="changeColor('#F7DF1E')">أصفر</button>
+            <button class="btn-test" onclick="changeColor('#ff4444')">أحمر</button>
+        </div>
+
+        <h3>5. ضيف واحذف Classes</h3>
+        <p>دي أقوى طريقة عشان تستخدم CSS جاهز:</p>
+        <pre><code>// ضيف كلاس
+element.classList.add("active");
+
+// احذف كلاس
+element.classList.remove("active");
+
+// بدل بينهم
+element.classList.toggle("dark-mode");</code></pre>
+
+        <h3>6. اعمل عنصر جديد من الصفر</h3>
+        <pre><code>// 1. اعمل العنصر
+let newDiv = document.createElement("div");
+
+// 2. اديله محتوى
+newDiv.textContent = "أنا عنصر جديد 😂";
+
+// 3. اديله كلاس
+newDiv.classList.add("my-box");
+
+// 4. حطه في الصفحة
+document.body.appendChild(newDiv);</code></pre>
+
+        <h3>7. الـ Events = لما المستخدم يعمل حاجة</h3>
+        <p>لما يدوس، يكتب، يحرك الماوس... كله Events:</p>
+        <pre><code>let btn = document.getElementById("myBtn");
+
+// الطريقة الأولى
+btn.onclick = function() {
+  alert("دوست على الزرار!");
+}
+
+// الطريقة الأحدث - الأفضل
+btn.addEventListener("click", function() {
+  alert("دوست على الزرار!");
+});</code></pre>
+
+        <div class="demo-box">
+            <p>اكتب اسمك ودوس Enter:</p>
+            <input type="text" id="nameInput" placeholder="اسمك هنا" style="padding:10px; border-radius:6px; border:1px solid #F7DF1E; background:#0a0a0a; color:#fff; width:100%; margin:10px 0;">
+            <p id="greeting" style="color:#00FF88; margin-top:10px;"></p>
+        </div>
+
+        <h3>8. تحميل 15 مثال DOM جاهز</h3>
+        <p>عملتلك ملف فيه كل حاجة: تغيير نص، لون، إخفاء، إظهار، To-Do List بسيطة</p>
+        <a href="https://exe.io/DOM-Examples" class="btn-gold" target="_blank">
+            تحميل أمثلة DOM 📥
+        </a>
+
+        <h3 style="margin-top:60px">الدرس الجاي 👇</h3>
+        <p>هنتعلم ES6+ الميزات الحديثة: Arrow Functions والـ Spread</p>
+        <a href="js-lesson3.html" style="color:#F7DF1E">روح للدرس 3: ES6+ الميزات الحديثة →</a>
+
+        <div style="margin-top:30px">
+            <a href="js-lesson1.html" style="color:#aaa">← الدرس السابق: أساسيات JS</a>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Background
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'DOM querySelector getElementById addEventListener 01 ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#F7DF1E';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+
+        // Demo Functions
+        function changeText() {
+            document.getElementById('demoText').textContent = "النص اتغير بـ JS يا وحش 🔥";
+        }
+        function resetText() {
+            document.getElementById('demoText').textContent = "النص ده هيتغير لما تدوس";
+        }
+        function changeColor(color) {
+            document.getElementById('demoBox').style.background = color;
+            document.getElementById('demoBox').style.color = "#000";
+        }
+
+        // Input Event
+        document.getElementById('nameInput').addEventListener('keyup', function(e) {
+            if(e.key === 'Enter') {
+                let name = document.getElementById('nameInput').value;
+                document.getElementById('greeting').textContent = "أهلاً يا " + name + " يا جامد 🔥";
+            }
+        });
+    </script>
+</body>
+</html>
