@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 4: الملفات والمكتبات - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+   .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #3776AB; backdrop-filter: blur(5px); }
+   .header h1 { font-weight: 900; color: #3776AB; font-size: 28px; text-shadow: 0 0 15px rgba(55,118,171,0.5); }
+   .header a { color: #aaa; text-decoration: none; font-weight: 600; }
+   .header a:hover { color: #3776AB; }
+   .container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #3776AB; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #FFD43B; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #3776AB; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #FFD43B; font-family: monospace; }
+   .note { background: rgba(55,118,171,0.1); border-right: 3px solid #3776AB; padding: 15px; margin: 20px 0; border-radius: 8px; }
+   .warning { background: rgba(255,68,68,0.1); border-right: 3px solid #ff4444; padding: 15px; margin: 20px 0; border-radius: 8px; }
+   .btn-gold { display: inline-block; padding: 15px 30px; background: #3776AB; color: #fff; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+   .btn-gold:hover { background: #2a5a87; }
+   .output { background: #1a1a1a; padding: 15px; border-radius: 8px; margin: 10px 0; border-right: 3px solid #00FF88; }
+   .output code { color: #00FF88; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="python.html"><i class="fas fa-arrow-right"></i> رجوع لكورس Python</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 4: التعامل مع الملفات والمكتبات</h2>
+        <p style="color:#A9A9A9">المدة: 30 دقيقة | المستوى: متوسط</p>
+
+        <h3>الجزء الأول: الملفات 📁</h3>
+        <p>بايثون تقدر تقرأ وتكتب أي ملف على جهازك... txt, csv, json كله</p>
+
+        <h3>1. قراءة ملف txt</h3>
+        <p>لو عندك ملف اسمه <code>data.txt</code> فيه:</p>
+        <pre><code>جابر
+احمد
+سارة</code></pre>
+        
+        <p>تقراه كده:</p>
+        <pre><code># الطريقة الصح - with بتقفل الملف لوحدها
+with open("data.txt", "r", encoding="utf-8") as file:
+    content = file.read()
+    print(content)</code></pre>
+        <div class="output">
+            <code>
+            جابر<br>
+            احمد<br>
+            سارة
+            </code>
+        </div>
+
+        <h3>2. كتابة ملف جديد</h3>
+        <pre><code>with open("output.txt", "w", encoding="utf-8") as file:
+    file.write("أول سطر\n")
+    file.write("تاني سطر\n")
+    file.write("تالت سطر 🔥")</code></pre>
+        <p>هيعمل ملف جديد اسمه <code>output.txt</code></p>
+
+        <div class="note">
+            <strong>"w"</strong> = Write بيمسح القديم ويكتب جديد<br>
+            <strong>"a"</strong> = Append بيضيف على القديم<br>
+            <strong>"r"</strong> = Read للقراءة بس<br>
+            <strong>encoding="utf-8"</strong> = عشان العربي يظهر صح ⚠️
+        </div>
+
+        <h3>3. قراءة سطر سطر</h3>
+        <pre><code>with open("data.txt", "r", encoding="utf-8") as file:
+    for line in file:
+        print(f"الاسم: {line.strip()}")</code></pre>
+        <div class="output">
+            <code>
+            الاسم: جابر<br>
+            الاسم: احمد<br>
+            الاسم: سارة
+            </code>
+        </div>
+
+        <h3>4. التعامل مع JSON</h3>
+        <p>JSON = أهم فورمات لتخزين البيانات</p>
+        <pre><code>import json
+
+# نكتب JSON
+data = {
+    "name": "جابر",
+    "age": 20,
+    "skills": ["Python", "JS", "HTML"]
+}
+
+with open("user.json", "w", encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False, indent=4)
+
+# نقرأ JSON
+with open("user.json", "r", encoding="utf-8") as f:
+    user = json.load(f)
+    print(user["name"]) # جابر
+    print(user["skills"]) # ['Python', 'JS', 'HTML']</code></pre>
+
+        <h3 style="margin-top:50px">الجزء الثاني: المكتبات 📚</h3>
+        <p>المكتبات = كود ناس تانية كتبوه وانت بتستخدمه ببلاش 😂</p>
+
+        <h3>1. تنصيب مكتبة - pip</h3>
+        <p><code>pip</code> ده مدير المكتبات بتاع بايثون</p>
+        <pre><code># افتح Terminal واكتب
+pip install requests
+
+# عشان تتأكد انها اتنصبت
+pip list</code></pre>
+
+        <h3>2. مكتبة requests = تجيب بيانات من النت 🌐</h3>
+        <pre><code>import requests
+
+# نجيب بيانات من API
+response = requests.get("https://api.github.com/users/torvalds")
+
+if response.status_code == 200:
+    data = response.json()
+    print(f"الاسم: {data['name']}")
+    print(f"المتابعين: {data['followers']}")
+else:
+    print("فيه مشكلة في الـ API")</code></pre>
+        <div class="output">
+            <code>
+            الاسم: Linus Torvalds<br>
+            المتابعين: 200000+
+            </code>
+        </div>
+
+        <h3>3. مكتبة os = تتحكم في النظام</h3>
+        <pre><code>import os
+
+# اسم المجلد الحالي
+print(os.getcwd())
+
+# نعمل مجلد جديد
+os.mkdir("new_folder")
+
+# نجيب كل الملفات في المجلد
+files = os.listdir(".")
+print(files)</code></pre>
+
+        <h3>4. مكتبة datetime = التاريخ والوقت</h3>
+        <pre><code>from datetime import datetime
+
+now = datetime.now()
+print(now) # 2026-05-09 10:30:45
+
+# نصيغ التاريخ
+formatted = now.strftime("%Y/%m/%d %H:%M")
+print(formatted) # 2026/05/09 10:30</code></pre>
+
+        <div class="warning">
+            <strong>تحذير:</strong> لما تستخدم <code>import requests</code> لازم تكون منصبها بـ pip الأول<br>
+            لو مش منصبة هيطلعلك <code>ModuleNotFoundError</code>
+        </div>
+
+        <h3>5. مشروع عملي: سجل مهام في ملف</h3>
+        <pre><code>import json
+from datetime import datetime
+
+def save_tasks(tasks):
+    with open("tasks.json", "w", encoding="utf-8") as f:
+        json.dump(tasks, f, ensure_ascii=False, indent=4)
+
+def load_tasks():
+    try:
+        with open("tasks.json", "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
+
+# نجرب
+tasks = load_tasks()
+tasks.append({
+    "task": "اذاكر Python",
+    "date": str(datetime.now()),
+    "done": False
+})
+save_tasks(tasks)
+print("تم حفظ المهمة ✅")</code></pre>
+
+        <h3>6. تحميل المشروع</h3>
+        <p>عملتلك Scraper بيجيب أسعار الدولار ويحفظها في ملف</p>
+        <a href="https://exe.io/Python-Scraper" class="btn-gold" target="_blank">
+            تحميل Scraper الدولار 📥
+        </a>
+
+        <div style="margin-top:30px">
+            <a href="python-lesson3.html" style="color:#aaa">← الدرس السابق: Functions & OOP</a> |
+            <a href="python-lesson5.html" style="color:#3776AB">الدرس التالي: مشروع بوت تليجرام →</a>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Background
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'import requests json os datetime open() with as ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#3776AB';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * font
