@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدرس 5: مشروع بوت تليجرام - Gaber Talaat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
+        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+ .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #3776AB; backdrop-filter: blur(5px); }
+ .header h1 { font-weight: 900; color: #3776AB; font-size: 28px; text-shadow: 0 0 15px rgba(55,118,171,0.5); }
+ .header a { color: #aaa; text-decoration: none; font-weight: 600; }
+ .header a:hover { color: #3776AB; }
+ .container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+        h2 { color: #3776AB; font-size: 32px; margin-bottom: 20px; }
+        h3 { color: #FFD43B; font-size: 22px; margin: 30px 0 15px; }
+        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
+        pre { background: #0D1117; padding: 20px; border: 1px solid #3776AB; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
+        code { color: #FFD43B; font-family: monospace; }
+ .note { background: rgba(55,118,171,0.1); border-right: 3px solid #3776AB; padding: 15px; margin: 20px 0; border-radius: 8px; }
+ .step { background: rgba(255,212,59,0.1); border-right: 3px solid #FFD43B; padding: 20px; margin: 25px 0; border-radius: 8px; }
+ .step h4 { color: #FFD43B; font-size: 18px; margin-bottom: 10px; }
+ .btn-gold { display: inline-block; padding: 15px 30px; background: #3776AB; color: #fff; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+ .btn-gold:hover { background: #2a5a87; }
+ .output { background: #1a1a1a; padding: 15px; border-radius: 8px; margin: 10px 0; border-right: 3px solid #00FF88; }
+ .output code { color: #00FF88; }
+ .finish { background: rgba(0,255,136,0.1); border: 2px solid #00FF88; padding: 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
+ .finish h3 { color: #00FF88; font-size: 28px; }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="header">
+        <h1>Gaber Talaat</h1>
+        <a href="python.html"><i class="fas fa-arrow-right"></i> رجوع لكورس Python</a>
+    </div>
+
+    <div class="container">
+        <h2>الدرس 5: مشروع بوت تليجرام كامل 🤖</h2>
+        <p style="color:#A9A9A9">المدة: 60 دقيقة | المستوى: مشروع عملي</p>
+
+        <p>في الدرس ده هنبني بوت تليجرام حقيقي شغال 24/7 بيرد على الناس تلقائي 🔥</p>
+
+        <div class="step">
+            <h4>الخطوة 1: نعمل بوت من BotFather</h4>
+            <p>
+                1. افتح تليجرام ودور على <code>@BotFather</code><br>
+                2. ابعتله <code>/newbot</code><br>
+                3. اختار اسم للبوت: <code>GaberBot</code><br>
+                4. اختار username: <code>gaber_bot</code> لازم ينتهي بـ bot<br>
+                5. هيبعتلك <strong>Token</strong> شبه ده:
+            </p>
+            <pre><code>7123456789:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw</code></pre>
+            <p><strong>⚠️ احفظ التوكن ده محدش يشوفه غيرك</strong></p>
+        </div>
+
+        <div class="step">
+            <h4>الخطوة 2: ننصب مكتبة البوت</h4>
+            <pre><code># افتح Terminal واكتب
+pip install python-telegram-bot==20.7</code></pre>
+        </div>
+
+        <h3>3. الكود الكامل للبوت</h3>
+        <p>اعمل ملف اسمه <code>bot.py</code> وحط فيه الكود ده:</p>
+
+        <pre><code>from telegram import Update
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
+import json
+import os
+from datetime import datetime
+
+# التوكن بتاعك من BotFather
+TOKEN = "حط_التوكن_بتاعك_هنا"
+
+# ملف نحفظ فيه المستخدمين
+USERS_FILE = "users.json"
+
+def load_users():
+    if os.path.exists(USERS_FILE):
+        with open(USERS_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+def save_users(users):
+    with open(USERS_FILE, "w", encoding="utf-8") as f:
+        json.dump(users, f, ensure_ascii=False, indent=4)
+
+# أمر /start
+async def start(update: Update
