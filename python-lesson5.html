@@ -10,25 +10,25 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
         #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
- .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #3776AB; backdrop-filter: blur(5px); }
- .header h1 { font-weight: 900; color: #3776AB; font-size: 28px; text-shadow: 0 0 15px rgba(55,118,171,0.5); }
- .header a { color: #aaa; text-decoration: none; font-weight: 600; }
- .header a:hover { color: #3776AB; }
- .container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #3776AB; backdrop-filter: blur(5px); }
+.header h1 { font-weight: 900; color: #3776AB; font-size: 28px; text-shadow: 0 0 15px rgba(55,118,171,0.5); }
+.header a { color: #aaa; text-decoration: none; font-weight: 600; }
+.header a:hover { color: #3776AB; }
+.container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
         h2 { color: #3776AB; font-size: 32px; margin-bottom: 20px; }
         h3 { color: #FFD43B; font-size: 22px; margin: 30px 0 15px; }
         p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
         pre { background: #0D1117; padding: 20px; border: 1px solid #3776AB; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
         code { color: #FFD43B; font-family: monospace; }
- .note { background: rgba(55,118,171,0.1); border-right: 3px solid #3776AB; padding: 15px; margin: 20px 0; border-radius: 8px; }
- .step { background: rgba(255,212,59,0.1); border-right: 3px solid #FFD43B; padding: 20px; margin: 25px 0; border-radius: 8px; }
- .step h4 { color: #FFD43B; font-size: 18px; margin-bottom: 10px; }
- .btn-gold { display: inline-block; padding: 15px 30px; background: #3776AB; color: #fff; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
- .btn-gold:hover { background: #2a5a87; }
- .output { background: #1a1a1a; padding: 15px; border-radius: 8px; margin: 10px 0; border-right: 3px solid #00FF88; }
- .output code { color: #00FF88; }
- .finish { background: rgba(0,255,136,0.1); border: 2px solid #00FF88; padding: 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
- .finish h3 { color: #00FF88; font-size: 28px; }
+.note { background: rgba(55,118,171,0.1); border-right: 3px solid #3776AB; padding: 15px; margin: 20px 0; border-radius: 8px; }
+.step { background: rgba(255,212,59,0.1); border-right: 3px solid #FFD43B; padding: 20px; margin: 25px 0; border-radius: 8px; }
+.step h4 { color: #FFD43B; font-size: 18px; margin-bottom: 10px; }
+.btn-gold { display: inline-block; padding: 15px 30px; background: #3776AB; color: #fff; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+.btn-gold:hover { background: #2a5a87; }
+.output { background: #1a1a1a; padding: 15px; border-radius: 8px; margin: 10px 0; border-right: 3px solid #00FF88; }
+.output code { color: #00FF88; }
+.finish { background: rgba(0,255,136,0.1); border: 2px solid #00FF88; padding: 30px; border-radius: 12px; text-align: center; margin: 40px 0; }
+.finish h3 { color: #00FF88; font-size: 28px; }
     </style>
 </head>
 <body>
@@ -90,4 +90,182 @@ def save_users(users):
         json.dump(users, f, ensure_ascii=False, indent=4)
 
 # أمر /start
-async def start(update: Update
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user = update.effective_user
+    users = load_users()
+
+    # نسجل المستخدم
+    user_id = str(user.id)
+    if user_id not in users:
+        users[user_id] = {
+            "name": user.first_name,
+            "username": user.username,
+            "joined": str(datetime.now())
+        }
+        save_users(users)
+
+    await update.message.reply_text(
+        f"أهلاً {user.first_name} 🔥\n"
+        f"أنا بوت جابر، بكتب بايثون 😂\n\n"
+        f"الأوامر المتاحة:\n"
+        f"/help - المساعدة\n"
+        f"/stats - عدد المستخدمين\n"
+        f"/calc 5+3 - آلة حاسبة"
+    )
+
+# أمر /help
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "الأوامر:\n"
+        "/start - نبدأ\n"
+        "/stats - الإحصائيات\n"
+        "/calc - آلة حاسبة: /calc 10*5\n"
+        "ابعت أي رسالة وهرد عليك"
+    )
+
+# أمر /stats
+async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    users = load_users()
+    count = len(users)
+    await update.message.reply_text(f"عدد المستخدمين: {count} 👥")
+
+# أمر /calc
+async def calc(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    try:
+        expression = ' '.join(context.args)
+        result = eval(expression) # ⚠️ خطر في الحقيقة
+        await update.message.reply_text(f"النتيجة: {result}")
+    except:
+        await update.message.reply_text("اكتب العملية صح: /calc 5+3")
+
+# الرد على أي رسالة عادية
+async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.lower()
+
+    if "ازيك" in text or "عامل ايه" in text:
+        await update.message.reply_text("تمام يا معلم انت عامل ايه؟ 😂💚")
+    elif "بايثون" in text:
+        await update.message.reply_text("بايثون دي أحلى لغة 🐍🔥")
+    elif "جابر" in text:
+        await update.message.reply_text("جابر ده اللي عملني 😂👑")
+    else:
+        await update.message.reply_text(f"انت قولت: {update.message.text}")
+
+# تشغيل البوت
+def main():
+    app = Application.builder().token(TOKEN).build()
+
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("help", help_command))
+    app.add_handler(CommandHandler("stats", stats))
+    app.add_handler(CommandHandler("calc", calc))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
+
+    print("البوت شغال... 🔥")
+    app.run_polling()
+
+if __name__ == "__main__":
+    main()</code></pre>
+
+        <div class="note">
+            <strong>⚠️ مهم:</strong> غير <code>TOKEN = "حط_التوكن_بتاعك_هنا"</code> بالتوكن الحقيقي بتاعك من BotFather
+        </div>
+
+        <h3>4. نشغل البوت</h3>
+        <pre><code>python bot.py</code></pre>
+        <div class="output">
+            <code>البوت شغال... 🔥</code>
+        </div>
+
+        <p>دلوقتي روح تليجرام ودور على اليوزر بتاع البوت ودوس <code>/start</code></p>
+
+        <h3>5. البوت بيعمل إيه؟</h3>
+        <p>
+            1. <strong>/start</strong> = يرحب بالمستخدم ويسجله في <code>users.json</code><br>
+            2. <strong>/stats</strong> = يقولك كام واحد استخدم البوت<br>
+            3. <strong>/calc 10*5</strong> = آلة حاسبة<br>
+            4. <strong>أي رسالة</strong> = يرد عليها تلقائي<br>
+            5. <strong>بيحفظ كل المستخدمين</strong> في ملف JSON
+        </p>
+
+        <div class="step">
+            <h4>الخطوة 6: نخلي البوت شغال 24/7</h4>
+            <p><strong>الطريقة المجانية:</strong> استخدم Replit أو Render</p>
+            <p>
+                1. ارفع الكود على <a href="https://replit.com" target="_blank" style="color:#FFD43B">Replit.com</a><br>
+                2. اعمل ملف <code>.env</code> وحط فيه التوكن<br>
+                3. دوس Run والبوت هيفضل شغال
+            </p>
+        </div>
+
+        <h3>6. أفكار تطور بيها البوت</h3>
+        <pre><code># 1. بوت ترجمة
+import requests
+def translate(text):
+    url = f"https://api.mymemory.translated.net/get?q={text}&langpair=ar|en"
+    res = requests.get(url).json()
+    return res['responseData']['translatedText']
+
+# 2. بوت صور
+async def send_photo(update, context):
+    await update.message.reply_photo(photo=open('image.jpg', 'rb'))
+
+# 3. بوت أزرار
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+keyboard = [[InlineKeyboardButton("موقعي", url="https://gaber.com")]]
+reply_markup = InlineKeyboardMarkup(keyboard)
+await update.message.reply_text("دوس", reply_markup=reply_markup)</code></pre>
+
+        <h3>7. تحميل المشروع الكامل</h3>
+        <p>عملتلك البوت كامل مع كل الميزات + ملف جاهز للرفع على السيرفر</p>
+        <a href="https://exe.io/Python-TelegramBot" class="btn-gold" target="_blank">
+            تحميل البوت كامل 📥
+        </a>
+
+        <div class="finish">
+            <h3>🎉 مبروك خلصت كورس Python! 🎉</h3>
+            <p style="color:#ddd; font-size:18px; margin-top:15px">
+                دلوقتي انت بتعرف:<br>
+                ✅ Variables + Lists + Dictionaries<br>
+                ✅ Loops + Conditions<br>
+                ✅ Functions + OOP<br>
+                ✅ Files + APIs<br>
+                ✅ تعمل بوت تليجرام كامل<br><br>
+                <strong>المشروع الجاي: بوت ذكاء اصطناعي؟ 😂🚀</strong>
+            </p>
+        </div>
+
+        <div style="margin-top:30px">
+            <a href="python-lesson4.html" style="color:#aaa">← الدرس السابق: الملفات والمكتبات</a> |
+            <a href="python.html" style="color:#3776AB">رجوع للكورس الرئيسي</a>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Background
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const code = 'import telegram BotFather async def await Update TOKEN ';
+        const chars = code.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#3776AB';
+            ctx.font = fontSize + 'px monospace';
+            for(let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    </script>
+</body>
+</html>
