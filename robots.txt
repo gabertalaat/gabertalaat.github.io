@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /disclaimer.html
+Disallow: /404.html
+
+Sitemap: https://gabertalaat.github.io/sitemap.xml
