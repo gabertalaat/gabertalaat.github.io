@@ -4,48 +4,356 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ملخص كيف تكسب الأصدقاء - Gaber Talaat</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
-        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-.header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.95); border-bottom: 3px solid #00FF88; backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 10; }
-.header h1 { font-weight: 900; color: #00FF88; font-size: 28px; text-shadow: 0 0 15px rgba(0,255,136,0.5); }
-.header a { color: #aaa; text-decoration: none; font-weight: 600; }
-.header a:hover { color: #00FF88; }
-.container {
-    max-width: 800px;
-    margin: 60px auto;
-    padding: 40px 5%;
-    position: relative;
-    z-index: 1;
-    background: rgba(10, 10, 10, 0.92);
-    border-radius: 16px;
-    border: 2px solid rgba(0,255,136,0.3);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 0 40px rgba(0,255,136,0.15);
-}
-        h2 { color: #00FF88; font-size: 32px; margin-bottom: 20px; text-shadow: 0 0 10px rgba(0,255,136,0.3); font-style: normal; }
-        h3 { color: #FFD43B; font-size: 22px; margin: 30px 0 15px; font-style: normal; }
-        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
-      .rule { background: rgba(26,26,26,0.9); border-right: 4px solid #00FF88; padding: 18px; margin: 15px 0; border-radius: 8px; }
-      .rule h4 { color: #00FF88; font-size: 18px; margin-bottom: 8px; }
-      .rule p { color: #ccc; font-size: 16px; margin: 0; }
-.note { background: rgba(0,255,136,0.15); border-right: 3px solid #00FF88; padding: 20px; margin: 25px 0; border-radius: 8px; backdrop-filter: blur(5px); }
-.quote { background: rgba(26,26,26,0.95); border-right: 3px solid #FFD43B; padding: 20px; margin: 25px 0; border-radius: 8px; font-style: normal; }
-.quote::before { content: '"'; font-size: 40px; color: #FFD43B; line-height: 0; }
-.btn-gold { display: inline-block; padding: 15px 40px; background: #00FF88; color: #000; text-decoration: none; border-radius: 8px; font-weight: 900; margin-top: 30px; font-size: 18px; transition: all 0.3s; cursor: pointer; }
-.btn-gold:hover { background: #00cc6a; transform: scale(1.05); box-shadow: 0 0 20px rgba(0,255,136,0.5); }
-.author { color: #A9A9A9; font-size: 16px; margin-bottom: 30px; }
-.section { margin: 40px 0; }
-.section-title { color: #00FF88; font-size: 24px; margin-bottom: 20px; border-bottom: 2px solid #00FF88; padding-bottom: 10px; }
+        
+        :root {
+            --bg: #000000;
+            --bg-card: #0a0a0f;
+            --border: rgba(77, 166, 255, 0.3);
+            --text: #f7f7f8;
+            --text-muted: #a1a1aa;
+            --blue: #4da6ff;
+            --blue-light: #80c1ff;
+            --cyan: #00e5ff;
+            --cyan-light: #66f0ff;
+            --blue-gradient: linear-gradient(135deg, #4da6ff 0%, #80c1ff 50%, #b3d9ff 100%);
+        }
+
+        body { 
+            font-family: 'Inter', 'Cairo', sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* الخلفية Grid السايبر */
+        .cyber-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(77, 166, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(77, 166, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; }
+        }
+
+        /* المربعات الصغيرة اللي بتظهر وتختفي */
+        .squares-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .square {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #4da6ff;
+            opacity: 0;
+            animation: squareFade 3s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(77, 166, 255, 0.5);
+        }
+        @keyframes squareFade {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 0.4; transform: scale(1); }
+        }
+
+        /* Gradient Glow في النص */
+        .gradient-glow {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+        }
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.08;
+            animation: float 25s ease-in-out infinite;
+        }
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: #4da6ff;
+            top: 20%;
+            right: 10%;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(80px, 80px) scale(1.2); }
+        }
+
+        /* Header */
+        .header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 5%; 
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 2px solid var(--blue); 
+            backdrop-filter: blur(12px); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100;
+            box-shadow: 0 0 30px rgba(77, 166, 255, 0.15);
+        }
+        .header h1 { 
+            font-weight: 800; 
+            color: var(--blue); 
+            font-size: 20px; 
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 0 20px rgba(77, 166, 255, 0.6);
+        }
+        .header-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--blue-gradient);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 0 15px rgba(77, 166, 255, 0.4);
+        }
+        .header a { 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            font-weight: 500;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .header a:hover { color: var(--blue); }
+
+        /* Container - البوردر النيون الأزرق */
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 48px 5%;
+            position: relative;
+            z-index: 1;
+            background: rgba(10, 10, 15, 0.85);
+            border-radius: 16px;
+            border: 2px solid var(--blue);
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 0 40px rgba(77, 166, 255, 0.3),
+                inset 0 0 40px rgba(77, 166, 255, 0.05);
+        }
+
+        /* Typography */
+        h2 { 
+            color: var(--blue); 
+            font-size: 36px; 
+            font-weight: 800;
+            margin-bottom: 12px; 
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            text-shadow: 0 0 30px rgba(77, 166, 255, 0.5);
+        }
+        h3 { 
+            color: var(--cyan); 
+            font-size: 22px; 
+            font-weight: 700;
+            margin: 40px 0 16px;
+            letter-spacing: -0.01em;
+            text-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+        }
+        p { 
+            color: var(--text-muted); 
+            line-height: 1.8; 
+            font-size: 16px; 
+            margin-bottom: 16px; 
+        }
+        ul { 
+            list-style: none; 
+            padding: 0;
+        }
+        ul li { 
+            color: var(--text-muted); 
+            line-height: 1.8; 
+            margin-bottom: 16px; 
+            padding-right: 32px;
+            position: relative;
+            font-size: 15px;
+        }
+        ul li::before { 
+            content: '💰'; 
+            position: absolute; 
+            right: 0;
+            font-size: 18px;
+        }
+        ul li strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* Rule Cards */
+        .rule { 
+            background: rgba(0, 0, 0, 0.5); 
+            border: 1px solid var(--border); 
+            border-right: 4px solid var(--blue); 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 8px; 
+            position: relative;
+            transition: 0.3s;
+        }
+        .rule:hover {
+            border-color: rgba(77, 166, 255, 0.5);
+            transform: translateX(-4px);
+            box-shadow: 0 0 20px rgba(77, 166, 255, 0.2);
+        }
+        .rule h4 { 
+            color: var(--blue); 
+            font-size: 20px; 
+            margin-bottom: 10px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+            font-weight: 700;
+        }
+        .rule .num { 
+            background: var(--blue-gradient); 
+            color: #000; 
+            width: 35px; 
+            height: 35px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 900;
+            box-shadow: 0 0 15px rgba(77, 166, 255, 0.4);
+        }
+        .rule p { 
+            color: var(--text-muted); 
+            font-size: 16px; 
+            margin: 0; 
+        }
+
+        /* Cards */
+        .note { 
+            background: rgba(77, 166, 255, 0.08); 
+            border: 1px solid rgba(77, 166, 255, 0.3); 
+            padding: 24px; 
+            margin: 32px 0; 
+            border-radius: 12px;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(77, 166, 255, 0.1);
+        }
+        .note:hover {
+            border-color: rgba(77, 166, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(77, 166, 255, 0.2);
+        }
+        .note strong {
+            color: var(--blue-light);
+            font-weight: 700;
+        }
+        .quote { 
+            background: rgba(0, 0, 0, 0.5); 
+            border: 1px solid var(--border); 
+            border-right: 3px solid var(--cyan); 
+            padding: 24px; 
+            margin: 32px 0; 
+            border-radius: 12px;
+            position: relative;
+            transition: 0.3s;
+        }
+        .quote:hover {
+            border-color: rgba(0, 229, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        .quote::before { 
+            content: '"'; 
+            font-size: 48px; 
+            color: var(--cyan); 
+            line-height: 0;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            opacity: 0.3;
+        }
+
+        /* Button */
+        .btn-gold { 
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px; 
+            background: var(--blue-gradient); 
+            color: #000; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            margin-top: 32px; 
+            font-size: 15px; 
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(77, 166, 255, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-gold:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(77, 166, 255, 0.6);
+        }
+
+        .author { 
+            color: var(--text-muted); 
+            font-size: 14px; 
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        .author strong {
+            color: var(--text);
+        }
+
+        .section { 
+            margin: 40px 0; 
+        }
+        .section-title { 
+            color: var(--blue); 
+            font-size: 24px; 
+            margin-bottom: 20px; 
+            border-bottom: 2px solid var(--blue); 
+            padding-bottom: 10px;
+            text-shadow: 0 0 15px rgba(77, 166, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container { margin: 40px 16px; padding: 32px 24px; }
+            h2 { font-size: 28px; }
+            h3 { font-size: 18px; }
+            .header { padding: 16px 5%; }
+            .header h1 { font-size: 18px; }
+        }
     </style>
 </head>
 <body>
-    <canvas id="matrix-bg"></canvas>
+    <div class="squares-bg" id="squares-bg"></div>
+    <div class="cyber-grid"></div>
+    <div class="gradient-glow">
+        <div class="glow-orb orb-1"></div>
+    </div>
+
     <div class="header">
-        <h1>Gaber Talaat</h1>
+        <h1>
+            <div class="header-icon">🤝</div>
+            <span>Gaber Talaat</span>
+        </h1>
         <a href="summaries.html"><i class="fas fa-arrow-right"></i> رجوع لملخصات PDF</a>
     </div>
     <div class="container">
@@ -67,7 +375,6 @@
                 <h4>3. أثر في الناس بالرغبة</h4>
                 <p>بطل تتكلم عن اللي انت عايزه. اتكلم عن اللي الطرف التاني عايزه واربطه بهدفك.</p>
             </div>
-        </div>
         <div class="section">
             <h3 class="section-title">الجزء الثاني: 6 طرق تخلي الناس تحبك</h3>
             <div class="rule">
@@ -137,33 +444,23 @@
         </a>
         <div style="margin-top:50px">
             <a href="rich-dad-poor-dad.html" style="color:#aaa">← الملخص السابق: الأب الغني والأب الفقير</a> |
-            <a href="summaries.html" style="color:#00FF88">رجوع لكل الملخصات</a>
+            <a href="summaries.html" style="color:#4da6ff">رجوع لكل الملخصات</a>
         </div>
     </div>
     <script>
-        const canvas = document.getElementById('matrix-bg');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const code = 'Friends Smile Listen Respect Talk Care Love 01 ';
-        const chars = code.split('');
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
-        function draw() {
-            ctx.fillStyle = 'rgba(10, 10, 10, 0.1)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(0,255,136,0.4)';
-            ctx.font = fontSize + 'px monospace';
-            for(let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
-                drops[i]++;
-            }
+        // المربعات الصغيرة اللي بتظهر وتختفي زي الصفحة الرئيسية
+        const squaresBg = document.getElementById('squares-bg');
+        const squareCount = 50;
+        
+        for (let i = 0; i < squareCount; i++) {
+            const square = document.createElement('div');
+            square.className = 'square';
+            square.style.left = Math.random() * 100 + '%';
+            square.style.top = Math.random() * 100 + '%';
+            square.style.animationDelay = Math.random() * 4 + 's';
+            square.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            squaresBg.appendChild(square);
         }
-        setInterval(draw, 35);
-        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
     </script>
 </body>
 </html>
