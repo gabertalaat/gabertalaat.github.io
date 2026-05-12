@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <link rel="canonical" href="https://gabertalaat.github.io/" />
@@ -7,15 +8,27 @@
 
     <!-- ===== SEO ===== -->
     <title>Sidi Gaber - دليل البرامج والشروحات التقنية | Gaber Talaat</title>
-    <meta name="description" content="منصة Sidi Gaber الرسمية - شروحات تقنية، مراجعات برامج، ودورات برمجة. نوفر روابط المواقع الرسمية ونساعدك تتعلم صح. بقيادة جابر طلعت خريج نظم ومعلومات 2025.">
-    <meta name="keywords" content="جابر طلعت, Gaber Talaat, Sidi Gaber, سيدي جابر, شروحات تقنية, دورات برمجة, موكاب, أيقونات">
+
+    <meta name="description"
+        content="منصة Sidi Gaber الرسمية - شروحات تقنية، مراجعات برامج، ودورات برمجة. نوفر روابط المواقع الرسمية ونساعدك تتعلم صح. بقيادة جابر طلعت خريج نظم ومعلومات 2025.">
+
+    <meta name="keywords"
+        content="جابر طلعت, Gaber Talaat, Sidi Gaber, سيدي جابر, شروحات تقنية, دورات برمجة, موكاب, أيقونات">
+
     <meta property="og:title" content="Sidi Gaber - دليل البرامج والشروحات | Gaber Talaat">
-    <meta property="og:description" content="مطور ومصمم ومؤسس Sidi Gaber. منصة شروحات وروابط رسمية للبرامج">
+
+    <meta property="og:description"
+        content="مطور ومصمم ومؤسس Sidi Gaber. منصة شروحات وروابط رسمية للبرامج">
+
     <meta property="og:image" content="https://gabertalaat.github.io/images/gaber.jpg">
+
     <meta property="og:url" content="https://gabertalaat.github.io">
+
     <meta property="og:type" content="website">
+
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 
+    <!-- ===== Schema ===== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -34,227 +47,399 @@
     }
     </script>
 
+    <!-- ===== Icons ===== -->
     <link rel="icon" type="image/jpeg" href="images/gaber.jpg">
     <link rel="apple-touch-icon" href="images/gaber.jpg">
 
+    <!-- ===== Fonts ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Cairo:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- ===== Font Awesome ===== -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- ===== Main CSS ===== -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-<h1 style="display:none;">Gaber Talaat جابر طلعت مؤسس Sidi Gaber</h1>
 
+<body>
+
+    <!-- زر الرجوع للأعلى -->
+    <button id="topBtn" onclick="scrollToTop()">⬆</button>
+
+    <!-- SEO Hidden H1 -->
+    <h1 style="display:none;">
+        Gaber Talaat جابر طلعت مؤسس Sidi Gaber
+    </h1>
+
+    <!-- Intro -->
     <div class="intro-overlay" id="introOverlay">
+
         <video class="intro-video" autoplay muted loop>
-            <source src="https://cdn.pixabay.com/video/2020/08/12/47211-449626640_large.mp4" type="video/mp4">
+            <source src="https://cdn.pixabay.com/video/2020/08/12/47211-449626640_large.mp4"
+                type="video/mp4">
         </video>
+
         <div class="intro-content">
             <h1>أهلاً بكم في منصة Sidi Gaber</h1>
             <p>دليلك الاحترافي للشروحات التقنية</p>
-            <button class="skip-intro" onclick="skipIntro()">ادخل المنصة الآن 🚀</button>
+
+            <button class="skip-intro" onclick="skipIntro()">
+                ادخل المنصة الآن 🚀
+            </button>
         </div>
+
         <audio id="welcomeSound">
             <source src="#" type="audio/mpeg">
         </audio>
+
     </div>
 
+    <!-- Header -->
     <div class="header">
+
         <div class="header-info">
             <h1>GABER TALAAT</h1>
             <p>Developer | Designer | System Architect</p>
         </div>
-        <img src="images/gaber.jpg" alt="Gaber Talaat" class="profile-pic">
+
+        <img src="images/gaber.jpg"
+            alt="Gaber Talaat"
+            class="profile-pic">
+
     </div>
 
+    <!-- Main Title -->
     <h2 class="section-title">[ خريطة الشروحات ]</h2>
 
+    <!-- Categories -->
     <div class="infographic-container">
+
         <div class="categories-grid">
 
-            <!-- كارت 1: كورسات المونتاج -->
+            <!-- مونتاج -->
             <div class="main-category">
+
                 <div class="category-circle">
                     <i class="fas fa-video"></i>
                     <h3>كورسات المونتاج</h3>
                 </div>
+
                 <div class="sub-items">
+
                     <div class="sub-item">
                         <a href="adobe.premiere.pro.html">
                             <i class="fas fa-video"></i>
                             Adobe Premiere Pro
                         </a>
                     </div>
+
                     <div class="sub-item">
                         <a href="davinci.html">
                             <i class="fas fa-palette"></i>
                             DaVinci Resolve
                         </a>
                     </div>
+
                     <div class="sub-item">
                         <a href="final.cut.pro.html">
                             <i class="fab fa-apple"></i>
                             Final Cut Pro
                         </a>
                     </div>
+
                     <div class="sub-item">
                         <a href="capcut.html">
                             <i class="fas fa-scissors"></i>
                             CapCut
                         </a>
                     </div>
+
                 </div>
+
             </div>
 
-            <!-- كارت 2: برمجة وبرامج -->
+            <!-- برمجة -->
             <div class="main-category">
+
                 <div class="category-circle">
                     <i class="fas fa-code"></i>
                     <h3>برمجة وبرامج</h3>
                 </div>
+
                 <div class="sub-items">
+
                     <div class="sub-item">
                         <a href="html-css.html">
                             <i class="fab fa-html5"></i>
                             HTML + CSS
                         </a>
                     </div>
+
                     <div class="sub-item">
                         <a href="javascript.html">
                             <i class="fab fa-js"></i>
                             JavaScript الحديث
                         </a>
                     </div>
+
                     <div class="sub-item">
                         <a href="python.html">
                             <i class="fab fa-python"></i>
                             Python للاحتراف
                         </a>
                     </div>
+
                 </div>
+
             </div>
 
-            <!-- كارت 3: ملفات تصميم -->
+            <!-- تصميم -->
             <div class="main-category">
+
                 <div class="category-circle">
                     <i class="fas fa-layer-group"></i>
                     <h3>ملفات تصميم</h3>
                 </div>
+
                 <div class="sub-items">
+
                     <div class="sub-item">
                         <a href="mockup.html">
                             <i class="fas fa-layer-group"></i>
                             موكاب PSD
                         </a>
                     </div>
+
                     <div class="sub-item">
                         <a href="svg.html">
                             <i class="fas fa-icons"></i>
                             أيقونات SVG
                         </a>
                     </div>
+
                     <div class="sub-item">
                         <a href="wallpapers.html">
                             <i class="fas fa-image"></i>
                             خلفيات 4K
                         </a>
                     </div>
+
                 </div>
+
             </div>
 
-            <!-- كارت 4: كتب وملخصات -->
+            <!-- كتب -->
             <div class="main-category">
+
                 <div class="category-circle">
                     <i class="fas fa-book"></i>
                     <h3>كتب وملخصات</h3>
                 </div>
+
                 <div class="sub-items">
+
                     <div class="sub-item">
                         <a href="books.selfdev.html">
                             <i class="fas fa-book"></i>
                             كتب تطوير ذات
                         </a>
                     </div>
+
                     <div class="sub-item">
                         <a href="pdf.summaries.html">
                             <i class="fas fa-file-pdf"></i>
                             ملخصات PDF
                         </a>
                     </div>
+
                 </div>
+
             </div>
 
         </div>
+
     </div>
 
+    <!-- Services -->
     <div class="services-section">
+
         <h2 class="section-title">[ خدماتي ]</h2>
+
         <div class="services-grid">
+
             <div class="service-card">
                 <i class="fas fa-laptop-code"></i>
                 <h3>تصميم مواقع</h3>
                 <p>موقع احترافي متجاوب مع كل الأجهزة</p>
             </div>
+
             <div class="service-card">
                 <i class="fas fa-film"></i>
                 <h3>مونتاج فيديو</h3>
                 <p>ريلز ويوتيوب بجودة سينمائية</p>
             </div>
+
             <div class="service-card">
                 <i class="fas fa-paint-brush"></i>
                 <h3>تصميم لوجو</h3>
                 <p>هوية بصرية كاملة لبراندك</p>
             </div>
+
         </div>
+
     </div>
 
+    <!-- Contact -->
     <div class="contact-section">
+
         <h2 class="section-title">[ خلينا نتواصل ]</h2>
+
         <div class="social-icons">
-            <a href="https://www.instagram.com/g.t.m_27" target="_blank" title="انستجرام">
+
+            <a href="https://www.instagram.com/g.t.m_27"
+                target="_blank"
+                title="انستجرام">
+
                 <i class="fab fa-instagram"></i>
+
             </a>
-            <a href="https://www.facebook.com/share/18abG5c7zP/" target="_blank" title="فيسبوك">
+
+            <a href="https://www.facebook.com/share/18abG5c7zP/"
+                target="_blank"
+                title="فيسبوك">
+
                 <i class="fab fa-facebook"></i>
+
             </a>
-            <a href="https://www.snapchat.com/add/gtmm_27?share_id=4oVL3tMID5o&locale=ar-AA" target="_blank" title="سناب شات">
+
+            <a href="https://www.snapchat.com/add/gtmm_27?share_id=4oVL3tMID5o&locale=ar-AA"
+                target="_blank"
+                title="سناب شات">
+
                 <i class="fab fa-snapchat"></i>
+
             </a>
-            <a href="https://t.me/GTM_MEDIA2" target="_blank" title="تليجرام">
+
+            <a href="https://t.me/GTM_MEDIA2"
+                target="_blank"
+                title="تليجرام">
+
                 <i class="fab fa-telegram"></i>
+
             </a>
+
         </div>
+
     </div>
 
+    <!-- Footer -->
     <div class="footer-links">
-        <a href="/disclaimer.html">إخلاء المسؤولية</a> | 
+
+        <a href="/disclaimer.html">إخلاء المسؤولية</a>
+
+        |
+
         <a href="/about-sidi-gaber.html">من نحن</a>
-        <p style="color:#555; margin-top:15px; font-size:13px;">© 2026 Sidi Gaber - Gaber Talaat</p>
+
+        <p style="color:#555; margin-top:15px; font-size:13px;">
+            © 2026 Sidi Gaber - Gaber Talaat
+        </p>
+
     </div>
 
+    <!-- Scripts -->
     <script>
-        function skipIntro() {
-            document.getElementById('introOverlay').classList.add('hidden');
-            document.getElementById('welcomeSound').pause();
+
+        // Scroll To Top
+        function scrollToTop() {
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
         }
-        document.addEventListener('click', () => {
-            const audio = document.getElementById('welcomeSound');
-            if(audio.src && audio.src!== window.location.href + '#') {
-                audio.volume = 0.7;
-                audio.play().catch(e => console.log('Audio play prevented'));
+
+        // Show Top Button
+        window.onscroll = function () {
+
+            const btn = document.getElementById("topBtn");
+
+            if (
+                document.body.scrollTop > 300 ||
+                document.documentElement.scrollTop > 300
+            ) {
+
+                btn.style.display = "flex";
+
+            } else {
+
+                btn.style.display = "none";
+
             }
-        }, { once: true });
-        setTimeout(() => {
-            skipIntro();
-        }, 6000);
-        if(localStorage.getItem('introSeen')) {
-            document.getElementById('introOverlay').style.display = 'none';
-        } else {
-            localStorage.setItem('introSeen', 'true');
+
+        };
+
+        // Skip Intro
+        function skipIntro() {
+
+            document
+                .getElementById('introOverlay')
+                .classList
+                .add('hidden');
+
+            document
+                .getElementById('welcomeSound')
+                .pause();
+
         }
+
+        // Welcome Audio
+        document.addEventListener('click', () => {
+
+            const audio = document.getElementById('welcomeSound');
+
+            if (
+                audio.src &&
+                audio.src !== window.location.href + '#'
+            ) {
+
+                audio.volume = 0.7;
+
+                audio.play().catch(e =>
+                    console.log('Audio play prevented')
+                );
+
+            }
+
+        }, { once: true });
+
+        // Auto Skip Intro
+        setTimeout(() => {
+
+            skipIntro();
+
+        }, 6000);
+
+        // Intro Once
+        if (localStorage.getItem('introSeen')) {
+
+            document.getElementById('introOverlay').style.display = 'none';
+
+        } else {
+
+            localStorage.setItem('introSeen', 'true');
+
+        }
+
     </script>
 
 </body>
+
 </html>
