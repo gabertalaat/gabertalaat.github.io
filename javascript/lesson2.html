@@ -4,29 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الدرس 2: التعامل مع DOM - Gaber Talaat</title>
+    <link rel="icon" type="image/jpeg" href="../images/gaber.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
-        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-.header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #F7DF1E; backdrop-filter: blur(5px); }
-.header h1 { font-weight: 900; color: #F7DF1E; font-size: 28px; text-shadow: 0 0 15px rgba(247,223,30,0.5); }
-.header a { color: #aaa; text-decoration: none; font-weight: 600; }
-.header a:hover { color: #F7DF1E; }
-.container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
-        h2 { color: #F7DF1E; font-size: 32px; margin-bottom: 20px; }
-        h3 { color: #00FF88; font-size: 22px; margin: 30px 0 15px; }
-        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
-        pre { background: #0D1117; padding: 20px; border: 1px solid #F7DF1E; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
-        code { color: #F7DF1E; font-family: monospace; }
-.note { background: rgba(247,223,30,0.1); border-right: 3px solid #F7DF1E; padding: 15px; margin: 20px 0; border-radius: 8px; }
-.btn-gold { display: inline-block; padding: 15px 30px; background: #F7DF1E; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
-.demo-box { background: #1a1a1a; padding: 25px; border-radius: 8px; margin: 20px 0; border: 1px solid #333; }
-.btn-test { background: #00FF88; color: #000; padding: 12px 25px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin: 8px; font-family: 'Cairo'; }
-.btn-test:hover { background: #00cc6a; }
- #demoText { font-size: 20px; color: #F7DF1E; margin: 15px 0; transition: 0.3s; }
- #demoBox { width: 100%; height: 100px; background: #333; border-radius: 8px; margin: 15px 0; transition: 0.3s; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background: #000; 
+            color: #fff; 
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* خلفية Matrix خفيفة + بلور */
+        #matrix-bg { 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            z-index: -1; 
+            opacity: 0.12; 
+            filter: blur(1px);
+        }
+        
+.header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 25px 5%; 
+            background: rgba(0, 0, 0, 0.8); 
+            border-bottom: 3px solid #00f5ff; 
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+.header h1 { 
+            font-weight: 900; 
+            color: #00f5ff; 
+            font-size: 28px; 
+            text-shadow: 0 0 20px rgba(0,245,255,0.6); 
+        }
+        
+.header a { 
+            color: #aaa; 
+            text-decoration: none; 
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        
+.header a:hover { color: #00f5ff; }
+        
+.container { 
+            max-width: 900px; 
+            margin: 60px auto; 
+            padding: 40px 30px; 
+            position: relative; 
+            z-index: 1;
+            /* Glass Effect */
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 245, 255, 0.15);
+        }
+        
+        h2 { 
+            color: #00f5ff; 
+            font-size: 34px; 
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(0,245,255,0.5);
+        }
+        
+        h3 { 
+            color: #FFD700; 
+            font-size: 24px; 
+            margin: 35px 0 15px;
+            font-weight: 700;
+        }
+        
+        p { 
+            color: #E0E0E0; 
+            line-height: 2; 
+            font-size: 18px; 
+            margin-bottom: 15px; 
+        }
+        
+        strong { color: #00f5ff; }
+        
+        pre { 
+            background: rgba(13, 17, 23, 0.9); 
+            padding: 20px; 
+            border: 1px solid #00f5ff; 
+            border-radius: 10px; 
+            overflow-x: auto; 
+            direction: ltr; 
+            text-align: left; 
+            margin: 25px 0;
+            box-shadow: inset 0 0 20px rgba(0,245,255,0.1);
+        }
+        
+        code { 
+            color: #00f5ff; 
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+        }
+        
+.note { 
+            background: rgba(0, 245, 255, 0.08); 
+            border-right: 4px solid #00f5ff; 
+            padding: 18px 20px; 
+            margin: 25px 0; 
+            border-radius: 10px;
+        }
+        
+.note strong { color: #FFD700; }
+        
+.btn-gold { 
+            display: inline-block; 
+            padding: 15px 35px; 
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000; 
+            text-decoration: none; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            margin-top: 20px;
+            transition: 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+        
+.btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+        }
+        
+.demo-box { 
+            background: rgba(0, 0, 0, 0.5); 
+            padding: 25px; 
+            border-radius: 10px; 
+            margin: 25px 0; 
+            border: 1px solid #30363d;
+        }
+        
+.btn-test { 
+            background: #00f5ff; 
+            color: #000; 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            margin: 8px; 
+            font-family: 'Cairo';
+            transition: 0.3s;
+            font-size: 16px;
+        }
+        
+.btn-test:hover { 
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.6);
+            transform: translateY(-2px);
+        }
+        
+ #demoText { 
+            font-size: 20px; 
+            color: #00f5ff; 
+            margin: 15px 0; 
+            transition: 0.3s; 
+        }
+        
+ #demoBox { 
+            width: 100%; 
+            height: 100px; 
+            background: #333; 
+            border-radius: 8px; 
+            margin: 15px 0; 
+            transition: 0.3s; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+        }
+        
+        a { color: #00f5ff; text-decoration: none; }
+        a:hover { text-shadow: 0 0 10px #00f5ff; }
+        
+        input[type="text"] {
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        /* موبايل */
+        @media (max-width: 768px) {
+ .container { padding: 25px 18px; margin: 30px 15px; }
+            h2 { font-size: 26px; }
+            h3 { font-size: 20px; }
+            p { font-size: 16px; }
+ .header h1 { font-size: 22px; }
+        }
     </style>
 </head>
 <body>
@@ -34,12 +209,12 @@
 
     <div class="header">
         <h1>Gaber Talaat</h1>
-        <a href="./"><i class="fas fa-arrow-right"></i> رجوع لكورس JS</a>
+        <a href="index.html"><i class="fas fa-arrow-right"></i> رجوع لكورس JS</a>
     </div>
 
     <div class="container">
         <h2>الدرس 2: التعامل مع DOM</h2>
-        <p style="color:#A9A9A9">المدة: 25 دقيقة | المستوى: مهم جداً</p>
+        <p style="color:#888">المدة: 25 دقيقة | المستوى: مهم جداً</p>
 
         <h3>1. يعني إيه DOM؟</h3>
         <p>
@@ -79,14 +254,14 @@ title.innerHTML = "&lt;span&gt;نص + HTML&lt;/span&gt;"; // غير بـ HTML</c
         <h3>4. غير الستايل CSS بالـ JS</h3>
         <p>تقدر تغير لون، حجم، أي حاجة:</p>
         <pre><code>let box = document.getElementById("myBox");
-box.style.background = "#00FF88"; // غير اللون
+box.style.background = "#00f5ff"; // غير اللون
 box.style.color = "#000"; // لون النص
 box.style.fontSize = "30px"; // حجم الخط</code></pre>
 
         <div class="demo-box">
             <div id="demoBox">البوكس ده لونه هيتغير</div>
-            <button class="btn-test" onclick="changeColor('#00FF88')">أخضر</button>
-            <button class="btn-test" onclick="changeColor('#F7DF1E')">أصفر</button>
+            <button class="btn-test" onclick="changeColor('#00f5ff')">أزرق</button>
+            <button class="btn-test" onclick="changeColor('#FFD700')">ذهبي</button>
             <button class="btn-test" onclick="changeColor('#ff4444')">أحمر</button>
         </div>
 
@@ -130,8 +305,8 @@ btn.addEventListener("click", function() {
 
         <div class="demo-box">
             <p>اكتب اسمك ودوس Enter:</p>
-            <input type="text" id="nameInput" placeholder="اسمك هنا" style="padding:10px; border-radius:6px; border:1px solid #F7DF1E; background:#0a0a0a; color:#fff; width:100%; margin:10px 0;">
-            <p id="greeting" style="color:#00FF88; margin-top:10px;"></p>
+            <input type="text" id="nameInput" placeholder="اسمك هنا" style="padding:10px; border-radius:6px; border:1px solid #00f5ff; background:#0a0a0a; color:#fff; width:100%; margin:10px 0;">
+            <p id="greeting" style="color:#00f5ff; margin-top:10px;"></p>
         </div>
 
         <h3>8. تحميل 15 مثال DOM جاهز</h3>
@@ -142,7 +317,7 @@ btn.addEventListener("click", function() {
 
         <h3 style="margin-top:60px">الدرس الجاي 👇</h3>
         <p>هنتعلم ES6+ الميزات الحديثة: Arrow Functions والـ Spread</p>
-        <a href="lesson3.html" style="color:#F7DF1E">روح للدرس 3: ES6+ الميزات الحديثة →</a>
+        <a href="lesson3.html">روح للدرس 3: ES6+ الميزات الحديثة →</a>
 
         <div style="margin-top:30px">
             <a href="lesson1.html" style="color:#aaa">← الدرس السابق: أساسيات JS</a>
@@ -161,9 +336,9 @@ btn.addEventListener("click", function() {
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
         function draw() {
-            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#F7DF1E';
+            ctx.fillStyle = '#00f5ff';
             ctx.font = fontSize + 'px monospace';
             for(let i = 0; i < drops.length; i++) {
                 const text = chars[Math.floor(Math.random() * chars.length)];
@@ -172,7 +347,7 @@ btn.addEventListener("click", function() {
                 drops[i]++;
             }
         }
-        setInterval(draw, 35);
+        setInterval(draw, 50);
         window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 
         // Demo Functions
