@@ -4,34 +4,240 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الدرس 5: مشروع لعبة - Gaber Talaat</title>
+    <link rel="icon" type="image/jpeg" href="../images/gaber.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
-        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-.header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #F7DF1E; backdrop-filter: blur(5px); }
-.header h1 { font-weight: 900; color: #F7DF1E; font-size: 28px; text-shadow: 0 0 15px rgba(247,223,30,0.5); }
-.header a { color: #aaa; text-decoration: none; font-weight: 600; }
-.header a:hover { color: #F7DF1E; }
-.container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
-        h2 { color: #F7DF1E; font-size: 32px; margin-bottom: 20px; }
-        h3 { color: #00FF88; font-size: 22px; margin: 30px 0 15px; }
-        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
-        pre { background: #0D1117; padding: 20px; border: 1px solid #F7DF1E; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
-        code { color: #F7DF1E; font-family: monospace; }
-.note { background: rgba(247,223,30,0.1); border-right: 3px solid #F7DF1E; padding: 15px; margin: 20px 0; border-radius: 8px; }
-.btn-gold { display: inline-block; padding: 15px 30px; background: #F7DF1E; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
-.game-box { background: #1a1a1a; padding: 40px; border-radius: 15px; margin: 30px 0; border: 2px solid #F7DF1E; text-align: center; }
-.game-box input { padding: 15px; border-radius: 8px; border: 2px solid #F7DF1E; background: #0a0a0a; color: #fff; font-size: 18px; width: 200px; text-align: center; margin: 15px 0; }
-.game-box button { background: #00FF88; color: #000; padding: 15px 30px; border: none; border-radius: 8px; font-weight: 900; cursor: pointer; font-size: 16px; margin: 10px; }
-.game-box button:hover { background: #00cc6a; }
-#message { font-size: 20px; margin: 20px 0; min-height: 30px; }
-#attempts { color: #FFD700; font-size: 18px; }
-#highScore { color: #00FF88; font-size: 16px; }
-.checklist { background: #1a1a1a; padding: 25px; border-radius: 8px; margin: 20px 0; border: 1px solid #333; }
-.checklist li { color: #ddd; margin: 10px 0; list-style: none; }
-.checklist li:before { content: "✅ "; color: #00FF88; margin-left: 10px; }
+        
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background: #000; 
+            color: #fff; 
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* خلفية Matrix خفيفة + بلور */
+        #matrix-bg { 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            z-index: -1; 
+            opacity: 0.12; 
+            filter: blur(1px);
+        }
+        
+.header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 25px 5%; 
+            background: rgba(0, 0, 0, 0.8); 
+            border-bottom: 3px solid #00f5ff; 
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+.header h1 { 
+            font-weight: 900; 
+            color: #00f5ff; 
+            font-size: 28px; 
+            text-shadow: 0 0 20px rgba(0,245,255,0.6); 
+        }
+        
+.header a { 
+            color: #aaa; 
+            text-decoration: none; 
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        
+.header a:hover { color: #00f5ff; }
+        
+.container { 
+            max-width: 900px; 
+            margin: 60px auto; 
+            padding: 40px 30px; 
+            position: relative; 
+            z-index: 1;
+            /* Glass Effect */
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 245, 255, 0.15);
+        }
+        
+        h2 { 
+            color: #00f5ff; 
+            font-size: 34px; 
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(0,245,255,0.5);
+        }
+        
+        h3 { 
+            color: #FFD700; 
+            font-size: 24px; 
+            margin: 35px 0 15px;
+            font-weight: 700;
+        }
+        
+        p { 
+            color: #E0E0E0; 
+            line-height: 2; 
+            font-size: 18px; 
+            margin-bottom: 15px; 
+        }
+        
+        strong { color: #00f5ff; }
+        
+        pre { 
+            background: rgba(13, 17, 23, 0.9); 
+            padding: 20px; 
+            border: 1px solid #00f5ff; 
+            border-radius: 10px; 
+            overflow-x: auto; 
+            direction: ltr; 
+            text-align: left; 
+            margin: 25px 0;
+            box-shadow: inset 0 0 20px rgba(0,245,255,0.1);
+        }
+        
+        code { 
+            color: #00f5ff; 
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+        }
+        
+.note { 
+            background: rgba(0, 245, 255, 0.08); 
+            border-right: 4px solid #00f5ff; 
+            padding: 18px 20px; 
+            margin: 25px 0; 
+            border-radius: 10px;
+        }
+        
+.note strong { color: #FFD700; }
+        
+.btn-gold { 
+            display: inline-block; 
+            padding: 15px 35px; 
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000; 
+            text-decoration: none; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            margin-top: 20px;
+            transition: 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+        
+.btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+        }
+        
+.game-box { 
+            background: rgba(0, 0, 0, 0.5); 
+            padding: 40px; 
+            border-radius: 15px; 
+            margin: 30px 0; 
+            border: 2px solid #00f5ff; 
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.2);
+        }
+        
+.game-box input { 
+            padding: 15px; 
+            border-radius: 8px; 
+            border: 2px solid #00f5ff; 
+            background: rgba(0, 0, 0, 0.8); 
+            color: #fff; 
+            font-size: 18px; 
+            width: 200px; 
+            text-align: center; 
+            margin: 15px 0;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+.game-box input:focus {
+            outline: none;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+        }
+        
+.game-box button { 
+            background: #00f5ff; 
+            color: #000; 
+            padding: 15px 30px; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: 900; 
+            cursor: pointer; 
+            font-size: 16px; 
+            margin: 10px;
+            font-family: 'Cairo', sans-serif;
+            transition: 0.3s;
+        }
+        
+.game-box button:hover { 
+            box-shadow: 0 0 25px rgba(0, 245, 255, 0.7);
+            transform: translateY(-2px);
+        }
+        
+#message { 
+            font-size: 20px; 
+            margin: 20px 0; 
+            min-height: 30px; 
+            font-weight: 700;
+        }
+        
+#attempts { 
+            color: #FFD700; 
+            font-size: 18px; 
+        }
+        
+#highScore { 
+            color: #00f5ff; 
+            font-size: 16px; 
+        }
+        
+.checklist { 
+            background: rgba(0, 0, 0, 0.5); 
+            padding: 25px; 
+            border-radius: 10px; 
+            margin: 25px 0; 
+            border: 1px solid #30363d; 
+        }
+        
+.checklist li { 
+            color: #E0E0E0; 
+            margin: 12px 0; 
+            list-style: none;
+            font-size: 17px;
+        }
+        
+.checklist li:before { 
+            content: "✅ "; 
+            color: #00f5ff; 
+            margin-left: 10px; 
+        }
+        
+        a { color: #00f5ff; text-decoration: none; }
+        a:hover { text-shadow: 0 0 10px #00f5ff; }
+        
+        /* موبايل */
+        @media (max-width: 768px) {
+.container { padding: 25px 18px; margin: 30px 15px; }
+            h2 { font-size: 26px; }
+            h3 { font-size: 20px; }
+            p { font-size: 16px; }
+.header h1 { font-size: 22px; }
+.game-box { padding: 25px 15px; }
+.game-box input { width: 150px; }
+        }
     </style>
 </head>
 <body>
@@ -39,23 +245,23 @@
 
     <div class="header">
         <h1>Gaber Talaat</h1>
-        <a href="./"><i class="fas fa-arrow-right"></i> رجوع لكورس JS</a>
+        <a href="index.html"><i class="fas fa-arrow-right"></i> رجوع لكورس JS</a>
     </div>
 
     <div class="container">
         <h2>الدرس 5: مشروع لعبة "خمن الرقم"</h2>
-        <p style="color:#A9A9A9">المدة: 45 دقيقة | المستوى: مشروع تطبيقي</p>
+        <p style="color:#888">المدة: 45 دقيقة | المستوى: مشروع تطبيقي</p>
 
         <h3>1. فكرة اللعبة</h3>
         <p>
             الكمبيوتر هيختار رقم عشوائي من 1 لـ 100<br>
             وانت تحاول تخمنه. كل مرة هيقولك "أعلى" أو "أقل"<br>
-            لحد ما تجيبه صح. هنسجل أقل عدد محاولات جبتها 💚
+            لحد ما تجيبه صح. هنسجل أقل عدد محاولات جبتها 💙
         </p>
 
         <h3>2. اللعبة شغالة قدامك أهي 👇</h3>
         <div class="game-box">
-            <h3 style="color:#F7DF1E; margin-top:0">خمن رقم من 1 لـ 100</h3>
+            <h3 style="color:#00f5ff; margin-top:0">خمن رقم من 1 لـ 100</h3>
             <input type="number" id="guessInput" placeholder="اكتب رقم" min="1" max="100">
             <br>
             <button onclick="checkGuess()">خمن</button>
@@ -78,10 +284,10 @@ let highScore = localStorage.getItem('highScore') || 0;</code></pre>
   attempts++;
 
   if (guess === secretNumber) {
-    document.getElementById('message').textContent =
+    document.getElementById('message').textContent = 
       `صح! الرقم كان ${secretNumber} 🎉`;
-    document.getElementById('message').style.color = '#00FF88';
-
+    document.getElementById('message').style.color = '#00f5ff';
+    
     if (attempts < highScore || highScore === 0) {
       highScore = attempts;
       localStorage.setItem('highScore', highScore);
@@ -93,7 +299,7 @@ let highScore = localStorage.getItem('highScore') || 0;</code></pre>
     document.getElementById('message').textContent = 'أعلى شوية 👆';
     document.getElementById('message').style.color = '#ff4444';
   }
-
+  
   document.getElementById('attempts').textContent = `المحاولات: ${attempts}`;
 }</code></pre>
 
@@ -118,7 +324,7 @@ let highScore = localStorage.getItem('highScore') || 0;</code></pre>
         <ul class="checklist">
             <li>ضيف مستويات صعوبة: سهل 1-50، صعب 1-500</li>
             <li>ضيف مؤقت: لازم تجيب الرقم في 30 ثانية</li>
-            <li>ضيف ألوان: لو قربت اللون يبقى أخضر، لو بعيد أحمر</li>
+            <li>ضيف ألوان: لو قربت اللون يبقى أزرق، لو بعيد أحمر</li>
             <li>اعمل Leaderboard يحفظ أسماء اللاعبين</li>
         </ul>
 
@@ -136,7 +342,7 @@ let highScore = localStorage.getItem('highScore') || 0;</code></pre>
             3. تستخدم ميزات ES6 الحديثة<br>
             4. تجيب بيانات من APIs<br>
             5. تبني ألعاب وتطبيقات بسيطة<br><br>
-            <strong style="color:#00FF88">انت كده Front-End Developer مبتدئ رسمي</strong><br><br>
+            <strong style="color:#00f5ff">انت كده Front-End Developer مبتدئ رسمي</strong><br><br>
             <strong>الخطوة الجاية:</strong> React.js عشان تبني مواقع ضخمة زي فيسبوك
         </div>
 
@@ -157,9 +363,9 @@ let highScore = localStorage.getItem('highScore') || 0;</code></pre>
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
         function draw() {
-            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#F7DF1E';
+            ctx.fillStyle = '#00f5ff';
             ctx.font = fontSize + 'px monospace';
             for(let i = 0; i < drops.length; i++) {
                 const text = chars[Math.floor(Math.random() * chars.length)];
@@ -168,31 +374,31 @@ let highScore = localStorage.getItem('highScore') || 0;</code></pre>
                 drops[i]++;
             }
         }
-        setInterval(draw, 35);
+        setInterval(draw, 50);
         window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 
         // Game Logic
         let secretNumber = Math.floor(Math.random() * 100) + 1;
         let attempts = 0;
         let highScore = localStorage.getItem('highScore') || 0;
-
+        
         document.getElementById('highScore').textContent = `أفضل نتيجة: ${highScore == 0? '-' : highScore + ' محاولات'}`;
-
+        
         const checkGuess = () => {
             const guess = Number(document.getElementById('guessInput').value);
-
+            
             if (!guess || guess < 1 || guess > 100) {
                 document.getElementById('message').textContent = 'اكتب رقم من 1 لـ 100 يا معلم 😂';
                 document.getElementById('message').style.color = '#ff4444';
                 return;
             }
-
+            
             attempts++;
-
+            
             if (guess === secretNumber) {
                 document.getElementById('message').textContent = `صح! الرقم كان ${secretNumber} 🎉🔥`;
-                document.getElementById('message').style.color = '#00FF88';
-
+                document.getElementById('message').style.color = '#00f5ff';
+                
                 if (attempts < highScore || highScore == 0) {
                     highScore = attempts;
                     localStorage.setItem('highScore', highScore);
@@ -205,22 +411,22 @@ let highScore = localStorage.getItem('highScore') || 0;</code></pre>
                 document.getElementById('message').textContent = 'أعلى شوية 👆';
                 document.getElementById('message').style.color = '#ff4444';
             }
-
+            
             document.getElementById('attempts').textContent = `المحاولات: ${attempts}`;
             document.getElementById('guessInput').value = '';
             document.getElementById('guessInput').focus();
         }
-
+        
         const resetGame = () => {
             secretNumber = Math.floor(Math.random() * 100) + 1;
             attempts = 0;
             document.getElementById('message').textContent = 'لعبة جديدة بدأت! يلا خمن 🚀';
-            document.getElementById('message').style.color = '#F7DF1E';
+            document.getElementById('message').style.color = '#00f5ff';
             document.getElementById('attempts').textContent = 'المحاولات: 0';
             document.getElementById('guessInput').value = '';
             document.getElementById('guessInput').focus();
         }
-
+        
         // Enter key support
         document.getElementById('guessInput').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') checkGuess();
