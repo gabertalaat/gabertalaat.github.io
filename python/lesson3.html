@@ -9,27 +9,199 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Cairo', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
-        #matrix-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-    .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 5%; background: rgba(26,26,26,0.9); border-bottom: 3px solid #3776AB; backdrop-filter: blur(5px); }
-    .header h1 { font-weight: 900; color: #3776AB; font-size: 28px; text-shadow: 0 0 15px rgba(55,118,171,0.5); }
-    .header a { color: #aaa; text-decoration: none; font-weight: 600; }
-    .header a:hover { color: #3776AB; }
-    .container { max-width: 800px; margin: 60px auto; padding: 0 5%; position: relative; z-index: 1; }
-        h2 { color: #3776AB; font-size: 32px; margin-bottom: 20px; }
-        h3 { color: #FFD43B; font-size: 22px; margin: 30px 0 15px; }
-        p { color: #ddd; line-height: 1.9; font-size: 17px; margin-bottom: 15px; }
-        pre { background: #0D1117; padding: 20px; border: 1px solid #3776AB; border-radius: 8px; overflow-x: auto; direction: ltr; text-align: left; margin: 20px 0; }
-        code { color: #FFD43B; font-family: monospace; }
-    .note { background: rgba(55,118,171,0.1); border-right: 3px solid #3776AB; padding: 15px; margin: 20px 0; border-radius: 8px; }
-    .btn-gold { display: inline-block; padding: 15px 30px; background: #3776AB; color: #fff; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
-    .btn-gold:hover { background: #2a5a87; }
-    .output { background: #1a1a1a; padding: 15px; border-radius: 8px; margin: 10px 0; border-right: 3px solid #00FF88; }
-    .output code { color: #00FF88; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+            background: #050A11;
+            min-height: 100vh;
+        }
+
+        /* خلفية Hexagon أغمق */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+            background-color: #050A11;
+            background-image:
+                radial-gradient(circle at 25px 25px, rgba(0, 245, 255, 0.06) 2px, transparent 0),
+                radial-gradient(circle at 75px 75px, rgba(0, 245, 255, 0.06) 2px, transparent 0);
+            background-size: 100px 100px;
+            opacity: 0.4;
+        }
+
+        /* دوائر Python متحركة خفيفة */
+    .python-bubbles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+    .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 245, 255, 0.08) 0%, transparent 70%);
+            filter: blur(60px);
+            animation: float 15s infinite ease-in-out;
+        }
+
+    .bubble:nth-child(1) { width: 300px; height: 300px; top: 10%; left: 10%; animation-delay: 0s; }
+    .bubble:nth-child(2) { width: 200px; height: 200px; top: 60%; left: 70%; animation-delay: 3s; background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%); }
+    .bubble:nth-child(3) { width: 250px; height: 250px; top: 40%; left: 40%; animation-delay: 6s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+   .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 5%;
+            background: rgba(5, 10, 17, 0.85);
+            border-bottom: 3px solid #00f5ff;
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+   .header h1 {
+            font-weight: 900;
+            color: #00f5ff;
+            font-size: 28px;
+            text-shadow: 0 0 20px rgba(0,245,255,0.7);
+        }
+
+   .header a {
+            color: #aaa;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+   .header a:hover { color: #00f5ff; }
+
+   .container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 40px 30px;
+            position: relative;
+            z-index: 1;
+            background: rgba(8, 12, 22, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 245, 255, 0.08);
+        }
+
+        h2 {
+            color: #00f5ff;
+            font-size: 34px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(0,245,255,0.5);
+        }
+
+        h3 {
+            color: #FFD700;
+            font-size: 24px;
+            margin: 35px 0 15px;
+            font-weight: 700;
+        }
+
+        p {
+            color: #D4E4F7;
+            line-height: 2;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        strong { color: #00f5ff; }
+
+        pre {
+            background: rgba(5, 10, 17, 0.95);
+            padding: 20px;
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 10px;
+            overflow-x: auto;
+            direction: ltr;
+            text-align: left;
+            margin: 25px 0;
+            box-shadow: inset 0 0 20px rgba(0,245,255,0.08);
+        }
+
+        code {
+            color: #00f5ff;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+        }
+
+   .note {
+            background: rgba(0, 245, 255, 0.04);
+            border-right: 4px solid #00f5ff;
+            padding: 18px 20px;
+            margin: 25px 0;
+            border-radius: 10px;
+        }
+
+   .note strong { color: #FFD700; }
+
+   .btn-gold {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #00f5ff, #0099cc);
+            color: #000;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            margin-top: 20px;
+            transition: 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 245, 255, 0.3);
+        }
+
+   .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 245, 255, 0.5);
+        }
+
+   .output {
+            background: rgba(5, 10, 17, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-right: 3px solid #00FF88;
+            direction: ltr;
+            text-align: left;
+        }
+
+   .output code { color: #00FF88; }
+
+        a { color: #00f5ff; text-decoration: none; }
+        a:hover { text-shadow: 0 0 10px #00f5ff; }
+
+        @media (max-width: 768px) {
+    .container { padding: 25px 18px; margin: 30px 15px; }
+            h2 { font-size: 26px; }
+            h3 { font-size: 20px; }
+            p { font-size: 16px; }
+    .header h1 { font-size: 22px; }
+        }
     </style>
 </head>
 <body>
-    <canvas id="matrix-bg"></canvas>
+    <div class="python-bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
 
     <div class="header">
         <h1>Gaber Talaat</h1>
@@ -38,7 +210,7 @@
 
     <div class="container">
         <h2>الدرس 3: Functions & OOP</h2>
-        <p style="color:#A9A9A9">المدة: 40 دقيقة | المستوى: متوسط</p>
+        <p style="color:#A9D6E5">المدة: 40 دقيقة | المستوى: متوسط</p>
 
         <h3>الجزء الأول: Functions ⚙️</h3>
         <p>الـ Function = كود بتعمله مرة وتستخدمه مليون مرة 😂</p>
@@ -198,7 +370,7 @@ account.show_balance() # رصيد جابر: 1300 جنيه</code></pre>
 
         <div style="margin-top:30px">
             <a href="lesson2.html" style="color:#aaa">← الدرس السابق: البيانات والـ Loops</a> |
-            <a href="lesson4.html" style="color:#3776AB">الدرس التالي: الملفات والمكتبات →</a>
+            <a href="lesson4.html" style="color:#00f5ff">الدرس التالي: الملفات والمكتبات →</a>
         </div>
     </div>
 
@@ -214,9 +386,9 @@ account.show_balance() # رصيد جابر: 1300 جنيه</code></pre>
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
         function draw() {
-            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.fillStyle = 'rgba(5, 10, 17, 0.08)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#3776AB';
+            ctx.fillStyle = '#00f5ff';
             ctx.font = fontSize + 'px monospace';
             for(let i = 0; i < drops.length; i++) {
                 const text = chars[Math.floor(Math.random() * chars.length)];
@@ -225,7 +397,7 @@ account.show_balance() # رصيد جابر: 1300 جنيه</code></pre>
                 drops[i]++;
             }
         }
-        setInterval(draw, 35);
+        setInterval(draw, 50);
         window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
     </script>
 </body>
