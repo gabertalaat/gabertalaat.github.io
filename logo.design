@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تصميم لوجو احترافي - سيدي جابر</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Changa:wght@700&family=Reem+Kufi:wght@700&family=Lemonada:wght@700&family=Marhey:wght@700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #0a0a15;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            margin-bottom: 50px;
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 15px 40px;
+            background: #fff;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+        
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .logos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .logo-card {
+            background: #151525;
+            border-radius: 15px;
+            padding: 50px 20px;
+            text-align: center;
+            border: 2px solid #2d2d44;
+            transition: all 0.4s;
+            perspective: 1000px;
+        }
+        
+        .logo-card:hover {
+            border-color: #667eea;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .logo-display {
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .style-name {
+            color: #667eea;
+            font-size: 0.95rem;
+            margin-top: 15px;
+            font-weight: 700;
+        }
+        
+        /* Logo Style 1 - Modern Bold */
+        .logo1 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Logo Style 2 - Elegant */
+        .logo2 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 3rem;
+            color: #ffd700;
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+            letter-spacing: 2px;
+        }
+        
+        /* Logo Style 3 - Tech */
+        .logo3 {
+            font-family: 'Changa', sans-serif;
+            font-size: 2.7rem;
+            font-weight: 700;
+            color: #00f2fe;
+            border: 3px solid #00f2fe;
+            padding: 12px 28px;
+            display: inline-block;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+        }
+        
+        /* Logo Style 4 - Luxury */
+        .logo4 {
+            font-family: 'Lemonada', cursive;
+            font-size: 2.5rem;
+            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 18px 35px;
+            border-radius: 12px;
+        }
+        
+        /* Logo Style 5 - Minimal */
+        .logo5 {
+            font-family: 'Marhey', sans-serif;
+            font-size: 2.9rem;
+            color: #fff;
+            position: relative;
+        }
+        
+        .logo5::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #f5576c, transparent);
+        }
+        
+        /* Logo Style 6 - 3D Classic */
+        .logo6 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 1px 1px 0 #667eea, 
+                         2px 2px 0 #667eea,
+                         3px 3px 0 #667eea,
+                         4px 4px 0 #764ba2,
+                         5px 5px 0 #764ba2,
+                         6px 6px 10px rgba(0,0,0,0.5);
+        }
+        
+        /* Logo Style 7 - 3D Neon Extruded */
+        .logo7 {
+            font-family: 'Changa', sans-serif;
+            font-size: 2.9rem;
+            font-weight: 900;
+            color: #0ff;
+            text-shadow: 0 0 5px #0ff,
+                         0 0 10px #0ff,
+                         0 0 20px #0ff,
+                         3px 3px 0 #0066cc,
+                         6px 6px 0 #004499,
+                         9px 9px 15px rgba(0,0,0,0.8);
+            transform: rotateX(15deg) rotateY(-10deg);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: rotateX(15deg) rotateY(-10deg) translateY(0px); }
+            50% { transform: rotateX(15deg) rotateY(-10deg) translateY(-10px); }
+        }
+        
+        /* Logo Style 8 - 3D Isometric */
+        .logo8 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 2.7rem;
+            font-weight: 900;
+            color: #ff6b6b;
+            position: relative;
+            transform: skew(-10deg, -5deg);
+        }
+        
+        .logo8::before {
+            content: 'سيدي جابر';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            color: #c92a2a;
+            z-index: -1;
+        }
+        
+        .logo8::after {
+            content: 'سيدي جابر';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            color: #862e2e;
+            z-index: -2;
+        }
+        
+        /* Logo Style 9 - 3D Chrome Metallic */
+        .logo9 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(180deg, #eee 0%, #999 50%, #666 51%, #ccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(2px 2px 0 #444) 
+                    drop-shadow(4px 4px 0 #333)
+                    drop-shadow(6px 6px 8px rgba(0,0,0,0.7));
+            letter-spacing: 3px;
+        }
+        
+        .features {
+            background: #151525;
+            padding: 50px 30px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .features h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #667eea;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .feature {
+            padding: 25px;
+        }
+        
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-top: 1px solid #2d2d44;
+            color: #888;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .logo1, .logo2, .logo3, .logo4, .logo5, .logo6, .logo7, .logo8, .logo9 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>صمّم لوجو احترافي لبراندك</h1>
+            <p>9 ستايلات مختلفة - منهم 4 ستايلات 3D خرافية 🔥</p>
+            <a href="#logos" class="cta-btn">شوف النماذج</a>
+        </header>
+        
+        <section id="logos" class="logos-grid">
+            <div class="logo-card">
+                <div class="logo-display"><div class="logo1">سيدي جابر</div></div>
+                <p class="style-name">ستايل عصري جريء</p>
+            </div>
+            
+            <div class="logo-card">
+                <div class="logo-display"><div class="logo2">سيدي جابر</div></div>
+                <p class="style-name">ستايل أنيق فاخر</p>
+            </div>
+            
+            <div class="logo-card">
+                <div class="logo-display"><div class="logo3">سيدي جابر</div></div>
+                <p class="style-name">ستايل تقني حديث</p>
+            </div>
+            
+            <div class="logo-card">
+                <div class="logo-display"><div class="logo4">سيدي جابر</div></div>
+                <p class="style-name">ستايل كريتيف ملون</p>
+            </div>
+            
+            <div class="logo-card">
+                <div class="logo-display"><div class="logo5">سيدي جابر</div></div>
+                <p class="style-name">ستايل مينيمال بسيط</p>
+            </div>
+            
+            <div class="logo-card">
+                <div class="logo-display"><div class="logo6">سيدي جابر</div></div>
+                <p class="style-name">3D كلاسيك بارز</p>
+            </div>
+            
+            <div class="logo-card">
+                <div class="logo-display"><div class="logo7">سيدي جابر</div></div>
+                <p class="style-name">3D نيون متحرك ✨</p>
+            </div>
+            
+            <div class="logo-card">
+                <div class="logo-display"><div class="logo8">سيدي جابر</div></div>
+                <p class="style-name">3D أيزوميترك طبقات</p>
+            </div>
+            
+            <div class="logo-card">
+                <div class="logo-display"><div class="logo9">سيدي جابر</div></div>
+                <p class="style-name">3D كروم ميتاليك</p>
+            </div>
+        </section>
+        
+        <section class="features">
+            <h2>ليه تختارنا؟</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h3>تصاميم لا محدودة</h3>
+                    <p>نصمم لحد ما تعجبك 100%</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>تسليم سريع</h3>
+                    <p>استلم اللوجو خلال 24 ساعة</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💎</div>
+                    <h3>جودة عالية</h3>
+                    <p>ملفات PNG + SVG + AI</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔄</div>
+                    <h3>تعديلات مجانية</h3>
+                    <p>لحد ما نوصل للشكل المثالي</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2026 جميع الحقوق محفوظة | للتواصل واتساب: 01xxxxxxxxx</p>
+            <p>اطلب لوجو البراند بتاعك دلوقتي!</p>
+        </footer>
+    </div>
+</body>
+</html>
