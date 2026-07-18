@@ -1,16 +1,191 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>جاري العمل...</title>
-<style>
-body { background: #050A11; color: #00f5ff; font-family: Cairo; text-align: center; padding: 100px; }
-a { color: #888; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تصميم مواقع - جابر طلعت</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{
+            font-family:'Cairo',sans-serif;
+            background:#050A11;
+            color:#fff;
+            position:relative;
+            min-height:100vh;
+            overflow-x:hidden;
+        }
+        body::before{
+            content:'';
+            position:fixed;top:0;left:0;width:100%;height:100%;
+            z-index:-2;
+            background-color:#050A11;
+            background-image:
+                radial-gradient(circle at 25px 25px, rgba(0,245,255,0.06) 2px, transparent 0),
+                radial-gradient(circle at 75px 75px, rgba(0,245,255,0.06) 2px, transparent 0);
+            background-size:100px 100px;
+        }
+        .bubbles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden}
+        .bubble{
+            position:absolute;border-radius:50%;
+            background:radial-gradient(circle, rgba(0,245,255,0.08) 0%, transparent 70%);
+            filter:blur(60px);animation:float 15s infinite ease-in-out;
+        }
+        .bubble:nth-child(1){width:400px;height:400px;top:10%;left:5%}
+        .bubble:nth-child(2){width:300px;height:300px;top:60%;left:70%;animation-delay:3s;background:radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%)}
+        @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.1)}66%{transform:translate(-20px,20px) scale(0.9)}}
+
+        .container{max-width:1200px;margin:0 auto;padding:60px 20px;position:relative;z-index:1}
+        .back-btn{display:inline-block;color:#aaa;text-decoration:none;font-weight:600;margin-bottom:30px;transition:0.3s}
+        .back-btn:hover{color:#00f5ff}
+        .hero-title{font-size:48px;font-weight:900;text-align:center;margin-bottom:15px}
+        .hero-title span{color:#00f5ff;text-shadow:0 0 25px rgba(0,245,255,0.5)}
+        .hero-sub{color:#888;text-align:center;margin-bottom:60px;font-size:18px}
+
+        .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:30px}
+
+        .project-card{
+            background:rgba(8,12,22,0.85);
+            backdrop-filter:blur(16px);
+            border:2px solid rgba(0,245,255,0.15);
+            border-radius:20px;
+            overflow:hidden;
+            transition:0.4s;
+        }
+        .project-card:hover{
+            border-color:#00f5ff;
+            transform:translateY(-10px);
+            box-shadow:0 20px 50px rgba(0,245,255,0.25);
+        }
+        .project-img{
+            width:100%;height:220px;
+            background:linear-gradient(135deg, #080C16, #101828);
+            display:flex;align-items:center;justify-content:center;
+            font-size:80px;color:#00f5ff;
+            position:relative;overflow:hidden;
+        }
+        .project-img::after{
+            content:'';
+            position:absolute;top:0;left:0;width:100%;height:100%;
+            background:radial-gradient(circle at center, rgba(0,245,255,0.15), transparent 70%);
+        }
+        .project-info{padding:30px}
+        .project-info h3{font-size:22px;font-weight:800;margin-bottom:10px}
+        .project-info p{font-size:14px;color:#888;line-height:1.8;margin-bottom:20px}
+        .tech-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+        .tech-tag{
+            background:rgba(0,245,255,0.1);
+            border:1px solid rgba(0,245,255,0.3);
+            padding:5px 12px;border-radius:20px;
+            font-size:11px;color:#00f5ff;font-weight:700;
+        }
+        .project-links{display:flex;gap:12px}
+        .btn{
+            flex:1;text-align:center;padding:12px;
+            border-radius:10px;text-decoration:none;font-weight:700;font-size:14px;transition:0.3s;
+        }
+        .btn-primary{background:#00f5ff;color:#050A11;border:2px solid #00f5ff}
+        .btn-primary:hover{background:transparent;color:#00f5ff}
+        .btn-outline{border:2px solid rgba(0,245,255,0.3);color:#00f5ff;background:transparent}
+        .btn-outline:hover{border-color:#00f5ff;background:rgba(0,245,255,0.1)}
+
+        .cta{
+            margin-top:80px;text-align:center;
+            background:rgba(8,12,22,0.85);
+            border:2px solid #00f5ff;
+            border-radius:20px;
+            padding:50px 30px;
+            box-shadow:0 0 40px rgba(0,245,255,0.15);
+        }
+        .cta h2{font-size:32px;font-weight:900;margin-bottom:15px}
+        .cta p{color:#888;margin-bottom:25px}
+        .cta-btn{
+            display:inline-block;background:#00f5ff;color:#050A11;
+            padding:15px 40px;border-radius:12px;
+            text-decoration:none;font-weight:900;font-size:18px;
+            box-shadow:0 0 25px rgba(0,245,255,0.4);transition:0.3s;
+        }
+        .cta-btn:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(0,245,255,0.5)}
+    </style>
 </head>
 <body>
-<h1>قريباً...</h1>
-<p>الصفحة دي تحت التطوير</p>
-<a href="../index.html">رجوع للرئيسية</a>
+    <div class="bubbles"><div class="bubble"></div><div class="bubble"></div></div>
+
+    <div class="container">
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-right"></i> رجوع للرئيسية</a>
+
+        <h1 class="hero-title">تصميم <span>مواقع</span></h1>
+        <p class="hero-sub">مواقع صممتها بكل حب - سريعة، متجاوبة، وبستايل Sidi Gaber</p>
+
+        <div class="projects-grid">
+
+            <!-- مشروع 1 -->
+            <div class="project-card">
+                <div class="project-img"><i class="fas fa-book-open"></i></div>
+                <div class="project-info">
+                    <h3>Sidi Gaber Library</h3>
+                    <p>مكتبة رقمية فيها +500 ملف مجاني للمصممين والمبرمجين. 10K مستخدم شهرياً.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">GitHub Pages</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://gabertalaat.github.io" target="_blank" class="btn btn-primary">معاينة حية</a>
+                        <a href="https://github.com/gabertalaat/gabertalaat.github.io" target="_blank" class="btn btn-outline">الكود</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مشروع 2 -->
+            <div class="project-card">
+                <div class="project-img"><i class="fas fa-user-astronaut"></i></div>
+                <div class="project-info">
+                    <h3>Portfolio Personal</h3>
+                    <p>موقع شخصي احترافي لعرض خدماتك وأعمالك بطريقة عصرية.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Responsive</span>
+                        <span class="tech-tag">Neon UI</span>
+                        <span class="tech-tag">Animations</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="../index.html" class="btn btn-primary">معاينة حية</a>
+                        <a href="https://wa.me/201140748597" class="btn btn-outline">اطلب زيه</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مشروع 3 - تقدر تعدله -->
+            <div class="project-card">
+                <div class="project-img"><i class="fas fa-store"></i></div>
+                <div class="project-info">
+                    <h3>متجر إلكتروني Demo</h3>
+                    <p>نموذج متجر إلكتروني بسيط وسريع - تقدر تعدل عليه لأي عميل.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">E-commerce</span>
+                        <span class="tech-tag">Cart</span>
+                        <span class="tech-tag">Dark Mode</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-primary">قريباً</a>
+                        <a href="https://wa.me/201140748597" class="btn btn-outline">اطلب متجرك</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="cta">
+            <h2>عايز موقع زي ده؟</h2>
+            <p>بصمملك موقع احترافي متجاوب مع كل الأجهزة في 3 أيام بس</p>
+            <a href="https://wa.me/201140748597?text=عايز%20موقع%20احترافي" class="cta-btn">
+                <i class="fab fa-whatsapp"></i> كلمني واتساب
+            </a>
+        </div>
+
+    </div>
 </body>
 </html>
