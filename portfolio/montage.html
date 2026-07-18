@@ -1,16 +1,200 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>جاري العمل...</title>
-<style>
-body { background: #050A11; color: #00f5ff; font-family: Cairo; text-align: center; padding: 100px; }
-a { color: #888; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مونتاج فيديو - جابر طلعت</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{
+            font-family:'Cairo',sans-serif;
+            background:#050A11;
+            color:#fff;
+            min-height:100vh;
+            position:relative;
+            overflow-x:hidden;
+        }
+        body::before{
+            content:'';position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;
+            background-color:#050A11;
+            background-image:
+                radial-gradient(circle at 25px 25px, rgba(0,245,255,0.06) 2px, transparent 0),
+                radial-gradient(circle at 75px 75px, rgba(0,245,255,0.06) 2px, transparent 0);
+            background-size:100px 100px;
+        }
+        .bubbles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden}
+        .bubble{position:absolute;border-radius:50%;background:radial-gradient(circle, rgba(0,245,255,0.08) 0%, transparent 70%);filter:blur(60px);animation:float 15s infinite ease-in-out}
+        .bubble:nth-child(1){width:400px;height:400px;top:10%;left:5%}
+        .bubble:nth-child(2){width:300px;height:300px;top:60%;left:70%;animation-delay:3s;background:radial-gradient(circle, rgba(255,0,128,0.06) 0%, transparent 70%)}
+        @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.1)}66%{transform:translate(-20px,20px) scale(0.9)}}
+
+        .container{max-width:1200px;margin:0 auto;padding:60px 20px;position:relative;z-index:1}
+        .back-btn{display:inline-block;color:#aaa;text-decoration:none;font-weight:600;margin-bottom:30px;transition:0.3s}
+        .back-btn:hover{color:#00f5ff}
+        .hero-title{font-size:48px;font-weight:900;text-align:center;margin-bottom:15px}
+        .hero-title span{color:#00f5ff;text-shadow:0 0 25px rgba(0,245,255,0.5)}
+        .hero-sub{color:#888;text-align:center;margin-bottom:60px;font-size:18px}
+
+        .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px}
+
+        .video-card{
+            background:rgba(8,12,22,0.85);
+            backdrop-filter:blur(16px);
+            border:2px solid rgba(0,245,255,0.15);
+            border-radius:20px;
+            overflow:hidden;
+            transition:0.4s;
+        }
+        .video-card:hover{border-color:#00f5ff;transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,245,255,0.25)}
+        
+        .video-thumb{
+            width:100%;height:400px;
+            background:linear-gradient(180deg, #101828 0%, #050A11 100%);
+            display:flex;align-items:center;justify-content:center;
+            position:relative;
+            overflow:hidden;
+        }
+        .video-thumb i{font-size:70px;color:#00f5ff;opacity:0.8}
+        .play-btn{
+            position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+            width:80px;height:80px;background:rgba(0,245,255,0.9);
+            border-radius:50%;display:flex;align-items:center;justify-content:center;
+            font-size:30px;color:#050A11;box-shadow:0 0 30px rgba(0,245,255,0.6);
+            transition:0.3s;
+        }
+        .video-card:hover .play-btn{transform:translate(-50%,-50%) scale(1.1)}
+        .video-type{
+            position:absolute;top:15px;right:15px;
+            background:rgba(0,0,0,0.7);border:1px solid #00f5ff;
+            color:#00f5ff;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;
+        }
+
+        .video-info{padding:25px}
+        .video-info h3{font-size:18px;font-weight:800;margin-bottom:8px}
+        .video-info p{font-size:13px;color:#888;margin-bottom:15px;line-height:1.6}
+        .video-stats{display:flex;gap:15px;color:#666;font-size:12px}
+        .video-stats i{color:#00f5ff;margin-left:4px}
+
+        .services-types{margin-top:80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+        .type-card{
+            background:rgba(8,12,22,0.85);
+            border:2px solid rgba(0,245,255,0.15);
+            border-radius:16px;padding:30px;text-align:center;transition:0.3s;
+        }
+        .type-card:hover{border-color:#00f5ff}
+        .type-card i{font-size:40px;color:#00f5ff;margin-bottom:15px}
+        .type-card h3{font-size:18px;margin-bottom:10px}
+        .type-card p{font-size:13px;color:#888}
+        .type-price{margin-top:15px;font-size:20px;font-weight:900;color:#00f5ff}
+
+        .cta{
+            margin-top:80px;text-align:center;
+            background:rgba(8,12,22,0.85);
+            border:2px solid #00f5ff;
+            border-radius:20px;padding:50px 30px;
+            box-shadow:0 0 40px rgba(0,245,255,0.15);
+        }
+        .cta h2{font-size:32px;font-weight:900;margin-bottom:15px}
+        .cta p{color:#888;margin-bottom:25px}
+        .cta-btn{
+            display:inline-block;background:#00f5ff;color:#050A11;
+            padding:15px 40px;border-radius:12px;
+            text-decoration:none;font-weight:900;font-size:18px;
+            box-shadow:0 0 25px rgba(0,245,255,0.4);transition:0.3s;
+        }
+        .cta-btn:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(0,245,255,0.5)}
+    </style>
 </head>
 <body>
-<h1>قريباً...</h1>
-<p>الصفحة دي تحت التطوير</p>
-<a href="../index.html">رجوع للرئيسية</a>
+    <div class="bubbles"><div class="bubble"></div><div class="bubble"></div></div>
+
+    <div class="container">
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-right"></i> رجوع للرئيسية</a>
+
+        <h1 class="hero-title">مونتاج <span>فيديو</span></h1>
+        <p class="hero-sub">ريلز تريند + فيديوهات يوتيوب بجودة سينمائية</p>
+
+        <div class="video-grid">
+
+            <div class="video-card">
+                <div class="video-thumb">
+                    <span class="video-type">REEL</span>
+                    <i class="fas fa-film"></i>
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h3>ريلز إعلاني لمطعم</h3>
+                    <p>مونتاج سريع + Transitions + Sound Effects تريند</p>
+                    <div class="video-stats">
+                        <span><i class="fas fa-eye"></i> 12K مشاهدة</span>
+                        <span><i class="fas fa-clock"></i> 15 ثانية</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumb">
+                    <span class="video-type">YOUTUBE</span>
+                    <i class="fas fa-video"></i>
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h3>انترو قناة Gaming</h3>
+                    <p>انترو احترافي + موشن جرافيك + لوجو متحرك</p>
+                    <div class="video-stats">
+                        <span><i class="fas fa-eye"></i> 5K مشاهدة</span>
+                        <span><i class="fas fa-clock"></i> 8 ثواني</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumb">
+                    <span class="video-type">TIKTOK</span>
+                    <i class="fab fa-tiktok"></i>
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h3>فيديو تيك توك تريند</h3>
+                    <p>مونتاج كاب كات برو + كابشن متحرك</p>
+                    <div class="video-stats">
+                        <span><i class="fas fa-eye"></i> 50K مشاهدة</span>
+                        <span><i class="fas fa-clock"></i> 20 ثانية</span>
+                    </div>
+                </div>
+            </div>
+
+        <div class="services-types">
+            <div class="type-card">
+                <i class="fab fa-instagram"></i>
+                <h3>مونتاج ريلز</h3>
+                <p>ريلز انستا وتيك توك بجودة عالية وترانزشن تريند</p>
+                <div class="type-price">يبدأ من 100 ج</div>
+            </div>
+            <div class="type-card">
+                <i class="fab fa-youtube"></i>
+                <h3>مونتاج يوتيوب</h3>
+                <p>قص - تركيب - ألوان - صوت - انترو + اوترو</p>
+                <div class="type-price">يبدأ من 250 ج</div>
+            </div>
+            <div class="type-card">
+                <i class="fas fa-ad"></i>
+                <h3>فيديو إعلاني</h3>
+                <p>فيديو إعلان قصير لمنتجك أو مطعمك</p>
+                <div class="type-price">يبدأ من 400 ج</div>
+            </div>
+        </div>
+
+        <div class="cta">
+            <h2>عايز فيديو يضرب ترند؟</h2>
+            <p>ابعتلي الفيديو الخام وانا أظبطهولك في نفس اليوم</p>
+            <a href="https://wa.me/201000000000?text=عايز%20مونتاج%20فيديو" class="cta-btn">
+                <i class="fab fa-whatsapp"></i> ابعت الفيديو
+            </a>
+        </div>
+
+    </div>
 </body>
 </html>
