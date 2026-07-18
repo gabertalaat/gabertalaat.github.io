@@ -1,16 +1,201 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>جاري العمل...</title>
-<style>
-body { background: #050A11; color: #00f5ff; font-family: Cairo; text-align: center; padding: 100px; }
-a { color: #888; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تصميم لوجو - جابر طلعت</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{
+            font-family:'Cairo',sans-serif;
+            background:#050A11;
+            color:#fff;
+            min-height:100vh;
+            position:relative;
+            overflow-x:hidden;
+        }
+        body::before{
+            content:'';position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;
+            background-color:#050A11;
+            background-image:
+                radial-gradient(circle at 25px 25px, rgba(0,245,255,0.06) 2px, transparent 0),
+                radial-gradient(circle at 75px 75px, rgba(0,245,255,0.06) 2px, transparent 0);
+            background-size:100px 100px;
+        }
+        .bubbles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden}
+        .bubble{position:absolute;border-radius:50%;background:radial-gradient(circle, rgba(0,245,255,0.08) 0%, transparent 70%);filter:blur(60px);animation:float 15s infinite ease-in-out}
+        .bubble:nth-child(1){width:400px;height:400px;top:10%;left:5%}
+        .bubble:nth-child(2){width:300px;height:300px;top:60%;left:70%;animation-delay:3s;background:radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%)}
+        @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.1)}66%{transform:translate(-20px,20px) scale(0.9)}}
+
+        .container{max-width:1200px;margin:0 auto;padding:60px 20px;position:relative;z-index:1}
+        .back-btn{display:inline-block;color:#aaa;text-decoration:none;font-weight:600;margin-bottom:30px;transition:0.3s}
+        .back-btn:hover{color:#00f5ff}
+        .hero-title{font-size:48px;font-weight:900;text-align:center;margin-bottom:15px}
+        .hero-title span{color:#00f5ff;text-shadow:0 0 25px rgba(0,245,255,0.5)}
+        .hero-sub{color:#888;text-align:center;margin-bottom:60px;font-size:18px}
+
+        .logos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
+
+        .logo-card{
+            background:rgba(8,12,22,0.85);
+            backdrop-filter:blur(16px);
+            border:2px solid rgba(0,245,255,0.15);
+            border-radius:20px;
+            padding:25px;
+            transition:0.4s;
+            text-align:center;
+        }
+        .logo-card:hover{
+            border-color:#00f5ff;
+            transform:translateY(-10px);
+            box-shadow:0 20px 50px rgba(0,245,255,0.25);
+        }
+        .logo-box{
+            width:100%;height:200px;
+            background:#fff;
+            border-radius:15px;
+            display:flex;align-items:center;justify-content:center;
+            margin-bottom:20px;
+            overflow:hidden;
+        }
+        .logo-box img{max-width:80%;max-height:80%;object-fit:contain}
+        .logo-box i{font-size:70px;color:#050A11}
+
+        .logo-card h3{font-size:18px;font-weight:800;margin-bottom:8px}
+        .logo-card p{font-size:13px;color:#888;margin-bottom:15px}
+        .logo-tag{
+            display:inline-block;
+            background:rgba(0,245,255,0.1);
+            border:1px solid rgba(0,245,255,0.3);
+            padding:4px 12px;border-radius:20px;
+            font-size:11px;color:#00f5ff;font-weight:700;
+        }
+
+        .pricing{margin-top:80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
+        .price-card{
+            background:rgba(8,12,22,0.85);
+            border:2px solid rgba(0,245,255,0.15);
+            border-radius:20px;
+            padding:35px;
+            text-align:center;
+            transition:0.4s;
+            position:relative;
+        }
+        .price-card.featured{border-color:#00f5ff;box-shadow:0 0 40px rgba(0,245,255,0.2);transform:scale(1.05)}
+        .price-card.featured::before{
+            content:'الأكثر طلباً';
+            position:absolute;top:-15px;left:50%;transform:translateX(-50%);
+            background:#00f5ff;color:#050A11;
+            padding:5px 20px;border-radius:20px;font-size:12px;font-weight:900;
+        }
+        .price-card h3{font-size:22px;margin-bottom:10px}
+        .price{font-size:36px;font-weight:900;color:#00f5ff;margin:15px 0}
+        .price-card ul{list-style:none;text-align:right;margin:20px 0}
+        .price-card ul li{color:#aaa;font-size:14px;margin-bottom:10px}
+        .price-card ul li i{color:#00f5ff;margin-left:8px}
+        .price-btn{
+            display:block;background:transparent;border:2px solid #00f5ff;
+            color:#00f5ff;padding:12px;border-radius:10px;
+            text-decoration:none;font-weight:800;transition:0.3s;
+        }
+        .price-card.featured .price-btn{background:#00f5ff;color:#050A11}
+        .price-btn:hover{background:#00f5ff;color:#050A11}
+    </style>
 </head>
 <body>
-<h1>قريباً...</h1>
-<p>الصفحة دي تحت التطوير</p>
-<a href="../index.html">رجوع للرئيسية</a>
+    <div class="bubbles"><div class="bubble"></div><div class="bubble"></div></div>
+
+    <div class="container">
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-right"></i> رجوع للرئيسية</a>
+
+        <h1 class="hero-title">تصميم <span>لوجو</span></h1>
+        <p class="hero-sub">هوية بصرية تخلّي البراند بتاعك محفور في الذاكرة</p>
+
+        <div class="logos-grid">
+            <!-- تقدر تغير الصور دي لصور لوجوهات حقيقية -->
+            <div class="logo-card">
+                <div class="logo-box"><i class="fas fa-crown"></i></div>
+                <h3>لوجو متجر فخم</h3>
+                <p>هوية كاملة لبراند ملابس</p>
+                <span class="logo-tag">Minimal</span>
+            </div>
+
+            <div class="logo-card">
+                <div class="logo-box" style="background:#050A11"><i class="fas fa-bolt" style="color:#00f5ff"></i></div>
+                <h3>لوجو تقني</h3>
+                <p>ستايل نيون لشركة تكنولوجيا</p>
+                <span class="logo-tag">Tech</span>
+            </div>
+
+            <div class="logo-card">
+                <div class="logo-box"><i class="fas fa-coffee"></i></div>
+                <h3>لوجو كافيه</h3>
+                <p>ستايل Vintage لمطعم</p>
+                <span class="logo-tag">Vintage</span>
+            </div>
+
+            <div class="logo-card">
+                <div class="logo-box"><i class="fas fa-gamepad"></i></div>
+                <h3>لوجو Gaming</h3>
+                <p>لوجو قوي لقناة يوتيوب</p>
+                <span class="logo-tag">Gaming</span>
+            </div>
+
+            <div class="logo-card">
+                <div class="logo-box" style="background:linear-gradient(135deg,#00f5ff,#0080ff)"><i class="fas fa-water" style="color:#fff"></i></div>
+                <h3>Sidi Gaber</h3>
+                <p>اللوجو الرسمي لمكتبتي</p>
+                <span class="logo-tag">Brand</span>
+            </div>
+
+            <div class="logo-card">
+                <div class="logo-box"><i class="fas fa-plus" style="color:#aaa"></i></div>
+                <h3>مشروعك الجاي؟</h3>
+                <p>خلّي اللوجو الجاي باسمك</p>
+                <span class="logo-tag">Your Brand</span>
+            </div>
+        </div>
+
+        <!-- أسعار -->
+        <div class="pricing">
+            <div class="price-card">
+                <h3>لوجو فقط</h3>
+                <div class="price">250 ج</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> لوجو بجودة عالية PNG + SVG</li>
+                    <li><i class="fas fa-check"></i> تعديلين مجاناً</li>
+                    <li><i class="fas fa-check"></i> تسليم 24 ساعة</li>
+                </ul>
+                <a href="https://wa.me/201000000000?text=عايز%20لوجو%20فقط%20بـ250ج" class="price-btn">اطلب الآن</a>
+            </div>
+
+            <div class="price-card featured">
+                <h3>هوية كاملة</h3>
+                <div class="price">600 ج</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> لوجو + ألوان + خطوط</li>
+                    <li><i class="fas fa-check"></i> بيزنس كارد + غلاف فيس</li>
+                    <li><i class="fas fa-check"></i> ملفات مفتوحة PSD + AI</li>
+                    <li><i class="fas fa-check"></i> 5 تعديلات مجانية</li>
+                </ul>
+                <a href="https://wa.me/201000000000?text=عايز%20هوية%20كاملة%20بـ600ج" class="price-btn">اطلب الآن</a>
+            </div>
+
+            <div class="price-card">
+                <h3>براند برو</h3>
+                <div class="price">1200 ج</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> كل حاجة في الهوية الكاملة</li>
+                    <li><i class="fas fa-check"></i> تصميم موقع One Page</li>
+                    <li><i class="fas fa-check"></i> 10 بوستات سوشيال</li>
+                </ul>
+                <a href="https://wa.me/201000000000?text=عايز%20براند%20برو%20بـ1200ج" class="price-btn">اطلب الآن</a>
+            </div>
+        </div>
+
+    </div>
 </body>
 </html>
