@@ -1,16 +1,188 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>جاري العمل...</title>
-<style>
-body { background: #050A11; color: #00f5ff; font-family: Cairo; text-align: center; padding: 100px; }
-a { color: #888; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أدوات المصمم - Sidi Gaber</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{
+            font-family:'Cairo',sans-serif;
+            background:#050A11;
+            color:#fff;
+            position:relative;
+            min-height:100vh;
+            overflow-x:hidden;
+        }
+        body::before{
+            content:'';
+            position:fixed;top:0;left:0;width:100%;height:100%;
+            z-index:-2;
+            background-color:#050A11;
+            background-image:
+                radial-gradient(circle at 25px 25px, rgba(0,245,255,0.06) 2px, transparent 0),
+                radial-gradient(circle at 75px 75px, rgba(0,245,255,0.06) 2px, transparent 0);
+            background-size:100px 100px;
+        }
+        .bubbles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden}
+        .bubble{
+            position:absolute;border-radius:50%;
+            background:radial-gradient(circle, rgba(0,245,255,0.08) 0%, transparent 70%);
+            filter:blur(60px);animation:float 15s infinite ease-in-out;
+        }
+        .bubble:nth-child(1){width:400px;height:400px;top:10%;left:5%}
+        .bubble:nth-child(2){width:300px;height:300px;top:60%;left:70%;animation-delay:3s;background:radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%)}
+        @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.1)}66%{transform:translate(-20px,20px) scale(0.9)}}
+
+        .container{max-width:1200px;margin:0 auto;padding:60px 20px;position:relative;z-index:1}
+        .back-btn{display:inline-block;color:#aaa;text-decoration:none;font-weight:600;margin-bottom:30px;transition:0.3s}
+        .back-btn:hover{color:#00f5ff}
+        .hero-title{font-size:48px;font-weight:900;text-align:center;margin-bottom:15px}
+        .hero-title span{color:#00f5ff;text-shadow:0 0 25px rgba(0,245,255,0.5)}
+        .hero-sub{color:#888;text-align:center;margin-bottom:60px;font-size:18px}
+
+        .category-title{
+            font-size:28px;font-weight:900;color:#00f5ff;
+            margin:60px 0 25px;
+            padding-bottom:15px;
+            border-bottom:2px solid rgba(0,245,255,0.3);
+        }
+        .category-title i{margin-left:10px}
+
+        .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+        .tool-card{
+            background:rgba(8,12,22,0.85);
+            backdrop-filter:blur(16px);
+            border:2px solid rgba(0,245,255,0.15);
+            border-radius:16px;
+            padding:25px;
+            transition:0.4s;
+            text-decoration:none;
+            display:block;
+        }
+        .tool-card:hover{
+            border-color:#00f5ff;
+            transform:translateY(-8px);
+            box-shadow:0 15px 40px rgba(0,245,255,0.2);
+        }
+        .tool-card h3{font-size:18px;color:#fff;margin-bottom:8px}
+        .tool-card p{font-size:13px;color:#888;line-height:1.6;margin-bottom:15px}
+        .tool-link{color:#00f5ff;font-size:13px;font-weight:700}
+        .tool-link i{margin-right:5px;transition:0.3s}
+        .tool-card:hover .tool-link i{transform:translateX(-5px)}
+    </style>
 </head>
 <body>
-<h1>قريباً...</h1>
-<p>الصفحة دي تحت التطوير</p>
-<a href="../index.html">رجوع للرئيسية</a>
+    <div class="bubbles"><div class="bubble"></div><div class="bubble"></div></div>
+
+    <div class="container">
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-right"></i> رجوع للرئيسية</a>
+
+        <h1 class="hero-title">أدوات <span>المصمم</span></h1>
+        <p class="hero-sub">20 موقع بستخدمهم يومياً - كلهم مجانيين 100%</p>
+
+        <!-- موكاب -->
+        <h2 class="category-title"><i class="fas fa-cube"></i> مواقع موكاب مجانية</h2>
+        <div class="tools-grid">
+            <a href="https://www.freepik.com/psd/mockups" target="_blank" class="tool-card">
+                <h3>Freepik Mockups</h3>
+                <p>أكبر مكتبة موكاب PSD مجانية للتيشيرت والبزنس كارد</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+            <a href="https://mockupfree.co" target="_blank" class="tool-card">
+                <h3>MockupFree</h3>
+                <p>موكاب احترافي جاهز للتحميل المباشر بدون اشتراك</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+            <a href="https://unblast.com" target="_blank" class="tool-card">
+                <h3>Unblast</h3>
+                <p>موكاب وشعارات وخلفيات للمصممين</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+            <a href="https://ls.graphics/free-mockups" target="_blank" class="tool-card">
+                <h3>LS Graphics</h3>
+                <p>موكاب آيفون ولابتوب وعبوات بجودة عالية</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+        </div>
+
+        <!-- ألوان -->
+        <h2 class="category-title"><i class="fas fa-palette"></i> ألوان و Gradients</h2>
+        <div class="tools-grid">
+            <a href="https://coolors.co" target="_blank" class="tool-card">
+                <h3>Coolors</h3>
+                <p>مولد باليتات ألوان احترافية بضغطة زر</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+            <a href="https://webgradients.com" target="_blank" class="tool-card">
+                <h3>WebGradients</h3>
+                <p>180 تدرج لوني جاهز للـ CSS</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+            <a href="https://colorhunt.co" target="_blank" class="tool-card">
+                <h3>Color Hunt</h3>
+                <p>مجموعات ألوان تريندية يومياً</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+            <a href="https://uigradients.com" target="_blank" class="tool-card">
+                <h3>UI Gradients</h3>
+                <p>تدرجات جاهزة للمواقع والتطبيقات</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+        </div>
+
+        <!-- خطوط -->
+        <h2 class="category-title"><i class="fas fa-font"></i> خطوط عربية</h2>
+        <div class="tools-grid">
+            <a href="https://fonts.google.com/?subset=arabic" target="_blank" class="tool-card">
+                <h3>Google Arabic Fonts</h3>
+                <p>أفضل الخطوط العربية المجانية Cairo و Tajawal</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+            <a href="https://www.arabicfonts.net" target="_blank" class="tool-card">
+                <h3>Arabic Fonts</h3>
+                <p>مكتبة خطوط عربية للتصميم والويب</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+            <a href="https://fontface.me" target="_blank" class="tool-card">
+                <h3>FontFace</h3>
+                <p>معاينة وتحميل خطوط عربية مزخرفة</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+            <a href="https://www.behance.net/search/projects?search=arabic+fonts+free" target="_blank" class="tool-card">
+                <h3>Behance Free Fonts</h3>
+                <p>خطوط عربية مجانية من مصممين عرب</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+        </div>
+
+        <!-- ذكاء اصطناعي -->
+        <h2 class="category-title"><i class="fas fa-robot"></i> ذكاء اصطناعي للمصمم</h2>
+        <div class="tools-grid">
+            <a href="https://www.remove.bg" target="_blank" class="tool-card">
+                <h3>Remove.bg</h3>
+                <p>إزالة الخلفية من الصور في ثانية</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+            <a href="https://www.upscale.media" target="_blank" class="tool-card">
+                <h3>Upscale.media</h3>
+                <p>تكبير الصور بدون ما الجودة تبوظ</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+            <a href="https://www.khroma.co" target="_blank" class="tool-card">
+                <h3>Khroma AI Colors</h3>
+                <p>ذكاء اصطناعي يختارلك ألوان على ذوقك</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+            <a href="https://www.letsenhance.io" target="_blank" class="tool-card">
+                <h3>Let's Enhance</h3>
+                <p>تحسين جودة الصور بالذكاء الاصطناعي</p>
+                <span class="tool-link">افتح الموقع <i class="fas fa-arrow-left"></i></span>
+            </a>
+        </div>
+
+    </div>
 </body>
 </html>
